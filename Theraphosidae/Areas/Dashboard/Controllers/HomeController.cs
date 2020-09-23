@@ -3,27 +3,29 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Theraphosidae.Areas.Dashboard.Models.Db.Account;
 using Theraphosidae.Models;
 
-namespace Theraphosidae.Controllers
+namespace Theraphosidae.Areas.Dashboard.Controllers
 {
+    [Authorize]
+    [Area("dashboard")]
+    [Route("dashboard/{action=Index}/{id?}")]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly UserManager<User> _userManager;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(UserManager<User> userManager)
         {
-            _logger = logger;
+            _userManager = userManager;
         }
 
+        [HttpGet]
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }
