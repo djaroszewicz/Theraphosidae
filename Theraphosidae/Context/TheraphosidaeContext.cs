@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Theraphosidae.Areas.Dashboard.Models.Db.Account;
+using Theraphosidae.Areas.Dashboard.Models.Db.Article;
 
 namespace Theraphosidae.Context
 {
@@ -12,7 +13,7 @@ namespace Theraphosidae.Context
     {
         public TheraphosidaeContext(DbContextOptions<TheraphosidaeContext> options) : base(options) { }
 
-
+        public DbSet<ArticleModel> Articles { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

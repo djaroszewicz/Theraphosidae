@@ -27,27 +27,37 @@
                 <a class="nav-link" href="#">Raporty</a>
             </li>
         </ul>
-
-        @* Wyszukiwarka na przyszłość*@
-    <form class="form-inline my-2 my-lg-0">
-        <ul class="navbar-nav mr-auto" >
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle-split" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user fa-lg"></i>
-                    Konto
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 0; left: auto;">
-                    <a class="dropdown-item" href="#">Logowanie</a>
-                    @*<a class="dropdown-item" href="#">Another action</a>*@
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Rejestracja</a>
-                </div>
-            </li>
-        </ul>
-        @*<span style="color: white;">
-            <i class="fas fa-user fa-lg"></i>
-        </span>*@
-
-    </form>
+        <form class="form-inline my-2 my-lg-0">
+            <ul class="navbar-nav mr-auto">
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle-split" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Konto
+                            <i class="fas fa-user fa-lg"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 0; left: auto;">
+                            <a class="dropdown-item" href="@Url.Action("Login","Account", new { Area = "dashboard" })">Logowanie</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="@Url.Action("Register","Account", new { Area = "dashboard" })">Rejestracja</a>
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle-split" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Konto
+                            <i class="fas fa-user fa-lg"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right: 0; left: auto;">
+                            <a class="dropdown-item" href="#">Moje konto</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="@Url.Action("Logout","Account", new { Area = "dashboard" })">Wyloguj</a>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </form>
     </div>
 </nav>

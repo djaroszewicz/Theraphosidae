@@ -38,7 +38,7 @@ namespace Theraphosidae.Controllers
 
                 if(register.Succeeded)
                 {
-                    RedirectToAction("List", "Account", new { Area = "Dashboard" });
+                    return RedirectToAction("Index", "Home", new { Area = "Dashboard" });
                 }
 
                 foreach ( var error in register.Errors)
