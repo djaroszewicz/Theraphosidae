@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Theraphosidae.Areas.Dashboard.Models.Db.Account;
+using Theraphosidae.Areas.Dashboard.Models.Db.Media;
 
 namespace Theraphosidae.Areas.Dashboard.Models.Db.Article
 {
@@ -29,7 +30,7 @@ namespace Theraphosidae.Areas.Dashboard.Models.Db.Article
         public string UserId { get; set; }
         public User User { get; set; }
 
-        //public MediaModel Image { get; set; }
+        public MediaModel Image { get; set; }
 
         //Dodać zdjęcia @@@@@@@@@@!!!!!!!!!!!!!!@@@@@@@@@@@
 

@@ -69,6 +69,7 @@ namespace Theraphosidae
             // Tu wstrzykiwanie zaleznosci
             services.AddScoped<IHomeService, HomeService>();
             services.AddScoped<IArticleService, ArticleService>();
+            services.AddScoped<ITaxonomyService, TaxonomyService>();
         }
 
 
