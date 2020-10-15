@@ -1,7 +1,7 @@
 ﻿@model ArticleView
 
 @{
-    ViewData["Title"] = "dodaj wpis";
+    ViewData["Title"] = "Dodaj artykuł";
 
     ViewData["Page"] = "ArticleAdd";
     ViewData["Group"] = "Article";
@@ -33,7 +33,7 @@
         </ul>
     </div>
 
-    @using (Html.BeginForm("Add", "Article", new { area = "admin" }, FormMethod.Post, true, new { @enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Add", "Article", new { area = "dashboard" }, FormMethod.Post, true, new { @enctype = "multipart/form-data" }))
     {
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
@@ -51,12 +51,12 @@
                     @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Tytuł wpisu", @id = "post-title" })
                 </div>
 
-                @*<div class="input-group">
+                <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="domain-name">https://twojadomena.pl/</span>
                     </div>
                     @Html.TextBoxFor(x => x.Slug, new { @class = "form-control", @id = "post-url" })
-                </div>*@
+                </div>
 
             </div>
         </div>
@@ -91,26 +91,26 @@
 
                         </div>
                     </div>
-                    @*<div class="card-body mx-auto justify-content-center align-items-center flex-column">
-            <div class="form-group">
-                <div class="input-file input-file-image">
-                    @if (Model != null && Model.FeaturedImg != null)
-                    {
-                        <h3 style="color:red;" class="text-center">Dołącz swoje zdjęcie ponownie!</h3>
-                    }
-                    <img class="img-upload-preview" height="350" src="~/admin/images/img-placeholder.png" alt="preview" id="img-placeholder">
+                    <div class="card-body mx-auto justify-content-center align-items-center flex-column">
+                        <div class="form-group">
+                            <div class="input-file input-file-image">
+                                @if (Model != null && Model.FeaturedImg != null)
+                                {
+                                    <h3 style="color:red;" class="text-center">Dołącz swoje zdjęcie ponownie!</h3>
+                                }
+                                <img class="img-upload-preview" height="350" src="~/admin/images/img-placeholder.png" alt="preview" id="img-placeholder">
 
-                    @Html.TextBoxFor(x => x.FeaturedImg, null, new { type = "file", @class = "form-control form-control-file", @id = "input-img-placeholder" })
+                                @Html.TextBoxFor(x => x.FeaturedImg, null, new { type = "file", @class = "form-control form-control-file", @id = "input-img-placeholder" })
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
 
-        </div>*@
-
-                </div>
-            </div>
-
-            @*<div class="col-md-6">
-                 Zajawka wpisu 
+            <div class="col-md-6">
+                <!-- Zajawka wpisu -->
                 <div style="min-height:500px;" class="card">
                     <div class="card-header">
                         <div class="card-title">Zajawka wpisu</div>
@@ -122,12 +122,12 @@
                         </div>
                     </div>
                 </div>
-            </div>*@
+            </div>
 
         </div>
 
         <!-- Data publikacji -->
-        @*<div class="card">
+        <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Data publikacji</h4>
             </div>
@@ -161,10 +161,10 @@
                     </div>
                 </div>
             </div>
-        </div>*@
+        </div>
 
         <!-- Kategoria wpisu -->
-        @*<div class="card">
+        <div class="card">
             <div class="card-header">
                 <div class="card-title">Kategorie wpisu</div>
             </div>
@@ -199,10 +199,10 @@
                     </div>
                 </div>
             </div>
-        </div>*@
+        </div>
 
         <!-- Tagi wpisu -->
-        @*<div class="card">
+        <div class="card">
             <div class="card-header">
                 <div class="card-title">Tagi wpisu</div>
             </div>
@@ -236,10 +236,10 @@
                     </div>
                 </div>
             </div>
-        </div>*@
+        </div>
 
         <!-- Ustawienia wpisu -->
-        @*<div class="card">
+        <div class="card">
             <div class="card-header">
                 <div class="card-title">Ustawienia wpisu</div>
             </div>
@@ -260,7 +260,7 @@
                 </div>
 
             </div>
-        </div>*@
+        </div>
 
         <div class="d-flex align-items-center">
             <button class="btn btn-primary" type="submit">
@@ -335,17 +335,17 @@
             format: 'DD-MM-YYYY',
             defaultDate: dateNow,
             icons: {
-                    next: "fa fa-arrow-right",
-                    previous: "fa fa-arrow-left"
-                }
+                next: "fa fa-arrow-right",
+                previous: "fa fa-arrow-left"
+            }
         });
         $('#timepicker').datetimepicker({
             format: 'HH:mm',
             defaultDate: dateNow,
-             icons: {
-                    up: "fa fa-arrow-up",
-                    down: "fa fa-arrow-down"
-                }
+            icons: {
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            }
         });
 
 

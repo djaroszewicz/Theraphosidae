@@ -70,6 +70,8 @@ namespace Theraphosidae
             services.AddScoped<IHomeService, HomeService>();
             services.AddScoped<IArticleService, ArticleService>();
             services.AddScoped<ITaxonomyService, TaxonomyService>();
+
+            //services.Configure<Clo>
         }
 
 

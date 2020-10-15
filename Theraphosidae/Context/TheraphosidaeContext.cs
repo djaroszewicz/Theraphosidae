@@ -18,6 +18,8 @@ namespace Theraphosidae.Context
         public DbSet<TaxonomyModel> Taxonomies { get; set; }
         public DbSet<TagModel> Tags { get; set; }
         public DbSet<MediaModel> Medias { get; set; }
+
+        public DbSet<CategoryModel> Categories { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
