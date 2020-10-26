@@ -70,6 +70,11 @@ namespace Theraphosidae
             services.AddScoped<IHomeService, HomeService>();
             services.AddScoped<IArticleService, ArticleService>();
             services.AddScoped<ITaxonomyService, TaxonomyService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ITagService, TagService>();
+            services.AddScoped<ICloudinaryService, CloudinaryService>();
+            services.AddScoped<IMediaService, MediaService>();
+
 
             //services.Configure<Clo>
         }

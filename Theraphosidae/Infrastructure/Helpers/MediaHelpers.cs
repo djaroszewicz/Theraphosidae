@@ -7,7 +7,7 @@ using Theraphosidae.Areas.Dashboard.Models.View.Media;
 
 namespace Theraphosidae.Infrastructure.Helpers
 {
-    public class MediaHelpers
+    public static class MediaHelpers
     {
         public static MediaModel ConvertToModel(MediaView view)
         {

@@ -7,7 +7,7 @@ using Theraphosidae.Areas.Dashboard.Models.View.Account;
 
 namespace Theraphosidae.Infrastructure.Helpers
 {
-    public class AccountHelpers
+    public static class AccountHelpers
     {
         public static User ConvertToModel(UserView result)
         {

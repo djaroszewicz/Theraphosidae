@@ -4,43 +4,44 @@ using System.Linq;
 using System.Threading.Tasks;
 using Theraphosidae.Areas.Dashboard.Models.Db.Article;
 using Theraphosidae.Areas.Dashboard.Models.View.Article;
-using Theraphosidae.Context;
 
 namespace Theraphosidae.Infrastructure.Helpers
 {
-    public static class TagHelpers
+    public static class CategoryHelpers
     {
         static string ConvertTextToSlug(string text)
         {
             return text.Trim().Replace(" ", "-").ToLower();
         }
 
-        public static TagModel ConvertToModel(TagView view)
+
+        public static CategoryModel ConvertToModel(CategoryView result)
         {
-            var categoryModel = new TagModel
+            var categoryModel = new CategoryModel
             {
-                Name = view.Name,
-                Slug = ConvertTextToSlug(view.ShortName),
-                Description = view.Description,
+                Name = result.Name,
+                Slug = ConvertTextToSlug(result.ShortName),
+                Description = result.Description,
                 Count = 0
             };
 
             return categoryModel;
         }
 
-        public static TagView ConvertToView(TagModel model)
+        public static CategoryView ConvertToView(CategoryModel result)
         {
-            var tagView = new TagView
+            var categoryView = new CategoryView
             {
-                Id = model.Id,
-                Name = model.Name,
-                ShortName = model.Slug,
-                Description = model.Description
+                Id = result.Id,
+                Name = result.Name,
+                ShortName = result.Slug,
+                Description = result.Description
             };
-            return tagView;
+
+            return categoryView;
         }
 
-        public static TagModel MergeModelWithView(TagModel model, TagView view)
+        public static CategoryModel MergeViewWithModel(CategoryModel model, CategoryView view)
         {
             model.Name = view.Name;
             model.Slug = ConvertTextToSlug(view.ShortName);
@@ -48,6 +49,6 @@ namespace Theraphosidae.Infrastructure.Helpers
 
             return model;
         }
-
     }
+
 }

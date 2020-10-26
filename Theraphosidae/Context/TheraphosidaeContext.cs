@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Theraphosidae.Areas.Dashboard.Models.Db.Account;
 using Theraphosidae.Areas.Dashboard.Models.Db.Article;
 using Theraphosidae.Areas.Dashboard.Models.Db.Media;
+using Theraphosidae.Areas.Dashboard.Models.Db.Spider;
 
 namespace Theraphosidae.Context
 {
@@ -18,6 +19,7 @@ namespace Theraphosidae.Context
         public DbSet<TaxonomyModel> Taxonomies { get; set; }
         public DbSet<TagModel> Tags { get; set; }
         public DbSet<MediaModel> Medias { get; set; }
+        public DbSet<ImageModel> Images { get; set; }
 
         public DbSet<CategoryModel> Categories { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
