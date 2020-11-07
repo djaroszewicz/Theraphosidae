@@ -12,7 +12,7 @@
 <div class="page-inner">
     <div class="page-header">
         <h4 class="page-title">Dodawanie wpisu</h4>
-        <ul class="breadcrumbs">
+        @*<ul class="breadcrumbs">
             <li class="nav-home">
                 <a href="@Url.Action("Index","Dashboard", new {area = "dashboard" })">
                     <i class="flaticon-home"></i>
@@ -30,7 +30,7 @@
             <li class="nav-item">
                 Dodawanie wpisu
             </li>
-        </ul>
+        </ul>*@
     </div>
 
     @using (Html.BeginForm("Add", "Article", new { area = "dashboard" }, FormMethod.Post, true, new { @enctype = "multipart/form-data" }))
@@ -127,7 +127,7 @@
         </div>
 
         <!-- Data publikacji -->
-        <div class="card">
+        @*<div class="card">
             <div class="card-header">
                 <h4 class="card-title">Data publikacji</h4>
             </div>
@@ -161,7 +161,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
 
         <!-- Kategoria wpisu -->
         <div class="card">
@@ -327,26 +327,26 @@
         });
 
         // 8. Inicjalizacja datetimepicera aktualną datą i godziną
-        const dateNow = new Date();
+        //const dateNow = new Date();
 
-        console.log(dateNow);
+        //console.log(dateNow);
 
-        $('#datepicker').datetimepicker({
-            format: 'DD-MM-YYYY',
-            defaultDate: dateNow,
-            icons: {
-                next: "fa fa-arrow-right",
-                previous: "fa fa-arrow-left"
-            }
-        });
-        $('#timepicker').datetimepicker({
-            format: 'HH:mm',
-            defaultDate: dateNow,
-            icons: {
-                up: "fa fa-arrow-up",
-                down: "fa fa-arrow-down"
-            }
-        });
+        //$('#datepicker').datetimepicker({
+        //    format: 'DD-MM-YYYY',
+        //    defaultDate: dateNow,
+        //    icons: {
+        //        next: "fa fa-arrow-right",
+        //        previous: "fa fa-arrow-left"
+        //    }
+        //});
+        //$('#timepicker').datetimepicker({
+        //    format: 'HH:mm',
+        //    defaultDate: dateNow,
+        //    icons: {
+        //        up: "fa fa-arrow-up",
+        //        down: "fa fa-arrow-down"
+        //    }
+        //});
 
 
         $('#summernote').summernote({

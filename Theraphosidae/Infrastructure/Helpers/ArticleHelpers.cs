@@ -52,23 +52,24 @@ namespace Theraphosidae.Infrastructure.Helpers
             return Regex.Replace(tempString, "/[&\\/\\#,+()$~%.'\":*?<>{}!]/g", "", RegexOptions.Compiled);
         }
 
-        private static DateTime MergeTimeWithDate(DateTime date, DateTime time)
-        {
-            var day = date.Day;
-            var mounth = date.Month;
-            var year = date.Year;
+        //private static DateTime MergeTimeWithDate(DateTime date, DateTime time)
+        //{
+        //    var day = date.Day;
+        //    var mounth = date.Month;
+        //    var year = date.Year;
 
-            var minutes = time.Minute;
-            var hour = time.Hour;
+        //    var minutes = time.Minute;
+        //    var hour = time.Hour;
 
-            return new DateTime(year, mounth, day, hour, minutes, 0);
-        }
+        //    return new DateTime(year, mounth, day, hour, minutes, 0);
+        //}
 
         public static ArticleModel ConvertToModel(ArticleView article, User user, string mainUrl)
         {
             var articleModel = new ArticleModel
             {
-                AddDate = MergeTimeWithDate(article.Date, article.Time),
+                //AddDate = MergeTimeWithDate(article.Date, article.Time),
+                AddDate = DateTime.Now,
                 Content = article.Content,
                 Title = article.Title,
                 Excerpt = article.Excerpt,

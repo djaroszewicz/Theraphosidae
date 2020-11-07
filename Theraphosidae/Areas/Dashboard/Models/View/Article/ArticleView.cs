@@ -29,9 +29,9 @@ namespace Theraphosidae.Areas.Dashboard.Models.View.Article
         public string ImageUrl { get; set; }
         public bool IsPhotoEdited { get; set; }
 
-        [Required(ErrorMessage = "Wpis musi mieć datę publikacji")]
+        //[Required(ErrorMessage = "Wpis musi mieć datę publikacji")]
         public DateTime Date { get; set; }
-        [Required(ErrorMessage = "Wpis musi mieć godzinę publikacji")]
+        //[Required(ErrorMessage = "Wpis musi mieć godzinę publikacji")]
         public DateTime Time { get; set; }
 
         public IEnumerable<string> Categories { get; set; }
