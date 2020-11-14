@@ -18,20 +18,20 @@ namespace Theraphosidae.Services
             _theraphosidaeContext = theraphosidaeContext;
         }
 
-        public async Task<bool> CreateAnimalTaxonomy(AnimalTaxonomyModel animalTaxonomy)
+        public async Task<bool> Create(SpiderModel spider, int animalTaxonomyId)
         {
-            await _theraphosidaeContext.AnimalTaxonomies.AddAsync(animalTaxonomy);
-            
-            return await _theraphosidaeContext.SaveChangesAsync() > 0;
-        }
+            spider.AnimalTaxonomyId = animalTaxonomyId;
 
-        public async Task<bool> Create(SpiderModel spider, AnimalTaxonomyModel animalTaxonomy)
-        {
-            spider.AnimalTaxonomyId = animalTaxonomy.Id;
             await _theraphosidaeContext.Spiders.AddAsync(spider);
 
             return await _theraphosidaeContext.SaveChangesAsync() > 0;
 
+        }
+
+        public async Task<bool> CreateAnimalTaxonomy(AnimalTaxonomyModel animalTaxonomy)
+        {
+            await _theraphosidaeContext.AnimalTaxonomies.AddAsync(animalTaxonomy);
+            return await _theraphosidaeContext.SaveChangesAsync() > 0;
         }
 
         public async Task<bool> Delete(int id)

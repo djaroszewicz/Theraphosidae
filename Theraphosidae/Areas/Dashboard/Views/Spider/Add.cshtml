@@ -1,0 +1,235 @@
+﻿@model SpiderAnimalTaxonomyView
+
+@{
+    ViewData["Title"] = "Dodawanie ptasznika";
+
+    ViewData["Page"] = "SpiderModel";
+    ViewData["Group"] = "Spider";
+
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+
+    var animalTaxonomies = ViewData["AnimalTaxonomy"] as List<AnimalTaxonomyModel>;
+}
+<div class="page-inner">
+
+    <div class="page-header">
+        <h4 class="page-title">Dodawnie kategorii</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="@Url.Action("Index","Dashboard")">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("List","Spider")">Ptaszniki</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                Dodaj
+            </li>
+        </ul>
+    </div>
+
+    <div class="card">
+        @using (Html.BeginForm("Add", "Spider", FormMethod.Post))
+        {
+            <div class="card-header">
+                <div class="d-flex align-items-center">
+                    <h4 class="card-title">Dodaj ptasznika</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+                <div class="input-icon mb-3">
+                    <span class="input-icon-addon">
+                        <i class="fas fa-pen-alt"></i>
+                    </span>
+                    @Html.TextBoxFor(x => x.Spider.NamePl, new { @class = "form-control", @placeholder = "Nazwa PL" })
+                </div>
+
+                <div class="input-icon mb-3">
+                    <span class="input-icon-addon">
+                        <i class="fas fa-pen-alt"></i>
+                    </span>
+                    @Html.TextBoxFor(x => x.Spider.NameEng, new { @class = "form-control", @placeholder = "Nazwa ENG" })
+                </div>
+
+                <div class="input-icon mb-3">
+                    <span class="input-icon-addon">
+                        <i class="fas fa-pen-alt"></i>
+                    </span>
+                    @Html.TextBoxFor(x => x.Spider.Size, new { @class = "form-control", @placeholder = "Podaj wielkość dorosłego ptasznika" })
+                </div>
+
+                <div class="input-icon mb-3">
+                    <div class="form-group">
+                        <label for="defaultSelect">Wybierz typ ptasznika</label>
+                        <select name="Spider.Type" class="form-control form-control">
+                            <option value="null" >Wybierz typ</option>
+                            <option value="Naziemny">Naziemny</option>
+                            <option value="Podziemny">Podziemny</option>
+                            <option value="Nadrzewny">Nadrzewny</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-icon mb-3">
+                    <span class="input-icon-addon">
+                        <i class="fas fa-pen-alt"></i>
+                    </span>
+                    @Html.TextBoxFor(x => x.Spider.Size, new { @class = "form-control", @placeholder = "Podaj wielkość dorosłego ptasznika" })
+                </div>
+
+                <div class="form-group">
+                    <label for="formControlRange">Temperatura zycia ptasznika</label>
+                    <input type="range" class="form-control-range" id="formControlRange" value="15" min="15" max="40" oninput="this.nextElementSibling.value = this.value">
+                    <output>15</output>
+                </div>
+
+                <div class="form-group">
+                    <label for="formControlRange">Wilgotność zycia</label>
+                    <input type="range" class="form-control-range" id="formControlRange" value="15" min="15" max="40" oninput="this.nextElementSibling.value = this.value">
+                    <output>15</output>
+                </div>
+
+                <div class="input-icon mb-3">
+                    <div class="form-group">
+                        <label for="defaultSelect">Wybierz typ ptasznika</label>
+                        <select name="OriginPlace" class="form-control form-control">
+                            <option value="null">Wybierz pochodzenie</option>
+                            <option value="Ameryka Poludniowa">Ameryka Poludniowa</option>
+                            <option value="Ameryka Polnocna">Ameryka Polnocna</option>
+                            <option value="Europa">Europa</option>
+                            <option value="Afryka">Afryka</option>
+                            <option value="Azja">Azja</option>
+                            <option value="Australia">Australia</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="formControlRange">Siła jadu</label>
+                    <input type="range" class="form-control-range" id="formControlRange" value="1" min="1" max="10" oninput="this.nextElementSibling.value = this.value">
+                    <output>1</output>
+                </div>
+
+                <div class="form-group">
+                    <label for="formControlRange">Agresywność</label>
+                    <input type="range" class="form-control-range" id="formControlRange" value="1" min="1" max="10" oninput="this.nextElementSibling.value = this.value">
+                    <output>1</output>
+                </div>
+
+                <div class="form-group">
+                    <label for="formControlRange">Szybkość</label>
+                    <input type="range" class="form-control-range" id="formControlRange" value="1" min="1" max="10" oninput="this.nextElementSibling.value = this.value">
+                    <output>1</output>
+                </div>
+
+                <div class="form-group">
+                    <label for="formControlRange">Długość życia</label>
+                    <input type="range" class="form-control-range" id="formControlRange" value="1" min="1" max="10" oninput="this.nextElementSibling.value = this.value">
+                    <output>1</output>
+                </div>
+
+                <div class="form-group">
+                    <label for="formControlRange">Wielkość kokonu</label>
+                    <input type="range" class="form-control-range" id="formControlRange" value="1" min="1" max="5000" oninput="this.nextElementSibling.value = this.value">
+                    <output>1</output>
+                </div>
+
+                @*<div class="input-icon mb-3">
+            <div class="form-group">
+                <label for="defaultSelect">Wybierz Wypożyczalnię</label>
+                <select name="rentalId" class="form-control form-control">
+                    <option value="null">Wybierz wypożyczalnię</option>
+                    @foreach (var rental in rentals)
+                    {
+                        <option value="@rental.Id">@rental.Name</option>
+                    }
+                </select>
+            </div>
+        </div>*@
+
+                @*<div class="input-icon mb-3">
+            <div class="form-group">
+                <label for="defaultSelect">Wybierz Kategorię</label>
+                <select name="categoryId" class="form-control form-control">
+                    <option value="null">Wybierz kategorię</option>
+                    @foreach (var carCategory in carCategories)
+                    {
+                        <option value="@carCategory.Id">@carCategory.Name</option>
+                    }
+                </select>
+            </div>
+        </div>*@
+
+                @*<div class="form-check">
+            <label class="form-check-label">
+                @Html.CheckBoxFor(x => x.IsAccepted, new { @class = "form-check-input" })
+                <span class="form-check-sign">Jest zaakceptowany?</span>
+            </label>
+        </div>
+
+        <div class="form-check">
+            <label class="form-check-label">
+                @Html.CheckBoxFor(x => x.IsFeatured, new { @class = "form-check-input" })
+                <span class="form-check-sign">Jest wyróżniony?</span>
+            </label>
+        </div>
+
+        <div class="form-check">
+            <label class="form-check-label">
+                @Html.CheckBoxFor(x => x.IsHidden, new { @class = "form-check-input" })
+                <span class="form-check-sign">Jest ukryty?</span>
+            </label>
+        </div>*@
+
+            </div>
+
+            @*<div class="form-group pl-5 pr-5 pt-3 pb-4">
+                <p><strong>Wybierz kategorię</strong></p>
+                <div class="selectgroup selectgroup-pills">
+                    @if (features.Count != 0)
+                    {
+                        foreach (var feature in features)
+                        {
+                            if (Model != null && Model.Features != null && Model.Features.Contains(feature.Id))
+                            {
+                                <label class="selectgroup-item">
+                                    <input type="checkbox" name="features" value="@feature.Id" class="selectgroup-input" checked>
+                                    <span class="selectgroup-button">@feature.Name</span>
+                                </label>
+                            }
+                            else
+                            {
+                                <label class="selectgroup-item">
+                                    <input type="checkbox" name="features" value="@feature.Id" class="selectgroup-input">
+                                    <span class="selectgroup-button">@feature.Name</span>
+                                </label>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <h3>Brak dodanych kategorii dodatków pod samochód</h3>
+                    }
+                </div>
+            </div>*@
+
+            <div class="row justify-content-center">
+                <button class="btn btn-primary mb-3" type="submit">
+                    <span class="btn-label">
+                        <i class="fa fa-plus"></i>
+                    </span>
+                    Dodaj samochód
+                </button>
+            </div>
+        }
+    </div>
+</div>

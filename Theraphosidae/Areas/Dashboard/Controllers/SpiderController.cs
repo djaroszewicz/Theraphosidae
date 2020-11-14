@@ -59,7 +59,7 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(SpiderView result)
+        public async Task<IActionResult> Add(SpiderAnimalTaxonomyView result)
         {
             if(!ModelState.IsValid)
             {
@@ -68,17 +68,25 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
                 return View(result);
             }
 
+            var spiderModel = SpiderHelpers.ConvertSpiderToModel(result);
 
+            var animalTaxonomyModel = SpiderHelpers.ConvertAnimalTaxonomyToModel(result);
+
+            await _animalTaxonomyService.Create(animalTaxonomyModel);
+            var animalTaxonomyId = animalTaxonomyModel.Id;
+
+            await _spiderService.Create(spiderModel, animalTaxonomyId);
+
+            //var spiderModel = SpiderHelpers.ConvertToModel(result);
+            //var animalTaxonomyModel = AnimalTaxonomyHelpers.ConvertToModel(resultAnimalTaxonomy);
+
+            //await _animalTaxonomyService.Create(animalTaxonomyModel);
+            //var animalTaxonomyId = animalTaxonomyModel.Id;
+
+            //await _spiderService.Create(spiderModel, animalTaxonomyId);
             
-            //var resultModel = SpiderHelpers.ConvertToModel(result);
-            //var spiderTaxonomyId = 
 
-            //if(newId != -1)
-            //{
-            //    await _spiderService.Add
-            //}
-
-            return View();
+            return RedirectToAction("List");
         }
 
     }
