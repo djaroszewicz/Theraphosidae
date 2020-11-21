@@ -17,8 +17,10 @@ namespace Theraphosidae.Infrastructure.Helpers
                 NameEng = result.Spider.NameEng,
                 Size = result.Spider.Size,
                 Type = result.Spider.Type,
-                Temperature = result.Spider.Temperature,
-                Humidity = result.Spider.Humidity,
+                TemperatureMin = result.Spider.TemperatureMin,
+                TemperatureMax = result.Spider.TemperatureMax,
+                HumidityMin = result.Spider.HumidityMin,
+                HumidityMax = result.Spider.HumidityMax,
                 OriginPlace = result.Spider.OriginPlace,
                 PowerOfVenom = result.Spider.PowerOfVenom,
                 Aggressiveness = result.Spider.Aggressiveness,
@@ -74,14 +76,88 @@ namespace Theraphosidae.Infrastructure.Helpers
             return AnimalTaxonomyModel;
         }
 
-        public static SpiderView ConvertToView(SpiderModel result)
+        public static SpiderAnimalTaxonomyView ConvertSpiderAndAnimalTaxonomyToView(SpiderModel spider, AnimalTaxonomyModel animalTaxonomy)
+        {
+            var spiderAnimalTaxonomyView = new SpiderAnimalTaxonomyView
+            {
+                Spider = new SpiderView
+                {
+                    Id = spider.Id,
+                    NamePl = spider.NamePl,
+                    NameEng = spider.NameEng,
+                    Size = spider.Size,
+                    Type = spider.Type,
+                    TemperatureMin = spider.TemperatureMin,
+                    TemperatureMax = spider.TemperatureMax,
+                    HumidityMin = spider.HumidityMin,
+                    HumidityMax = spider.HumidityMax,
+                    OriginPlace = spider.OriginPlace,
+                    PowerOfVenom = spider.PowerOfVenom,
+                    Aggressiveness = spider.Aggressiveness,
+                    Speed = spider.Speed,
+                    LengthOfLife = spider.LengthOfLife,
+                    CocoonSize = spider.CocoonSize
+                },
+
+                AnimalTaxonomy = new AnimalTaxonomyView
+                {
+                    Id = animalTaxonomy.Id,
+                    Regnum = animalTaxonomy.Regnum,
+                    Subregnum = animalTaxonomy.Subregnum,
+                    Superphylum = animalTaxonomy.Superphylum,
+                    Phylum = animalTaxonomy.Phylum,
+                    Subphylum = animalTaxonomy.Subphylum,
+                    Infraphylum = animalTaxonomy.Infraphylum,
+                    Superclassis = animalTaxonomy.Superclassis,
+                    Classis = animalTaxonomy.Classis,
+                    Subclassis = animalTaxonomy.Subclassis,
+                    Infraclassis = animalTaxonomy.Infraclassis,
+                    Superordo = animalTaxonomy.Superordo,
+                    Ordo = animalTaxonomy.Ordo,
+                    Subordo = animalTaxonomy.Subordo,
+                    Infraordo = animalTaxonomy.Infraordo,
+                    Superfamilia = animalTaxonomy.Superfamilia,
+                    Familia = animalTaxonomy.Familia,
+                    Subfamilia = animalTaxonomy.Subfamilia,
+                    Infrafamilia = animalTaxonomy.Infrafamilia,
+                    Supertrubus = animalTaxonomy.Supertrubus,
+                    Tribus = animalTaxonomy.Tribus,
+                    Subtribus = animalTaxonomy.Subtribus,
+                    Infratribus = animalTaxonomy.Infratribus,
+                    Supergenus = animalTaxonomy.Supergenus,
+                    Genus = animalTaxonomy.Genus,
+                    Subgenus = animalTaxonomy.Subgenus,
+                    Infragenus = animalTaxonomy.Infragenus,
+                    Species = animalTaxonomy.Species,
+                    Subspecies = animalTaxonomy.Subspecies,
+                    Natio = animalTaxonomy.Natio,
+                    Morpha = animalTaxonomy.Morpha,
+                    Forma = animalTaxonomy.Forma
+                }
+            };
+
+            return spiderAnimalTaxonomyView; 
+        }
+
+        public static SpiderView ConvertSpiderToView(SpiderModel result)
         {
             var spiderView = new SpiderView
             {
                 Id = result.Id,
                 NamePl = result.NamePl,
                 NameEng = result.NameEng,
-                AnimalTaxonomy = result.AnimalTaxonomy
+                Size = result.Size,
+                Type = result.Type,
+                TemperatureMin = result.TemperatureMin,
+                TemperatureMax = result.TemperatureMax,
+                HumidityMin = result.HumidityMin,
+                HumidityMax = result.HumidityMax,
+                OriginPlace = result.OriginPlace,
+                PowerOfVenom = result.PowerOfVenom,
+                Aggressiveness = result.Aggressiveness,
+                Speed = result.Speed,
+                LengthOfLife = result.LengthOfLife,
+                CocoonSize = result.CocoonSize
             };
 
             return spiderView;

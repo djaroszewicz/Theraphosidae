@@ -14,15 +14,17 @@ namespace Theraphosidae.Areas.Dashboard.Models.Db.Spider
         public string NameEng { get; set; }
         public int Size { get; set; }
         public string Type { get; set; }
-        public float Temperature { get; set; }
-        public int Humidity { get; set; }
+        public float TemperatureMin { get; set; }
+        public float TemperatureMax { get; set; }
+        public int HumidityMin { get; set; }
+        public int HumidityMax { get; set; }
         public string OriginPlace { get; set; }
         public int PowerOfVenom { get; set; }
         public int Aggressiveness { get; set; }
         public int Speed { get; set; }
         public int LengthOfLife { get; set; }
         public int CocoonSize { get; set; }
-        public int? AnimalTaxonomyId { get; set; }
+        public int AnimalTaxonomyId { get; set; }
         public AnimalTaxonomyModel AnimalTaxonomy { get; set; }
         public ICollection<ImageModel> Images { get; set; }
     }

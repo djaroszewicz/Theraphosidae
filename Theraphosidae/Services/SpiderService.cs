@@ -34,6 +34,18 @@ namespace Theraphosidae.Services
             return await _theraphosidaeContext.SaveChangesAsync() > 0;
         }
 
+        public async Task<bool> Update(SpiderModel spider, AnimalTaxonomyModel animalTaxonomy)
+        {
+            _theraphosidaeContext.Spiders.Update(spider);
+            _theraphosidaeContext.AnimalTaxonomies.Update(animalTaxonomy);
+            return await _theraphosidaeContext.SaveChangesAsync() > 0;
+        }
+
+
+
+
+
+
         public async Task<bool> Delete(int id)
         {
             var spider = await _theraphosidaeContext.Spiders.SingleOrDefaultAsync(s => s.Id == id);
@@ -65,11 +77,7 @@ namespace Theraphosidae.Services
                 .ToListAsync();
         }
 
-        public async Task<bool> Update(SpiderModel spider)
-        {
-            _theraphosidaeContext.Spiders.Update(spider);
-            return await _theraphosidaeContext.SaveChangesAsync() > 0;
-        }
+        
 
         //public async Task<bool> AddAnimalTaxonomy(int spiderId, int animalTaxonomyId)
         //{

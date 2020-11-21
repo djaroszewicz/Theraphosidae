@@ -78,7 +78,7 @@ namespace Theraphosidae.Services
             var medium = new MediaModel
             {
                 Id = uploadResult.PublicId,
-                Url = uploadResult.SecureUri.AbsoluteUri,
+                Url = uploadResult.SecureUrl.AbsoluteUri,
                 Name = fileName,
                 Description = fileName,
                 Type = uploadResult.Format,
@@ -99,7 +99,7 @@ namespace Theraphosidae.Services
             var image = new ImageModel
             {
                 Id = uploadResult.PublicId,
-                Url = uploadResult.SecureUri.AbsoluteUri,
+                Url = uploadResult.SecureUrl.AbsoluteUri,
                 Name = fileName,
                 Description = fileName,
                 SpiderId = SpiderId

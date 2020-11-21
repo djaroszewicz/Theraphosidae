@@ -37,7 +37,7 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
         public async Task<IActionResult> Details(int Id)
         {
             var model = await _spiderService.Get(Id);
-            return View(SpiderHelpers.ConvertToView(model));
+            return View(SpiderHelpers.ConvertSpiderToView(model));
         }
 
         [HttpGet]
@@ -51,10 +51,13 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int Id)
         {
-            var model = await _spiderService.Get(Id);
-            ViewData["AnimalTaxonomy"] = await _animalTaxonomyService.GetAll();
+            var spiderModel = await _spiderService.Get(Id);
+            var animalTaxonomyModel = await _animalTaxonomyService.Get(spiderModel.AnimalTaxonomyId);
+            //ViewData["AnimalTaxonomy"] = await _animalTaxonomyService.GetAll();
 
-            return View(SpiderHelpers.ConvertToView(model));
+           
+
+            return View(SpiderHelpers.ConvertSpiderAndAnimalTaxonomyToView(spiderModel, animalTaxonomyModel));
 
         }
 

@@ -15,17 +15,19 @@ namespace Theraphosidae.Areas.Dashboard.Models.View.Spider
         public string NameEng { get; set; }
 
         public int Size { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Proszę podać typ ptasznika")]
         public string Type { get; set; }
-        public float Temperature { get; set; }
-        public int Humidity { get; set; }
-        [Required]
+        public float TemperatureMin { get; set; }
+        public float TemperatureMax { get; set; }
+        public int HumidityMin { get; set; }
+        public int HumidityMax { get; set; }
+        [Required(ErrorMessage = "Proszę podać pochodzenie ptasznika")]
         public string OriginPlace { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Podaj siłę jadu ptasznika")]
         public int PowerOfVenom { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Podaj agresywność ptasznika")]
         public int Aggressiveness { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Podaj szybkość ptasznika")]
         public int Speed { get; set; }
         public int LengthOfLife { get; set; }
         public int CocoonSize { get; set; }
