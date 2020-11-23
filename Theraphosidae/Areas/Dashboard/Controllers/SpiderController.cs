@@ -53,9 +53,7 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
         {
             var spiderModel = await _spiderService.Get(Id);
             var animalTaxonomyModel = await _animalTaxonomyService.Get(spiderModel.AnimalTaxonomyId);
-            //ViewData["AnimalTaxonomy"] = await _animalTaxonomyService.GetAll();
-
-           
+            //ViewData["AnimalTaxonomy"] = await _animalTaxonomyService.GetAll();  
 
             return View(SpiderHelpers.ConvertSpiderAndAnimalTaxonomyToView(spiderModel, animalTaxonomyModel));
 

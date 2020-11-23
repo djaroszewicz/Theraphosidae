@@ -8,7 +8,6 @@
 
     Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
 
-    //var rentals = ViewData["Rental"] as List<RentalModel>;
 
 }
 <div class="page-inner">
@@ -148,40 +147,86 @@
                     </div>
                 </div>
 
+                <label for="formControlRange"><strong>Temperatura zycia ptasznika</strong></label>
+
                 <div class="form-group">
-                    <label for="formControlRange">Temperatura zycia ptasznika</label>
-                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default btn-block p-2">Left</button>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <input name="Spider.Temperature" type="range" class="form-control-range" id="formControlRange" value="15" min="15" max="40" oninput="this.nextElementSibling.value = this.value">
-                            <output>15</output>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-default">Right</button>
+                    <label for="formControlRange"><strong>Minimalna temperatura</strong></label>
+                    <div class="row">
+                        <div class="col d-flex align-items-center">
+                            <button type="button" class="btn btn-info btn-range-subtract">-</button>
+                            <input name="Spider.TemperatureMin"
+                                   value="@Html.DisplayTextFor(x => x.Spider.TemperatureMin)"
+                                   min="15"
+                                   max="40"
+                                   type="range"
+                                   class="form-control-range mx-3"
+                                   id="formControlRange" />
+                            <button type="button" class="btn btn-info btn-range-add">+</button>
+                            <output class="ml-3">@Html.DisplayTextFor(x => x.Spider.TemperatureMin)</output>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="formControlRange">Temperatura zycia ptasznika</label>
-                    <button type="button" class="btn btn-default btn-lg">
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
-                    </button>
-                    <input name="Spider.Temperature" type="range" class="form-control-range" id="formControlRange" value="15" min="15" max="40" oninput="this.nextElementSibling.value = this.value">
-                    <output>15</output>
+                    <label for="formControlRange"><strong>Maksymalna temperatura</strong></label>
+                    <div class="row">
+                        <div class="col d-flex align-items-center">
+                            <button type="button" class="btn btn-info btn-range-subtract">-</button>
+                            <input name="Spider.TemperatureMax"
+                                   value="@Html.DisplayTextFor(x => x.Spider.TemperatureMax)"
+                                   min="15"
+                                   max="40"
+                                   type="range"
+                                   class="form-control-range mx-3"
+                                   id="formControlRange" />
+                            <button type="button" class="btn btn-info btn-range-add">+</button>
+                            <output class="ml-3">@Html.DisplayTextFor(x => x.Spider.TemperatureMax)</output>
+                        </div>
+                    </div>
+                </div>
+
+
+                <label for="formControlRange"><strong>Wilgotność zycia ptasznika</strong></label>
+
+                <div class="form-group">
+                    <label for="formControlRange"><strong>Minimalna wilgotność</strong></label>
+                    <div class="row">
+                        <div class="col d-flex align-items-center">
+                            <button type="button" class="btn btn-info btn-range-subtract">-</button>
+                            <input name="Spider.HumidityMin"
+                                   value="@Html.DisplayTextFor(x => x.Spider.HumidityMin)"
+                                   min="15"
+                                   max="40"
+                                   type="range"
+                                   class="form-control-range mx-3"
+                                   id="formControlRange" />
+                            <button type="button" class="btn btn-info btn-range-add">+</button>
+                            <output class="ml-3">@Html.DisplayTextFor(x => x.Spider.HumidityMin)</output>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="formControlRange">Wilgotność zycia</label>
-                    <input name="Spider.Humidity" type="range" class="form-control-range" id="formControlRange" value="15" min="15" max="40" oninput="this.nextElementSibling.value = this.value">
-                    <output>15</output>
+                    <label for="formControlRange"><strong>Maksymalna wilgotność</strong></label>
+                    <div class="row">
+                        <div class="col d-flex align-items-center">
+                            <button type="button" class="btn btn-info btn-range-subtract">-</button>
+                            <input name="Spider.HumidityMax"
+                                   value="@Html.DisplayTextFor(x => x.Spider.HumidityMax)"
+                                   min="15"
+                                   max="40"
+                                   type="range"
+                                   class="form-control-range mx-3"
+                                   id="formControlRange" />
+                            <button type="button" class="btn btn-info btn-range-add">+</button>
+                            <output class="ml-3">@Html.DisplayTextFor(x => x.Spider.HumidityMax)</output>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="input-icon mb-3">
                     <div class="form-group">
-                        <label for="defaultSelect">Wybierz typ ptasznika</label>
+                        <label for="defaultSelect">Wybierz pochodzenie ptasznika</label>
                         <select name="Spider.OriginPlace" class="form-control form-control">
                             <option value="null">Wybierz pochodzenie</option>
                             <option value="Ameryka Poludniowa">Ameryka Poludniowa</option>
@@ -195,33 +240,304 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="formControlRange">Siła jadu</label>
-                    <input name="Spider.PowerOfVenom" type="range" class="form-control-range" id="formControlRange" value="1" min="1" max="10" oninput="this.nextElementSibling.value = this.value">
-                    <output>1</output>
+                    <label for="formControlRange"><strong>Siła jadu</strong></label>
+                    <div class="row">
+                        <div class="col d-flex align-items-center">
+                            <button type="button" class="btn btn-info btn-range-subtract">-</button>
+                            <input name="Spider.PowerOfVenom"
+                                   value="@Html.DisplayTextFor(x => x.Spider.PowerOfVenom)"
+                                   min="1"
+                                   max="10"
+                                   type="range"
+                                   class="form-control-range mx-3"
+                                   id="formControlRange" />
+                            <button type="button" class="btn btn-info btn-range-add">+</button>
+                            <output class="ml-3">@Html.DisplayTextFor(x => x.Spider.PowerOfVenom)</output>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="formControlRange">Agresywność</label>
-                    <input name="Spider.Aggressiveness" type="range" class="form-control-range" id="formControlRange" value="1" min="1" max="10" oninput="this.nextElementSibling.value = this.value">
-                    <output>1</output>
+                    <label for="formControlRange"><strong>Agresywność</strong></label>
+                    <div class="row">
+                        <div class="col d-flex align-items-center">
+                            <button type="button" class="btn btn-info btn-range-subtract">-</button>
+                            <input name="Spider.Aggressiveness"
+                                   value="@Html.DisplayTextFor(x => x.Spider.Aggressiveness)"
+                                   min="1"
+                                   max="10"
+                                   type="range"
+                                   class="form-control-range mx-3"
+                                   id="formControlRange" />
+                            <button type="button" class="btn btn-info btn-range-add">+</button>
+                            <output class="ml-3">@Html.DisplayTextFor(x => x.Spider.Aggressiveness)</output>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="formControlRange">Szybkość</label>
-                    <input name="Spider.Speed" type="range" class="form-control-range" id="formControlRange" value="1" min="1" max="10" oninput="this.nextElementSibling.value = this.value">
-                    <output>1</output>
+                    <label for="formControlRange"><strong>Szybkość</strong></label>
+                    <div class="row">
+                        <div class="col d-flex align-items-center">
+                            <button type="button" class="btn btn-info btn-range-subtract">-</button>
+                            <input name="Spider.Speed"
+                                   value="@Html.DisplayTextFor(x => x.Spider.Speed)"
+                                   min="1"
+                                   max="10"
+                                   type="range"
+                                   class="form-control-range mx-3"
+                                   id="formControlRange" />
+                            <button type="button" class="btn btn-info btn-range-add">+</button>
+                            <output class="ml-3">@Html.DisplayTextFor(x => x.Spider.Speed)</output>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="formControlRange">Długość życia</label>
-                    <input name="Spider.LengthOfLife" type="range" class="form-control-range" id="formControlRange" value="1" min="1" max="10" oninput="this.nextElementSibling.value = this.value">
-                    <output>1</output>
+                    <label for="formControlRange"><strong>Długość życia</strong></label>
+                    <div class="row">
+                        <div class="col d-flex align-items-center">
+                            <button type="button" class="btn btn-info btn-range-subtract">-</button>
+                            <input name="Spider.LengthOfLife"
+                                   value="@Html.DisplayTextFor(x => x.Spider.LengthOfLife)"
+                                   min="1"
+                                   max="30"
+                                   type="range"
+                                   class="form-control-range mx-3"
+                                   id="formControlRange" />
+                            <button type="button" class="btn btn-info btn-range-add">+</button>
+                            <output class="ml-3">@Html.DisplayTextFor(x => x.Spider.LengthOfLife)</output>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="formControlRange">Podaj średnią wielokść kokonu (nimf w kokonie).</label>
-                    <input name="Spider.CocoonSize" type="range" class="form-control-range" id="formControlRange" value="1" min="1" max="4000" oninput="this.nextElementSibling.value = this.value">
-                    <output>1</output>
+                    <label for="formControlRange"><strong>Podaj średnią wielokść kokonu (nimf w kokonie).</strong></label>
+                    <div class="row">
+                        <div class="col d-flex align-items-center">
+                            <button type="button" class="btn btn-info btn-range-subtract">-</button>
+                            <input name="Spider.CocoonSize"
+                                   value="@Html.DisplayTextFor(x => x.Spider.CocoonSize)"
+                                   min="1"
+                                   max="4000"
+                                   type="range"
+                                   class="form-control-range mx-3"
+                                   id="formControlRange" />
+                            <button type="button" class="btn btn-info btn-range-add">+</button>
+                            <output class="ml-3">@Html.DisplayTextFor(x => x.Spider.CocoonSize)</output>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="btn btn-info" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Uzupełnij pozostałą taksonomię ptasznika (Niewymagane)
+                </a>
+
+                <div class="collapse" id="collapseExample">
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię podkrólestwa (subregnum) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Subregnum, new { @class = "form-control", @placeholder = "Podaj podkrólestwo ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię nadtypu (superphylum) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Superphylum, new { @class = "form-control", @placeholder = "Podaj nadtyp ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię typu (phylum) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Phylum, new { @class = "form-control", @placeholder = "Podaj typ ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię podtypu (subphylum) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Subphylum, new { @class = "form-control", @placeholder = "Podaj podtyp ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię infratypu (infraphylum) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Infraphylum, new { @class = "form-control", @placeholder = "Podaj infratyp ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię nadgromady (superclassis) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Superclassis, new { @class = "form-control", @placeholder = "Podaj nadgromadę ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię podgromady (subclassis) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Subclassis, new { @class = "form-control", @placeholder = "Podaj podgromadę ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię infragromady (infraclassis) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Infraclassis, new { @class = "form-control", @placeholder = "Podaj infragromadę ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię nadrzędu (superordo) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Superordo, new { @class = "form-control", @placeholder = "Podaj nadrząd ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię podrzędu (subordo, subord. so.) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Subordo, new { @class = "form-control", @placeholder = "Podaj podrząd ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię infrarzędu (infraordo) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Infraordo, new { @class = "form-control", @placeholder = "Podaj infrarząd ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię nadrodziny (superfamilia) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Superfamilia, new { @class = "form-control", @placeholder = "Podaj nadrodzinę ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię podrodziny (subfamilia, subfam.) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Subfamilia, new { @class = "form-control", @placeholder = "Podaj podrodzinę ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię infrarodziny (infrafamilia) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Infrafamilia, new { @class = "form-control", @placeholder = "Podaj infrarodzinę ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię nadplemienia (supertrubus) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Supertrubus, new { @class = "form-control", @placeholder = "Podaj nadplemię ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię plemienia (tribus) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Tribus, new { @class = "form-control", @placeholder = "Podaj plemię ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię podplemienia (subtribus) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Subtribus, new { @class = "form-control", @placeholder = "Podaj podplemię ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię infraplemienia (infratribus) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Infratribus, new { @class = "form-control", @placeholder = "Podaj infraplemię ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię nadrodzaju (supergenus) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Supergenus, new { @class = "form-control", @placeholder = "Podaj nadrodzaj ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię podrodzaju (subgenus, subg. subgen.) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Subgenus, new { @class = "form-control", @placeholder = "Podaj podrodzaj ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię infrarodzaju (infragenus) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Infragenus, new { @class = "form-control", @placeholder = "Podaj infrarodzaj ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię podgatunku (subspecies, subsp. ssp.) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Subspecies, new { @class = "form-control", @placeholder = "Podaj podgatunek ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię nacji (natio) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Natio, new { @class = "form-control", @placeholder = "Podaj nację ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię odmiany (morpha) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Morpha, new { @class = "form-control", @placeholder = "Podaj odmianę ptasznika" })
+                    </div>
+
+                    <div class="input-icon mb-3">
+                        <span class="input-icon-addon">
+                            <i class="fas fa-pen-alt"></i>
+                        </span>
+                        <label>Podaj taksonomię formy (forma, f.) ptasznika</label>
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Forma, new { @class = "form-control", @placeholder = "Podaj formę ptasznika" })
+                    </div>
+
+                    <a class="btn btn-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Zwiń listę dodatkowej taksonomii
+                    </a>
+
                 </div>
 
             </div>
@@ -237,3 +553,31 @@
         }
     </div>
 </div>
+
+@section Scripts{ 
+<script>
+
+    const updateOutput = (input) => {
+        $(input).parent().find("output").text($(input).val());
+    };
+
+    $(".btn-range-add").click(function () {
+        let range = $(this).parent().find(".form-control-range");
+        range.val(parseInt(range.val()) + 1);
+
+        updateOutput(range);
+    });
+
+    $(".btn-range-subtract").click(function () {
+        let range = $(this).parent().find(".form-control-range");
+        range.val(parseInt(range.val()) - 1);
+
+        updateOutput(range);
+    });
+
+    $(".form-control-range").on("input", function () {
+        updateOutput(this);
+    });
+
+</script>
+}
