@@ -53,10 +53,25 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
         {
             var spiderModel = await _spiderService.Get(Id);
             var animalTaxonomyModel = await _animalTaxonomyService.Get(spiderModel.AnimalTaxonomyId);
-            //ViewData["AnimalTaxonomy"] = await _animalTaxonomyService.GetAll();  
 
             return View(SpiderHelpers.ConvertSpiderAndAnimalTaxonomyToView(spiderModel, animalTaxonomyModel));
 
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(SpiderAnimalTaxonomyView result)
+        {
+
+            var spiderModel = await _spiderService.Get(result.Spider.Id);
+            var animalTaxonomyModel = await _animalTaxonomyService.Get(spiderModel.AnimalTaxonomyId);
+
+            var spiderUpdateModel = SpiderHelpers.MergeSpiderModelWitthView(spiderModel, result);
+            var animalTaxonomyUpdateModel = SpiderHelpers.MergeAnimalTaxonomyModelWithView(animalTaxonomyModel, result);
+
+
+            await _spiderService.Update(spiderUpdateModel, animalTaxonomyUpdateModel);
+
+            return RedirectToAction("List");
         }
 
         [HttpPost]

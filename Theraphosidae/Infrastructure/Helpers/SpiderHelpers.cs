@@ -96,7 +96,9 @@ namespace Theraphosidae.Infrastructure.Helpers
                     Aggressiveness = spider.Aggressiveness,
                     Speed = spider.Speed,
                     LengthOfLife = spider.LengthOfLife,
-                    CocoonSize = spider.CocoonSize
+                    CocoonSize = spider.CocoonSize,
+                    //AnimalTaxonomyId = spider.AnimalTaxonomyId
+                    
                 },
 
                 AnimalTaxonomy = new AnimalTaxonomyView
@@ -163,11 +165,62 @@ namespace Theraphosidae.Infrastructure.Helpers
             return spiderView;
         }
 
-        public static SpiderModel MergeModelWitthView(SpiderModel model, SpiderView view)
+        public static AnimalTaxonomyModel MergeAnimalTaxonomyModelWithView(AnimalTaxonomyModel model, SpiderAnimalTaxonomyView view)
         {
-            model.NamePl = view.NamePl;
-            model.NameEng = view.NameEng;
-            model.AnimalTaxonomyId = view.AnimalTaxonomyId;
+
+            model.Regnum = view.AnimalTaxonomy.Regnum;
+            model.Subregnum = view.AnimalTaxonomy.Subregnum;
+            model.Superphylum = view.AnimalTaxonomy.Superphylum;
+            model.Phylum = view.AnimalTaxonomy.Phylum;
+            model.Subphylum = view.AnimalTaxonomy.Subphylum;
+            model.Infraphylum = view.AnimalTaxonomy.Infraphylum;
+            model.Superclassis = view.AnimalTaxonomy.Superclassis;
+            model.Classis = view.AnimalTaxonomy.Classis;
+            model.Subclassis = view.AnimalTaxonomy.Subclassis;
+            model.Infraclassis = view.AnimalTaxonomy.Infraclassis;
+            model.Superordo = view.AnimalTaxonomy.Superordo;
+            model.Ordo = view.AnimalTaxonomy.Ordo;
+            model.Subordo = view.AnimalTaxonomy.Subordo;
+            model.Infraordo = view.AnimalTaxonomy.Infraordo;
+            model.Superfamilia = view.AnimalTaxonomy.Superfamilia;
+            model.Familia = view.AnimalTaxonomy.Familia;
+            model.Subfamilia = view.AnimalTaxonomy.Subfamilia;
+            model.Infrafamilia = view.AnimalTaxonomy.Infrafamilia;
+            model.Supertrubus = view.AnimalTaxonomy.Supertrubus;
+            model.Tribus = view.AnimalTaxonomy.Tribus;
+            model.Subtribus = view.AnimalTaxonomy.Subtribus;
+            model.Infratribus = view.AnimalTaxonomy.Infratribus;
+            model.Supergenus = view.AnimalTaxonomy.Supergenus;
+            model.Genus = view.AnimalTaxonomy.Genus;
+            model.Subgenus = view.AnimalTaxonomy.Subgenus;
+            model.Infragenus = view.AnimalTaxonomy.Infragenus;
+            model.Species = view.AnimalTaxonomy.Species;
+            model.Subspecies = view.AnimalTaxonomy.Subspecies;
+            model.Natio = view.AnimalTaxonomy.Natio;
+            model.Morpha = view.AnimalTaxonomy.Morpha;
+            model.Forma = view.AnimalTaxonomy.Forma;
+
+            return model;
+        }
+
+        public static SpiderModel MergeSpiderModelWitthView(SpiderModel model, SpiderAnimalTaxonomyView view)
+        {
+            model.NamePl = view.Spider.NamePl;
+            model.NameEng = view.Spider.NameEng;
+            //model.AnimalTaxonomyId = view.Spider.AnimalTaxonomyId;
+            model.Size = view.Spider.Size;
+            model.Type = view.Spider.Type;
+            model.TemperatureMin = view.Spider.TemperatureMin;
+            model.TemperatureMax = view.Spider.TemperatureMax;
+            model.HumidityMin = view.Spider.HumidityMin;
+            model.HumidityMax = view.Spider.HumidityMax;
+            model.OriginPlace = view.Spider.OriginPlace;
+            model.PowerOfVenom = view.Spider.PowerOfVenom;
+            model.Aggressiveness = view.Spider.Aggressiveness;
+            model.Speed = view.Spider.Speed;
+            model.LengthOfLife = view.Spider.LengthOfLife;
+            model.CocoonSize = view.Spider.CocoonSize;
+            
 
             return model;
         }

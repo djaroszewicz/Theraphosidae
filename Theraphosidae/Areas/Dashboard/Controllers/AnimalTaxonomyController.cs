@@ -10,7 +10,7 @@ using Theraphosidae.Services.interfaces;
 
 namespace Theraphosidae.Areas.Dashboard.Controllers
 {
-    [Authorize]
+    [Authorize] // Tu zostaną dodane role
     [Area("dashboard")]
     [Route("dashboard/{controller}/{action=List}/{id?}")]
     public class AnimalTaxonomyController : Controller
