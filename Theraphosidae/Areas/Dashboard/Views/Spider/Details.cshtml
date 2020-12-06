@@ -1,0 +1,673 @@
+﻿@model SpiderAnimalTaxonomyView
+
+@{
+    ViewData["Title"] = "Szczegóły ptasznika";
+
+    ViewData["Page"] = "SpiderView";
+    ViewData["Group"] = "Spider";
+
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+
+
+}
+    <div class="page-inner">
+        <div class="page-header">
+            <h4 class="page-title">@Model.Spider.NamePl</h4>
+            <ul class="breadcrumbs">
+                <li class="nav-home">
+                    <a href="@Url.Action("Index","Admin")">
+                        <i class="flaticon-home"></i>
+                    </a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("List","Spider")">Ptaszniki</a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    Szczegóły
+                </li>
+            </ul>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex align-items-center">
+                            <h4 class="card-title">Szczegóły ptasznika: <strong>@Model.AnimalTaxonomy.Genus @Model.AnimalTaxonomy.Species</strong></h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+
+
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div style="min-height:500px;" class="card">
+                                            <div class="card-header">
+                                                <div class="d-flex align-items-center">
+                                                    <h4 class="card-title">Zdjęcie ptasznika</h4>
+                                                    <button class="btn btn-danger ml-3 d-none">
+                                                        <i class="fa fa-times"></i>
+                                                        Usuń zdjęcie
+                                                    </button>
+
+                                                </div>
+                                            </div>
+                                            <div class="card-body mx-auto justify-content-center align-items-center flex-column">
+                                                <div class="form-group">
+                                                    <div class="input-file input-file-image">
+                                                        @*@if (Model != null && Model.FeaturedImg != null)
+                            {
+                                <h3 style="color:red;" class="text-center">Dołącz swoje zdjęcie ponownie!</h3>
+                            }
+                            <img class="img-upload-preview" height="350" src="~/images/img-placeholder.png" alt="preview" id="img-placeholder">
+
+                            @Html.TextBoxFor(x => x.FeaturedImg, null, new { type = "file", @class = "form-control form-control-file", @id = "input-img-placeholder" })*@
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Polska nazwa ptasznika</label>
+                                            @if (Model.Spider.NamePl == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.Spider.NamePl" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Angielska nazwa ptasznika</label>
+                                            @if (Model.Spider.NameEng == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.Spider.NameEng" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Wielkość dorosłego ptasznika w przybliżeniu</label>
+                                            @if (Model.Spider.Size == 0)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.Spider.Size cm" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Minimalna temperatura w jakiej żyje ptasznik</label>
+                                            @if (Model.Spider.TemperatureMin == 0)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.Spider.TemperatureMin °C" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Maksymalna temperatura w jakiej żyje ptasznik</label>
+                                            @if (Model.Spider.TemperatureMax == 0)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.Spider.TemperatureMax °C" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Minimalna wilgotność powietrza w jakiej żyje ptasznik</label>
+                                            @if (Model.Spider.HumidityMin == 0)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.Spider.HumidityMin %" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Maksymalna wilgotność powietrza w jakiej żyje ptasznik</label>
+                                            @if (Model.Spider.HumidityMax == 0)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.Spider.HumidityMax %" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Miejsce pochodzenia (wsytępowania) ptasznika</label>
+                                            @if (Model.Spider.OriginPlace == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.Spider.OriginPlace" readonly="">
+                                            }
+                                        </div>
+                                    </div>
+                                    </div>
+
+
+
+
+
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <div class="card" style="text-align: center">
+                                            <div class="form-group form-group-default mb-3">
+                                                <label>Skala określająca wartości ptasznika: </label>
+                                                <div>
+                                                    <span class="dot" style="background-color: green; text-align:center; color:white;">1</span>
+                                                    <span class="dot" style="background-color: green; text-align:center; color:white;">2</span>
+                                                    <span class="dot" style="background-color: green; text-align:center; color:white;">3</span>
+                                                    <span class="dot" style="background-color: green; text-align:center; color:white;">4</span>
+                                                    <span class="dot" style="background-color: orange; text-align:center; color:white;">5</span>
+                                                    <span class="dot" style="background-color: orange; text-align:center; color:white;">6</span>
+                                                    <span class="dot" style="background-color: orange; text-align:center; color:white;">7</span>
+                                                    <span class="dot" style="background-color: red; text-align:center; color:white;">8</span>
+                                                    <span class="dot" style="background-color: red; text-align:center; color:white;">9</span>
+                                                    <span class="dot" style="background-color: red; text-align:center; color:white;">10</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3" style="margin-top: 15px">
+                                            <label>Siła jadu ptasznika:</label>
+                                            @if (Model.Spider.PowerOfVenom == 0)
+                                            {
+                                                    <span class="badge badge-secondary">Brak danych</span>
+                                            }
+                                            else if (Model.Spider.PowerOfVenom >= 1 && Model.Spider.PowerOfVenom <= 4)
+                                            {
+                                                    <span class="dot" style="background-color: green; text-align:center; color:white;">@Model.Spider.PowerOfVenom</span>
+                                            }
+                                            else if (Model.Spider.PowerOfVenom > 4 && Model.Spider.PowerOfVenom <= 7)
+                                            {
+                                                    <span class="dot" style="background-color: orange; text-align:center; color:white;">@Model.Spider.PowerOfVenom</span>
+                                            }
+                                            else if (Model.Spider.PowerOfVenom > 7)
+                                            {
+                                                    <span class="dot" style="background-color: red; text-align:center; color:white;">@Model.Spider.PowerOfVenom</span>
+                                            }
+                                            else
+                                            {
+                                                    <span class="badge badge-secondary" style="text-align: left;">Brak danych</span>
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3" style="margin-top: auto">
+                                            <label>Agresywnoś ptasznika:</label>
+                                            @if (Model.Spider.Aggressiveness == 0)
+                                            {
+                                                <span class="badge badge-secondary">Brak danych</span>
+                                            }
+                                            else if (Model.Spider.Aggressiveness >= 1 && Model.Spider.Aggressiveness <= 4)
+                                            {
+                                                <span class="dot" style="background-color: green; text-align:center; color:white;">@Model.Spider.Aggressiveness</span>
+
+                                            }
+                                            else if (Model.Spider.Aggressiveness > 4 && Model.Spider.Aggressiveness <= 7)
+                                            {
+                                                <span class="dot" style="background-color: orange; text-align:center; color:white;">@Model.Spider.PowerOfVenom</span>
+                                            }
+                                            else if (Model.Spider.Aggressiveness > 7)
+                                            {
+                                                <span class="dot" style="background-color: red; text-align:center; color:white;">@Model.Spider.Aggressiveness</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-secondary">Brak danych</span>
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3" style="margin-top: auto">
+                                            <label>Szybkośc ptasznika:</label>
+                                            @if (Model.Spider.Speed == 0)
+                                            {
+                                                <span class="badge badge-secondary">Brak danych</span>
+                                            }
+                                            else if (Model.Spider.Speed >= 1 && Model.Spider.Speed <= 4)
+                                            {
+                                                <span class="dot" style="background-color: green; text-align:center; color:white;">@Model.Spider.Speed</span>
+
+                                            }
+                                            else if (Model.Spider.Speed > 4 && Model.Spider.Speed <= 7)
+                                            {
+                                                <span class="dot" style="background-color: orange; text-align:center; color:white;">@Model.Spider.Speed</span>
+                                            }
+                                            else if (Model.Spider.Speed > 7)
+                                            {
+                                                <span class="dot" style="background-color: red; text-align:center; color:white;">@Model.Spider.Speed</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-secondary">Brak danych</span>
+                                            }
+                                        </div>
+
+
+                                    </div>
+                                    </div>
+
+                                </div>
+
+
+                            <div class="col-md-6">
+
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Regnum (królestwo)</label>
+                                            @if (Model.AnimalTaxonomy.Regnum == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Regnum" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Subregnum (podkrólestwo)</label>
+                                            @if (Model.AnimalTaxonomy.Subregnum == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Subregnum" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Superphylum (nadtyp)</label>
+                                            @if (Model.AnimalTaxonomy.Superphylum == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Superphylum" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Phylum (typ)</label>
+                                            @if (Model.AnimalTaxonomy.Phylum == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Phylum" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Subphylum (podtyp)</label>
+                                            @if (Model.AnimalTaxonomy.Subphylum == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Subphylum" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Infraphylum (infratyp)</label>
+                                            @if (Model.AnimalTaxonomy.Infraphylum == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Infraphylum" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Superclassis (nadgromada)</label>
+                                            @if (Model.AnimalTaxonomy.Superclassis == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Superclassis" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Classis (gromada)</label>
+                                            @if (Model.AnimalTaxonomy.Classis == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Classis" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Subclassis (podgromada)</label>
+                                            @if (Model.AnimalTaxonomy.Subclassis == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Subclassis" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Infraclassis (infragromada)</label>
+                                            @if (Model.AnimalTaxonomy.Infraclassis == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Infraclassis" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Superordo (nadrząd)</label>
+                                            @if (Model.AnimalTaxonomy.Superordo == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Superordo" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Ordo (rząd, ord., o.)</label>
+                                            @if (Model.AnimalTaxonomy.Ordo == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Ordo" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Subordo (podrząd, subord., so.)</label>
+                                            @if (Model.AnimalTaxonomy.Subordo == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Subordo" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Infraordo (infrarząd)</label>
+                                            @if (Model.AnimalTaxonomy.Infraordo == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Infraordo" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Superfamilia (nadrodzina)</label>
+                                            @if (Model.AnimalTaxonomy.Superfamilia == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Superfamilia" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Familia (rodzina, fam.)</label>
+                                            @if (Model.AnimalTaxonomy.Familia == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Familia" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Subfamilia (podrodzina, subfam.)</label>
+                                            @if (Model.AnimalTaxonomy.Subfamilia == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Subfamilia" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Infrafamilia (infrarodzina)</label>
+                                            @if (Model.AnimalTaxonomy.Infrafamilia == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Infrafamilia" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Supertribus (nadplemię)</label>
+                                            @if (Model.AnimalTaxonomy.Supertrubus == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Supertrubus" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Tribus (plemię)</label>
+                                            @if (Model.AnimalTaxonomy.Tribus == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Tribus" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Subtribus (podplemię)</label>
+                                            @if (Model.AnimalTaxonomy.Subtribus == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Subtribus" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Infratribus (infraplemię)</label>
+                                            @if (Model.AnimalTaxonomy.Infratribus == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Infratribus" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Supergenus (nadrodzaj)</label>
+                                            @if (Model.AnimalTaxonomy.Supergenus == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Supergenus" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Genus (rodzaj, gen.)</label>
+                                            @if (Model.AnimalTaxonomy.Genus == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Genus" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Subgenus (podrodzaj, subgen., subg.)</label>
+                                            @if (Model.AnimalTaxonomy.Subgenus == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Subgenus" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Infragenus (infrarodzaj)</label>
+                                            @if (Model.AnimalTaxonomy.Infragenus == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Infragenus" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Species (gatunek, sp.)</label>
+                                            @if (Model.AnimalTaxonomy.Species == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Species" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Subspecies (subsp., ssp.)</label>
+                                            @if (Model.AnimalTaxonomy.Subspecies == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Subspecies" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Natio (nacja)</label>
+                                            @if (Model.AnimalTaxonomy.Natio == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Natio" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Morpha (odmiana)</label>
+                                            @if (Model.AnimalTaxonomy.Morpha == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Morpha" readonly="">
+                                            }
+                                        </div>
+
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Forma (forma, f.)</label>
+                                            @if (Model.AnimalTaxonomy.Forma == null)
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control with-out-grey" value="@Model.AnimalTaxonomy.Forma" readonly="">
+                                            }
+                                        </div>
+
+                                    </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>

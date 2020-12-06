@@ -1,0 +1,114 @@
+﻿@model List<SpiderModel>
+
+@{
+    ViewData["Title"] = "Szczegóły ptasznika";
+
+    ViewData["Page"] = "SpiderView";
+    ViewData["Group"] = "Spider";
+
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+
+
+}
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">Wrzuc tu nazwe</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="@Url.Action("Index","Admin")">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("List","Spider")">Ptaszniki</a>
+            </li>
+            <li class="separator">
+                <i class="flaticon-right-arrow"></i>
+            </li>
+            <li class="nav-item">
+                Szczegóły
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h4 class="card-title">Lista: <strong>Tu cos wrzucimy</strong></h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+
+
+                        <div class="col-md-6">
+                            <div class="card">
+
+                                @if(Model.Count != 0)
+                                @foreach (var spiderModel in Model)
+                                {
+                                <div class="card-body">
+                                    <div style="min-height:500px;" class="card">
+                                        <div class="card-header">
+                                            <div class="d-flex align-items-center">
+                                                <h4 class="card-title">@spiderModel.NamePl</h4>
+                                            </div>
+                                        </div>
+                                        <div class="card-body mx-auto justify-content-center align-items-center flex-column">
+                                            <div class="form-group">
+
+                                                <div class="form-group form-group-default mb-3">
+                                                    <label>Polska nazwa ptasznika</label>
+                                                    @if (spiderModel.AnimalTaxonomy.Regnum == null)
+                                                    {
+                                                        <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="text" class="form-control with-out-grey" value="@spiderModel.AnimalTaxonomy.Regnum" readonly="">
+                                                    }
+                                                </div>
+
+                                                <div class="form-group form-group-default mb-3">
+                                                    <label>Polska nazwa ptasznika</label>
+                                                    @if (spiderModel.TemperatureMax == 0)
+                                                    {
+                                                        <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="text" class="form-control with-out-grey" value="@spiderModel.TemperatureMax" readonly="">
+                                                    }
+                                                </div>
+                                                
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    
+                                    
+
+
+
+                                </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
