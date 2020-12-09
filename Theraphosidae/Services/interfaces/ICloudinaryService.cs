@@ -14,7 +14,7 @@ namespace Theraphosidae.Services.interfaces
         Task<bool> AddMultipleFiles(List<IFormFile> files);
         bool DeleteFile(string publicationId);
 
-        Task<bool> AddSpiderImage(List<IFormFile> files, int spiderId);
+        Task<bool> AddSpiderImage(IFormFile files, int spiderId);
         bool DeleteSpiderImage(string publicationId);
     }
 }

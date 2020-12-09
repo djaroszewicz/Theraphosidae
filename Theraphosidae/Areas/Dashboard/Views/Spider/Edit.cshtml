@@ -50,18 +50,18 @@
                 @Html.HiddenFor(x => x.Spider.Id)
 
                 @*<div class="input-icon mb-3">
-                    <span class="input-icon-addon">
-                        <i class="fas fa-pen-alt"></i>
-                    </span>
-                    @Html.TextBoxFor(x => x.Spider.NamePl, new { @class = "form-control", @placeholder = "Nazwa" })
-                </div>
+            <span class="input-icon-addon">
+                <i class="fas fa-pen-alt"></i>
+            </span>
+            @Html.TextBoxFor(x => x.Spider.NamePl, new { @class = "form-control", @placeholder = "Nazwa" })
+        </div>
 
-                <div class="input-icon mb-3">
-                    <span class="input-icon-addon">
-                        <i class="fas fa-pen-alt"></i>
-                    </span>
-                    @Html.TextBoxFor(x => x.AnimalTaxonomy.Regnum, new { @class = "form-control", @placeholder = "Nazwa" })
-                </div>*@
+        <div class="input-icon mb-3">
+            <span class="input-icon-addon">
+                <i class="fas fa-pen-alt"></i>
+            </span>
+            @Html.TextBoxFor(x => x.AnimalTaxonomy.Regnum, new { @class = "form-control", @placeholder = "Nazwa" })
+        </div>*@
 
                 <div class="input-icon mb-3">
                     <span class="input-icon-addon">
@@ -327,6 +327,22 @@
                             <output class="ml-3">@Html.DisplayTextFor(x => x.Spider.CocoonSize)</output>
                         </div>
                     </div>
+                </div>
+
+                <div class="input-icon mb-3">
+                    <span class="input-icon-addon">
+                        <i class="fas fa-pen-alt"></i>
+                    </span>
+                    <label>Podaj opis ptasznika</label>
+                    @Html.TextAreaFor(x => x.Spider.Description, new { @class = "form-control", @placeholder = "Podaj opis ptasznika" })
+                </div>
+
+                <div class="input-icon mb-3">
+                    <span class="input-icon-addon">
+                        <i class="fas fa-pen-alt"></i>
+                    </span>
+                    <label>Podaj krótki opis ptasznika</label>
+                    @Html.TextAreaFor(x => x.Spider.ShortDescription, new { @class = "form-control", @placeholder = "Podaj krótki opis ptasznika" })
                 </div>
 
                 <a class="btn btn-info" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">

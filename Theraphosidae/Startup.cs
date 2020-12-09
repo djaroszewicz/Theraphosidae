@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Theraphosidae.Areas.Dashboard.Models.Db.Account;
 using Theraphosidae.Context;
+using Theraphosidae.Infrastructure.Settings;
 using Theraphosidae.Services;
 using Theraphosidae.Services.interfaces;
 
@@ -77,7 +78,7 @@ namespace Theraphosidae
             services.AddScoped<ISpiderService, SpiderService>();
             services.AddScoped<IAnimalTaxonomyService, AnimalTaxonomyService>();
 
-
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             //services.Configure<Clo>
         }
 

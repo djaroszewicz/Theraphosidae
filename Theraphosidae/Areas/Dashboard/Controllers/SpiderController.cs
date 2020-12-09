@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Theraphosidae.Areas.Dashboard.Models.View.Spider;
 using Theraphosidae.Infrastructure.Helpers;
@@ -19,11 +20,13 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
 
         private readonly ISpiderService _spiderService;
         private readonly IAnimalTaxonomyService _animalTaxonomyService;
+        private readonly ICloudinaryService _cloudinaryService;
         
-        public SpiderController(ISpiderService spiderService, IAnimalTaxonomyService animalTaxonomyService)
+        public SpiderController(ISpiderService spiderService, IAnimalTaxonomyService animalTaxonomyService, ICloudinaryService cloudinaryService)
         {
             _spiderService = spiderService;
             _animalTaxonomyService = animalTaxonomyService;
+            _cloudinaryService = cloudinaryService;
         }
 
         [HttpGet]
@@ -93,7 +96,11 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
             await _animalTaxonomyService.Create(animalTaxonomyModel);
             var animalTaxonomyId = animalTaxonomyModel.Id;
 
+            //await _cloudinaryService.AddFile
+
             await _spiderService.Create(spiderModel, animalTaxonomyId);
+
+            await _cloudinaryService.AddSpiderImage(result.Spider.SpiderFileImg, spiderModel.Id);
 
             //var spiderModel = SpiderHelpers.ConvertToModel(result);
             //var animalTaxonomyModel = AnimalTaxonomyHelpers.ConvertToModel(resultAnimalTaxonomy);

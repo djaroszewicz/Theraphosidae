@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -31,6 +32,11 @@ namespace Theraphosidae.Areas.Dashboard.Models.View.Spider
         public int Speed { get; set; }
         public int LengthOfLife { get; set; }
         public int CocoonSize { get; set; }
+        [Required(ErrorMessage = "Opis ptasznika jest wymagany!")]
+        public string Description { get; set; }
+        [Required(ErrorMessage = "Krótki opis ptasznika jest wymagany!")]
+        public string ShortDescription { get; set; }
+        public IFormFile SpiderFileImg { get; set; }
 
         [Required]
         public int AnimalTaxonomyId { get; set; }

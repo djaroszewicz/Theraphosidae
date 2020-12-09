@@ -137,17 +137,14 @@ namespace Theraphosidae.Services
             return status;
         }
 
-        public async Task<bool> AddSpiderImage(List<IFormFile> files, int spiderId)
+        public async Task<bool> AddSpiderImage(IFormFile file, int spiderId)
         {
-            bool status = true;
-            foreach (var file in files)
-            {
+            var status = true;
                 var uploadResult = UploadToCloudinary(file);
                 if (uploadResult != null)
                 {
                     await SaveSpiderImage(uploadResult, file.FileName, spiderId);
                 }
-            }
 
             return status;
         }
@@ -189,5 +186,6 @@ namespace Theraphosidae.Services
 
             return false;
         }
+
     }
 }

@@ -41,7 +41,11 @@ namespace Theraphosidae.Services
             return await _theraphosidaeContext.SaveChangesAsync() > 0;
         }
 
-
+        public async Task<bool> UpdateSpiderImage(SpiderModel spider)
+        {
+            _theraphosidaeContext.Spiders.Update(spider);
+            return await _theraphosidaeContext.SaveChangesAsync() > 0;
+        }
 
 
 

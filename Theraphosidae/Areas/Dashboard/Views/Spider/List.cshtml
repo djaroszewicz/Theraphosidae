@@ -39,74 +39,61 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex align-items-center">
-                        <h4 class="card-title">Lista: <strong>Tu cos wrzucimy</strong></h4>
+                        <h4 class="card-title">Ptasznikowate: Theraphosidae</h4>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="row">
 
 
-                        <div class="col-md-6">
-                            <div class="card">
 
-                                @if(Model.Count != 0)
-                                @foreach (var spiderModel in Model)
-                                {
-                                <div class="card-body">
-                                    <div style="min-height:500px;" class="card">
-                                        <div class="card-header">
-                                            <div class="d-flex align-items-center">
-                                                <h4 class="card-title">@spiderModel.NamePl</h4>
-                                            </div>
-                                        </div>
-                                        <div class="card-body mx-auto justify-content-center align-items-center flex-column">
-                                            <div class="form-group">
 
-                                                <div class="form-group form-group-default mb-3">
-                                                    <label>Polska nazwa ptasznika</label>
-                                                    @if (spiderModel.AnimalTaxonomy.Regnum == null)
-                                                    {
-                                                        <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
-                                                    }
-                                                    else
-                                                    {
-                                                        <input type="text" class="form-control with-out-grey" value="@spiderModel.AnimalTaxonomy.Regnum" readonly="">
-                                                    }
-                                                </div>
+                        @if (Model.Count != 0)
+                            @foreach (var spiderModel in Model)
+                            {
 
-                                                <div class="form-group form-group-default mb-3">
-                                                    <label>Polska nazwa ptasznika</label>
-                                                    @if (spiderModel.TemperatureMax == 0)
-                                                    {
-                                                        <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
-                                                    }
-                                                    else
-                                                    {
-                                                        <input type="text" class="form-control with-out-grey" value="@spiderModel.TemperatureMax" readonly="">
-                                                    }
-                                                </div>
-                                                
+                                <div class="col-md-6">
+                                    <div class="card" style="min-height: 500px; margin: 15px;">
+                                        <img class="card-img-top" src="https://i.iplsc.com/ptasznik-olbrzymi-zdj-ilustracyjne/000ABR9HH1PHCAD0-C122-F4.jpg" alt="Card image cap">
+                                        <div class="card-body">
+                                            @if (@spiderModel.AnimalTaxonomy.Genus != null && @spiderModel.AnimalTaxonomy.Species != null)
+                                            {
+                                                <h5 class="card-title">@spiderModel.AnimalTaxonomy.Genus @spiderModel.AnimalTaxonomy.Species</h5>
+                                            }
+                                            else
+                                            {
+                                                <h5 class="card-title">Brak danych</h5>
+                                            }
 
-                                            </div>
+                                            @if (@spiderModel.ShortDescription == null)
+                                            {
+                                                <p class="card-text">Brak danych</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="card-text">@spiderModel.ShortDescription</p>
+                                            }
 
                                         </div>
+                                        <ul class="list-group list-group-flush">
+                                            
+                                            <li class="list-group-item">Pochodzenie: @spiderModel.OriginPlace</li>
+                                            <li class="list-group-item">Typ ptasznika: @spiderModel.Type</li>
+                                            <li class="list-group-item">Temperatura życia: @spiderModel.TemperatureMin °C - @spiderModel.TemperatureMax °C</li>
 
+                                        </ul>
+                                        <div class="card-body">
+                                            <a href="@Url.Action("Details","Spider", new { Id = spiderModel.Id})" class="card-link">Czytaj więcej..</a>
+                                        </div>
                                     </div>
-
-                                    
-                                    
-
-
+                                    </div>
+                                    }
 
                                 </div>
-                                }
                             </div>
-                        </div>
-                    </div>
-                </div>
 
 
-            </div>
+                            </div>
         </div>
 
 

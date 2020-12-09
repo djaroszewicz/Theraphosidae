@@ -26,7 +26,9 @@ namespace Theraphosidae.Infrastructure.Helpers
                 Aggressiveness = result.Spider.Aggressiveness,
                 Speed = result.Spider.Speed,
                 LengthOfLife = result.Spider.LengthOfLife,
-                CocoonSize = result.Spider.CocoonSize
+                CocoonSize = result.Spider.CocoonSize,
+                Description = result.Spider.Description,
+                ShortDescription = result.Spider.ShortDescription
                 //AnimalTaxonomyId = result.Spider.AnimalTaxonomyId
             };
 
@@ -97,6 +99,8 @@ namespace Theraphosidae.Infrastructure.Helpers
                     Speed = spider.Speed,
                     LengthOfLife = spider.LengthOfLife,
                     CocoonSize = spider.CocoonSize,
+                    Description = spider.Description,
+                    ShortDescription = spider.ShortDescription
                     //AnimalTaxonomyId = spider.AnimalTaxonomyId
                     
                 },
@@ -159,7 +163,10 @@ namespace Theraphosidae.Infrastructure.Helpers
                 Aggressiveness = result.Aggressiveness,
                 Speed = result.Speed,
                 LengthOfLife = result.LengthOfLife,
-                CocoonSize = result.CocoonSize
+                CocoonSize = result.CocoonSize,
+                Description = result.Description,
+                ShortDescription = result.ShortDescription
+                
             };
 
             return spiderView;
@@ -220,6 +227,8 @@ namespace Theraphosidae.Infrastructure.Helpers
             model.Speed = view.Spider.Speed;
             model.LengthOfLife = view.Spider.LengthOfLife;
             model.CocoonSize = view.Spider.CocoonSize;
+            model.Description = view.Spider.Description;
+            model.ShortDescription = view.Spider.ShortDescription;
             
 
             return model;
