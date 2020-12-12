@@ -36,7 +36,7 @@
     </div>
 
     <div class="card">
-        @using (Html.BeginForm("Edit", "Spider", FormMethod.Post))
+        @using (Html.BeginForm("Edit", "Spider", new { area = "dashboard" }, FormMethod.Post, true, new { @enctype = "multipart/form-data" }))
         {
             <div class="card-header">
                 <div class="d-flex align-items-center">
@@ -49,19 +49,6 @@
 
                 @Html.HiddenFor(x => x.Spider.Id)
 
-                @*<div class="input-icon mb-3">
-            <span class="input-icon-addon">
-                <i class="fas fa-pen-alt"></i>
-            </span>
-            @Html.TextBoxFor(x => x.Spider.NamePl, new { @class = "form-control", @placeholder = "Nazwa" })
-        </div>
-
-        <div class="input-icon mb-3">
-            <span class="input-icon-addon">
-                <i class="fas fa-pen-alt"></i>
-            </span>
-            @Html.TextBoxFor(x => x.AnimalTaxonomy.Regnum, new { @class = "form-control", @placeholder = "Nazwa" })
-        </div>*@
 
                 <div class="input-icon mb-3">
                     <span class="input-icon-addon">
@@ -345,6 +332,28 @@
                     @Html.TextAreaFor(x => x.Spider.ShortDescription, new { @class = "form-control", @placeholder = "Podaj krótki opis ptasznika" })
                 </div>
 
+                <div style="min-height:500px;" class="card">
+                    <div class="card-header">
+                        <div class="d-flex align-items-center">
+                            <h4 class="card-title">Dodaj zdjęcie ptasznika</h4>
+
+                        </div>
+                    </div>
+                    <div class="card-body mx-auto justify-content-center align-items-center flex-column">
+                        <div class="form-group">
+                            <div class="input-file input-file-image" onchange="previewFile(this);">
+
+                                <img class="img-upload-preview" height="350" src="~/images/img-placeholder.png" alt="preview" id="img-placeholder">
+
+                                @Html.TextBoxFor(x => x.Spider.SpiderFileImg, null, new { type = "file", @class = "form-control form-control-file", @id = "input-img-placeholder" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
                 <a class="btn btn-info" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                     Uzupełnij pozostałą taksonomię ptasznika (Niewymagane)
                 </a>
@@ -594,6 +603,20 @@
     $(".form-control-range").on("input", function () {
         updateOutput(this);
     });
+
+    function previewFile(input) {
+        var file = $("input[type=file]").get(0).files[0];
+
+        if (file) {
+            var reader = new FileReader();
+
+            reader.onload = function () {
+                $("#img-placeholder").attr("src", reader.result);
+            }
+
+            reader.readAsDataURL(file);
+        }
+    }
 
 </script>
 }

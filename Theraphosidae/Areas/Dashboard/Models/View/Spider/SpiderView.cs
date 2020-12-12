@@ -37,6 +37,7 @@ namespace Theraphosidae.Areas.Dashboard.Models.View.Spider
         [Required(ErrorMessage = "Krótki opis ptasznika jest wymagany!")]
         public string ShortDescription { get; set; }
         public IFormFile SpiderFileImg { get; set; }
+        public bool PhotoEditedFlag { get; set; }
 
         [Required]
         public int AnimalTaxonomyId { get; set; }

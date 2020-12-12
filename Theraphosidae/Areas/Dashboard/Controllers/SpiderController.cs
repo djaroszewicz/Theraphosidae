@@ -73,6 +73,15 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
             var spiderUpdateModel = SpiderHelpers.MergeSpiderModelWitthView(spiderModel, result);
             var animalTaxonomyUpdateModel = SpiderHelpers.MergeAnimalTaxonomyModelWithView(animalTaxonomyModel, result);
 
+            if(result.Spider.SpiderFileImg != null)
+            {
+                if (spiderModel.Image != null)
+                {
+                    _cloudinaryService.DeleteSpiderImage(spiderModel.Image.Id);
+                }
+                await _cloudinaryService.AddSpiderImage(result.Spider.SpiderFileImg, spiderModel.Id);
+
+            }
 
             await _spiderService.Update(spiderUpdateModel, animalTaxonomyUpdateModel);
 
@@ -110,6 +119,26 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
 
             //await _spiderService.Create(spiderModel, animalTaxonomyId);
             
+
+            return RedirectToAction("List");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var spider = await _spiderService.Get(id);
+
+            if (spider.Image != null)
+            {
+                _cloudinaryService.DeleteSpiderImage(spider.Image.Id);
+            }
+
+            if(spider.AnimalTaxonomy != null)
+            {
+               await _animalTaxonomyService.Delete(spider.AnimalTaxonomyId);
+            }
+
+            await _spiderService.Delete(id);
 
             return RedirectToAction("List");
         }

@@ -53,10 +53,12 @@ namespace Theraphosidae.Services
         public async Task<bool> Delete(int id)
         {
             var spider = await _theraphosidaeContext.Spiders.SingleOrDefaultAsync(s => s.Id == id);
+            var spiderImage = await _theraphosidaeContext.Images.SingleOrDefaultAsync(s => s.SpiderId == id);
 
             if(spider != null)
             {
                 _theraphosidaeContext.Spiders.Remove(spider);
+                _theraphosidaeContext.Images.Remove(spiderImage);
                 return await _theraphosidaeContext.SaveChangesAsync() > 0;
             }
 
@@ -67,7 +69,7 @@ namespace Theraphosidae.Services
         {
             var spider = await _theraphosidaeContext.Spiders
                 .Include(t => t.AnimalTaxonomy)
-                .Include(i => i.Images)
+                .Include(i => i.Image)
                 .SingleOrDefaultAsync(s => s.Id == id);
 
             return spider;
@@ -77,7 +79,7 @@ namespace Theraphosidae.Services
         {
             return await _theraphosidaeContext.Spiders
                 .Include(t => t.AnimalTaxonomy)
-                .Include(i => i.Images)
+                .Include(i => i.Image)
                 .ToListAsync();
         }
 

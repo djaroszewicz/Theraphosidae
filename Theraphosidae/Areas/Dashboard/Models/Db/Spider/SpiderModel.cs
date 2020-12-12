@@ -24,11 +24,11 @@ namespace Theraphosidae.Areas.Dashboard.Models.Db.Spider
         public int Speed { get; set; }
         public int LengthOfLife { get; set; }
         public int CocoonSize { get; set; }
-        public int AnimalTaxonomyId { get; set; }
         public string Description { get; set; }
         public string ShortDescription { get; set; }
-        // Dodaj Short Description i Description
+        public int AnimalTaxonomyId { get; set; }
+
         public AnimalTaxonomyModel AnimalTaxonomy { get; set; }
-        public ICollection<ImageModel> Images { get; set; }
+        public ImageModel Image { get; set; }
     }
 }

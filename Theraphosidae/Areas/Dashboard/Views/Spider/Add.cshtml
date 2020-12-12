@@ -333,22 +333,13 @@
                     <div style="min-height:500px;" class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
-                                <h4 class="card-title">Zdjęcie wyrózniające</h4>
-
-                                <button id="open-load-img-placeholder" class="btn btn-primary ml-auto">
-                                    <i class="fa fa-plus"></i>
-                                    Dołącz zdjęcie
-                                </button>
-                                <button id="delete-img-placeholder" class="btn btn-danger ml-3 d-none">
-                                    <i class="fa fa-times"></i>
-                                    Usuń zdjęcie
-                                </button>
+                                <h4 class="card-title">Dodaj zdjęcie ptasznika</h4>
 
                             </div>
                         </div>
                         <div class="card-body mx-auto justify-content-center align-items-center flex-column">
                             <div class="form-group">
-                                <div class="input-file input-file-image">
+                                <div class="input-file input-file-image" onchange="previewFile(this);">
                                     @if (Model != null && Model.Spider.SpiderFileImg != null)
                                     {
                                         <h3 style="color:red;" class="text-center">Dołącz swoje zdjęcie ponownie!</h3>
@@ -362,6 +353,8 @@
                         </div>
 
                     </div>
+
+                    <div class="card-body">
 
                     <a class="btn btn-info" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                         Uzupełnij pozostałą taksonomię ptasznika (Niewymagane)
@@ -571,87 +564,11 @@
                         <a class="btn btn-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                             Zwiń listę dodatkowej taksonomii
                         </a>
+                    </div>
 
                     </div>
 
-                    @*<div class="input-icon mb-3">
-                    <div class="form-group">
-                        <label for="defaultSelect">Wybierz Wypożyczalnię</label>
-                        <select name="rentalId" class="form-control form-control">
-                            <option value="null">Wybierz wypożyczalnię</option>
-                            @foreach (var rental in rentals)
-                            {
-                                <option value="@rental.Id">@rental.Name</option>
-                            }
-                        </select>
-                    </div>
-                </div>*@
-
-                    @*<div class="input-icon mb-3">
-                    <div class="form-group">
-                        <label for="defaultSelect">Wybierz Kategorię</label>
-                        <select name="categoryId" class="form-control form-control">
-                            <option value="null">Wybierz kategorię</option>
-                            @foreach (var carCategory in carCategories)
-                            {
-                                <option value="@carCategory.Id">@carCategory.Name</option>
-                            }
-                        </select>
-                    </div>
-                </div>*@
-
-                    @*<div class="form-check">
-                    <label class="form-check-label">
-                        @Html.CheckBoxFor(x => x.IsAccepted, new { @class = "form-check-input" })
-                        <span class="form-check-sign">Jest zaakceptowany?</span>
-                    </label>
                 </div>
-
-                <div class="form-check">
-                    <label class="form-check-label">
-                        @Html.CheckBoxFor(x => x.IsFeatured, new { @class = "form-check-input" })
-                        <span class="form-check-sign">Jest wyróżniony?</span>
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <label class="form-check-label">
-                        @Html.CheckBoxFor(x => x.IsHidden, new { @class = "form-check-input" })
-                        <span class="form-check-sign">Jest ukryty?</span>
-                    </label>
-                </div>*@
-
-                </div>
-
-                @*<div class="form-group pl-5 pr-5 pt-3 pb-4">
-                <p><strong>Wybierz kategorię</strong></p>
-                <div class="selectgroup selectgroup-pills">
-                    @if (features.Count != 0)
-                    {
-                        foreach (var feature in features)
-                        {
-                            if (Model != null && Model.Features != null && Model.Features.Contains(feature.Id))
-                            {
-                                <label class="selectgroup-item">
-                                    <input type="checkbox" name="features" value="@feature.Id" class="selectgroup-input" checked>
-                                    <span class="selectgroup-button">@feature.Name</span>
-                                </label>
-                            }
-                            else
-                            {
-                                <label class="selectgroup-item">
-                                    <input type="checkbox" name="features" value="@feature.Id" class="selectgroup-input">
-                                    <span class="selectgroup-button">@feature.Name</span>
-                                </label>
-                            }
-                        }
-                    }
-                    else
-                    {
-                        <h3>Brak dodanych kategorii dodatków pod samochód</h3>
-                    }
-                </div>
-            </div>*@
 
                 <div class="row justify-content-center">
                     <button class="btn btn-success mb-3" type="submit">
@@ -690,44 +607,19 @@
                     updateOutput(this);
                 });
 
+                function previewFile(input) {
+                    var file = $("input[type=file]").get(0).files[0];
 
-
-                //5. Otwieranie explorera plików
-                const openLoadImgPlaceholder = document.querySelector("#open-load-img-placeholder");
-                const inputImgPlaceholder = document.querySelector("#`-placeholder");
-
-                openLoadImgPlaceholder.addEventListener("click", function (e) {
-                    e.preventDefault();
-                    inputImgPlaceholder.click();
-                });
-
-                // 6. Przekazywanie zdjęcia do placeholdera
-                const imgPlaceholder = document.querySelector("#img-placeholder");
-                const buttonPlaceholder = document.querySelector("#load-placeholder");
-                const deleteButton = document.querySelector("#delete-img-placeholder");
-
-                function readURL(input) {
-                    if (input.files && input.files[0]) {
+                    if (file) {
                         var reader = new FileReader();
-                        reader.onload = function (e) {
-                            // if na model zeby wykrył zdjęcie 
-                            imgPlaceholder.src = e.target.result;
-                        };
-                        reader.readAsDataURL(input.files[0]);
 
-                        // pokazujemy przycisk do usuwania
-                        deleteButton.classList.remove("d-none");
+                        reader.onload = function () {
+                            $("#img-placeholder").attr("src", reader.result);
+                        }
+
+                        reader.readAsDataURL(file);
                     }
                 }
 
-                // 7. Usuwanie placeholdera
-                deleteButton.addEventListener("click", function (e) {
-                    e.preventDefault();
-                    imgPlaceholder.src = "/admin/images/img-placeholder.png";
-                    deleteButton.classList.add("d-none");
-                });
-
             </script>
         }
-
-

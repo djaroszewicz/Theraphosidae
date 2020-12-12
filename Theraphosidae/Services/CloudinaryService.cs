@@ -168,16 +168,16 @@ namespace Theraphosidae.Services
             return false;
         }
 
-        public bool DeleteSpiderImage(string publicationId)
+        public bool DeleteSpiderImage(string publicId)
         {
             if(_cloudinary != null)
             {
-                var deleteParams = new DeletionParams(publicationId);
+                var deleteParams = new DeletionParams(publicId);
                 var result = _cloudinary.Destroy(deleteParams);
 
                 if(result.Result == "ok")
                 {
-                    var toRemove = _context.Images.Find(publicationId);
+                    var toRemove = _context.Images.Find(publicId);
                     _context.Images.Remove(toRemove);
 
                     return _context.SaveChanges() > 0;
