@@ -1,0 +1,229 @@
+﻿@model ArticleCommentView
+
+@{
+    ViewData["Title"] = "Szczegóły artykułu";
+
+    ViewData["Page"] = "ArticleView";
+    ViewData["Group"] = "Article";
+
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+
+
+    var comments = ViewData["Comment"] as List<CommentModel>;
+
+}
+<div class="page-inner">
+    @*<div class="page-header">
+        <h4 class="page-title">@Model.Title</h4>
+        <ul class="breadcrumbs">
+            <li class="nav-home">
+                <a href="@Url.Action("Index","Dashboard")">
+                    <i class="flaticon-home"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("List","Article")">Artykuły</a>
+            </li>
+        </ul>
+    </div>*@
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h3 class="card-title">Tyutł artykułu: <strong>@Model.Article.Title</strong></h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+
+                        @*<div class="form-button-action">
+                @using (Html.BeginForm("Delete", "Spider", new { Id = Model.Spider.Id }, FormMethod.Post, true, true))
+                {
+                    <button type="submit" class="btn btn-link btn-danger delete-alert">
+                        <i class="fa fa-times"></i>
+                    </button>
+                }
+            </div>*@
+
+                        <div class="col-md-6" style="margin-top:25px; margin-bottom:25px;">
+                            <div class="card">
+
+                                <div class="form-group form-group-default mb-3">
+                                    <label>Liczba wyświetleń artykułu</label>
+                                    @if (Model.Article.Views == 0)
+                                    {
+                                        <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                    }
+                                    else
+                                    {
+                                        <input type="text" class="form-control with-out-grey" value="@Model.Article.Views" readonly="">
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="margin-top:25px; margin-bottom:25px;">
+                            <div class="card">
+
+                                <div class="form-group form-group-default mb-3">
+                                    <label>Data dodania artykułu</label>
+                                    @if (Model.Article.AddDate == null)
+                                    {
+                                        <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                    }
+                                    else
+                                    {
+                                        <input type="text" class="form-control with-out-grey" value="@Model.Article.AddDate" readonly="">
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+
+                            <div class="card">
+
+                                <div class="form-group form-group-default" style="margin-top:25px; margin-bottom:25px;">
+                                    <h3>Abstrakt artykułu</h3>
+                                    @if (Model.Article.Abstract == null)
+                                    {
+                                        <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                    }
+                                    else
+                                    {
+                                        <textarea style="width:100%; min-height:300px; resize: vertical;" readonly>@Model.Article.Abstract</textarea>
+                                        //<input type="text" class="form-control with-out-grey" value="@Model.Abstract" readonly="">
+                                    }
+                                </div>
+
+                                <div class="form-group form-group-default" style="margin-top:25px; margin-bottom:25px;">
+                                    <h3>Treść artykułu</h3>
+                                    @if (Model.Article.Content == null)
+                                    {
+                                        <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                    }
+                                    else
+                                    {
+                                        <textarea style="width:100%; min-height:500px; resize: vertical;" readonly>@Model.Article.Content</textarea>
+                                        //<input type="text" class="form-control with-out-grey" value="@Model.Abstract" readonly="">
+                                    }
+                                </div>
+
+                                <div class="form-group form-group-default" style="margin-top:25px; margin-bottom:25px;">
+                                    <h3>Literatura artykułu</h3>
+                                    @if (Model.Article.Literature == null)
+                                    {
+                                        <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                    }
+                                    else
+                                    {
+                                        <textarea style="width:100%; min-height:200px; resize: vertical;" readonly>@Model.Article.Literature</textarea>
+                                        //<input type="text" class="form-control with-out-grey" value="@Model.Abstract" readonly="">
+                                    }
+                                </div>
+
+                                @*<div class="form-group form-group-default mb-3">
+                        <label>Angielska nazwa ptasznika</label>
+                        @if (Model.Spider.NameEng == null)
+                        {
+                            <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                        }
+                        else
+                        {
+                            <input type="text" class="form-control with-out-grey" value="@Model.Spider.NameEng" readonly="">
+                        }
+                    </div>*@
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title"><h4>Komentarze</h4></div>
+                        </div>
+
+                        <div class="row">
+                            @using (Html.BeginForm("Add", "Comment", FormMethod.Post))
+                            {
+
+                                @Html.HiddenFor(x => x.Article.Id)
+                                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                                <div class="card-header">
+                                    <div class="card-title"><h5>Dodaj komentarz</h5></div>
+                                </div>
+                                <div class="card-body">
+                                    @Html.TextAreaFor(x => x.Comment.Content, new { @class = "form-control", @style = "height:200px; width=100%;" })
+                                </div>
+                                    
+                                <div class="d-flex align-items-center">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fa fa-plus"></i>
+                                        Dodaj komentarz
+                                    </button>
+                                </div>
+                            }
+
+                        </div>
+
+                        <div class="row">
+                            @foreach (var comment in comments)
+                            {
+                                if (comment.ArticleId == Model.Article.Id)
+                                {
+
+                                    <div class="form-group form-group-default" style="margin-top:25px; margin-bottom:25px;">
+                                        <h3>Treść komentarza</h3>
+                                        <textarea style="width:100%; min-height:500px; resize: vertical;" readonly>@comment.Content</textarea>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>E-mail uzytkownika</label>
+                                            <input type="text" class="form-control with-out-grey" value="@comment.User.Email" readonly="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Nazwa uzytkownika</label>
+                                            <input type="text" class="form-control with-out-grey" value="@comment.User.UserName" readonly="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group form-group-default mb-3">
+                                            <label>Data dodania</label>
+                                            <input type="text" class="form-control with-out-grey" value="@comment.AddDate" readonly="">
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+@section Scripts
+{
+    
+<script>
+
+
+</script>
+}

@@ -9,8 +9,8 @@ using Theraphosidae.Context;
 namespace Theraphosidae.Migrations
 {
     [DbContext(typeof(TheraphosidaeContext))]
-    [Migration("20201114172735_AnimalTaxonomies")]
-    partial class AnimalTaxonomies
+    [Migration("20201215162118_NewBuildApp")]
+    partial class NewBuildApp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -220,6 +220,9 @@ namespace Theraphosidae.Migrations
                     b.Property<DateTime>("AddDate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("Category")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<int>("CommentCount")
                         .HasColumnType("int");
 
@@ -229,17 +232,8 @@ namespace Theraphosidae.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Excerpt")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<string>("FullUrl")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<bool>("IsDraft")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<int?>("MenuOrder")
-                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime(6)");
@@ -304,9 +298,6 @@ namespace Theraphosidae.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<bool>("IsAccepted")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -314,7 +305,7 @@ namespace Theraphosidae.Migrations
 
                     b.HasIndex("ArticleId");
 
-                    b.ToTable("CommentModel");
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("Theraphosidae.Areas.Dashboard.Models.Db.Article.TagModel", b =>
@@ -526,7 +517,8 @@ namespace Theraphosidae.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SpiderId");
+                    b.HasIndex("SpiderId")
+                        .IsUnique();
 
                     b.ToTable("Images");
                 });
@@ -540,13 +532,19 @@ namespace Theraphosidae.Migrations
                     b.Property<int>("Aggressiveness")
                         .HasColumnType("int");
 
-                    b.Property<int?>("AnimalTaxonomyId")
+                    b.Property<int>("AnimalTaxonomyId")
                         .HasColumnType("int");
 
                     b.Property<int>("CocoonSize")
                         .HasColumnType("int");
 
-                    b.Property<int>("Humidity")
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("HumidityMax")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HumidityMin")
                         .HasColumnType("int");
 
                     b.Property<int>("LengthOfLife")
@@ -564,13 +562,19 @@ namespace Theraphosidae.Migrations
                     b.Property<int>("PowerOfVenom")
                         .HasColumnType("int");
 
+                    b.Property<string>("ShortDescription")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<int>("Size")
                         .HasColumnType("int");
 
                     b.Property<int>("Speed")
                         .HasColumnType("int");
 
-                    b.Property<float>("Temperature")
+                    b.Property<float>("TemperatureMax")
+                        .HasColumnType("float");
+
+                    b.Property<float>("TemperatureMin")
                         .HasColumnType("float");
 
                     b.Property<string>("Type")
@@ -653,7 +657,7 @@ namespace Theraphosidae.Migrations
             modelBuilder.Entity("Theraphosidae.Areas.Dashboard.Models.Db.Article.TaxonomyModel", b =>
                 {
                     b.HasOne("Theraphosidae.Areas.Dashboard.Models.Db.Article.ArticleModel", "Article")
-                        .WithMany("Taxonomies")
+                        .WithMany()
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -677,8 +681,8 @@ namespace Theraphosidae.Migrations
             modelBuilder.Entity("Theraphosidae.Areas.Dashboard.Models.Db.Spider.ImageModel", b =>
                 {
                     b.HasOne("Theraphosidae.Areas.Dashboard.Models.Db.Spider.SpiderModel", "Spider")
-                        .WithMany("Images")
-                        .HasForeignKey("SpiderId")
+                        .WithOne("Image")
+                        .HasForeignKey("Theraphosidae.Areas.Dashboard.Models.Db.Spider.ImageModel", "SpiderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -687,7 +691,9 @@ namespace Theraphosidae.Migrations
                 {
                     b.HasOne("Theraphosidae.Areas.Dashboard.Models.Db.Spider.AnimalTaxonomyModel", "AnimalTaxonomy")
                         .WithMany()
-                        .HasForeignKey("AnimalTaxonomyId");
+                        .HasForeignKey("AnimalTaxonomyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -19,19 +19,36 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly IArticleService _articleService;
-        private readonly ICategoryService _categoryService;
-        private readonly ITagService _tagService;
         private readonly ICloudinaryService _cloudinaryService;
-        private readonly ITaxonomyService _taxonomyService;
+        private readonly ICommentService _commentService;
 
-        public ArticleController(UserManager<User> userManager, IArticleService articleService, ICategoryService categoryService, ITagService tagService, ICloudinaryService cloudinaryService, ITaxonomyService taxonomyService)
+
+
+        //private readonly ITagService _tagService;
+        //private readonly ITaxonomyService _taxonomyService;
+        //private readonly ICategoryService _categoryService;
+
+        public ArticleController(UserManager<User> userManager, IArticleService articleService, ICloudinaryService cloudinaryService, ICommentService commentService)
         {
             _userManager = userManager;
             _articleService = articleService;
-            _categoryService = categoryService;
-            _tagService = tagService;
             _cloudinaryService = cloudinaryService;
-            _taxonomyService = taxonomyService;
+            _commentService = commentService;
+
+            //_categoryService = categoryService;
+            //_tagService = tagService;    
+            //_taxonomyService = taxonomyService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int Id)
+        {
+            var articleModel = await _articleService.Get(Id);
+            await _articleService.IncrementArticleViews(Id);
+
+            ViewData["Comment"] = await _commentService.GetAll();
+
+            return View(ArticleHelpers.ConvertToDetailsView(articleModel));
         }
 
         [HttpGet]
@@ -44,8 +61,8 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            ViewBag.Categories = await _categoryService.GetAll();
-            ViewBag.Tags = await _tagService.GetAll();
+            //ViewBag.Categories = await _categoryService.GetAll();
+            //ViewBag.Tags = await _tagService.GetAll();
 
             return View();
         }
@@ -53,18 +70,18 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(ArticleView result)
         {
-            if (await _articleService.CheckIfSlugExist(result.Slug))
-            {
-                ModelState.AddModelError("", "Artykuł z tym linkiem już istnieje!");
-            }
+            //if (await _articleService.CheckIfSlugExist(result.Slug))
+            //{
+            //    ModelState.AddModelError("", "Artykuł z tym linkiem już istnieje!");
+            //}
 
-            if (!ModelState.IsValid)
-            {
-                ViewBag.Categories = await _categoryService.GetAll();
-                ViewBag.Tags = await _tagService.GetAll();
+            //if (!ModelState.IsValid)
+            //{
+            //    ViewBag.Categories = await _categoryService.GetAll();
+            //    ViewBag.Tags = await _tagService.GetAll();
 
-                return View(result);
-            }
+            //    return View(result);
+            //}
 
             var user = await _userManager.GetUserAsync(User);
 
@@ -77,8 +94,8 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
 
             var photo = await _cloudinaryService.AddFile(result.FeaturedImg, articleModel);
 
-            await _taxonomyService.SaveCategories(await _categoryService.GetCategoriesByName(result.Categories), articleModel);
-            await _taxonomyService.SaveTags(await _tagService.GetCategoriesByNames(result.Tags), articleModel);
+            //await _taxonomyService.SaveCategories(await _categoryService.GetCategoriesByName(result.Categories), articleModel);
+            //await _taxonomyService.SaveTags(await _tagService.GetCategoriesByNames(result.Tags), articleModel);
 
             return RedirectToAction("List");
         }
@@ -94,10 +111,10 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
                 _cloudinaryService.DeleteFile(article.Image.Id);
             }
 
-            if(article.Taxonomies.Count != 0)
-            {
-                await _taxonomyService.Delete(Id);
-            }
+            //if(article.Taxonomies.Count != 0)
+            //{
+            //    await _taxonomyService.Delete(Id);
+            //}
 
             await _articleService.Delete(Id);
 
@@ -108,8 +125,8 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int Id)
         {
-            ViewBag.Categories = await _categoryService.GetAll();
-            ViewBag.Tags = await _tagService.GetAll();
+            //ViewBag.Categories = await _categoryService.GetAll();
+            //ViewBag.Tags = await _tagService.GetAll();
 
             var articleModel = await _articleService.Get(Id);
 
@@ -130,41 +147,37 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
 
             if(result.Slug != article.Slug)
             {
-                if(await _articleService.CheckIfSlugExist(result.Slug))
-                {
-                    ModelState.AddModelError("", "Artykuł o podanym linku nie istnieje");
-                }
+                //if(await _articleService.CheckIfSlugExist(result.Slug))
+                //{
+                //    ModelState.AddModelError("", "Artykuł o podanym linku nie istnieje");
+                //}
             }
 
-            if(!ModelState.IsValid)
-            {
-                ViewBag.Categories = await _categoryService.GetAll();
-                ViewBag.Tags = await _tagService.GetAll();
+            //if(!ModelState.IsValid)
+            //{
+            //    ViewBag.Categories = await _categoryService.GetAll();
+            //    ViewBag.Tags = await _tagService.GetAll();
 
-                return View(result);
-            }
+            //    return View(result);
+            //}
 
-            if(result.IsPhotoEdited)
+            if(result.FeaturedImg != null)
             {
                 if(article.Image != null)
                 {
                     _cloudinaryService.DeleteFile(article.Image.Id);
                 }
-
-                if (result.FeaturedImg != null)
-                {
                     var photo = await _cloudinaryService.AddFile(result.FeaturedImg);
                     article.Image = photo;
-                }
             }
 
             await _articleService.Update(ArticleHelpers.MergeViewWithModel(article, result, "https://theraphosidae.pl"));
 
-            await _taxonomyService.Delete(result.Id);
+            //await _taxonomyService.Delete(result.Id);
 
-            await _taxonomyService.SaveCategories(await _categoryService.GetCategoriesByName(result.Categories), article);
+            //await _taxonomyService.SaveCategories(await _categoryService.GetCategoriesByName(result.Categories), article);
 
-            await _taxonomyService.SaveTags(await _tagService.GetCategoriesByNames(result.Tags), article);
+            //await _taxonomyService.SaveTags(await _tagService.GetCategoriesByNames(result.Tags), article);
 
             return RedirectToAction("List");
         }

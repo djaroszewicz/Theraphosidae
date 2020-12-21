@@ -71,7 +71,7 @@ namespace Theraphosidae.Services
             return null;
         }
 
-        private async Task<MediaModel> SaveToDatabase(ImageUploadResult uploadResult, string fileNameLong, ArticleModel article = null)
+        private async Task<MediaModel> SaveToDatabase(ImageUploadResult uploadResult, string fileNameLong, ArticleModel article)
         {
             var fileName = Path.GetFileNameWithoutExtension(fileNameLong);
 
@@ -111,7 +111,7 @@ namespace Theraphosidae.Services
             return image;
         }
 
-        public async Task<MediaModel> AddFile(IFormFile file, ArticleModel article = null)
+        public async Task<MediaModel> AddFile(IFormFile file, ArticleModel article)
         {
             var uploadResult = UploadToCloudinary(file);
             if(uploadResult != null)
@@ -130,7 +130,7 @@ namespace Theraphosidae.Services
                 var uploadResult = UploadToCloudinary(file);
                 if (uploadResult != null)
                 {
-                    await SaveToDatabase(uploadResult, file.FileName);
+                    //await SaveToDatabase(uploadResult, file.FileName);
                 }
             }
 

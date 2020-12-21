@@ -22,6 +22,8 @@ namespace Theraphosidae.Context
         public DbSet<ImageModel> Images { get; set; }
         public DbSet<SpiderModel> Spiders { get; set; }
         public DbSet<AnimalTaxonomyModel> AnimalTaxonomies { get; set; }
+        public DbSet<CommentModel> Comments { get; set; }
+
 
         public DbSet<CategoryModel> Categories { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)

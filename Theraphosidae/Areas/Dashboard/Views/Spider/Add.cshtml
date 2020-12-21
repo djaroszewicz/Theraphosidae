@@ -346,7 +346,7 @@
                                     }
                                     <img class="img-upload-preview" height="350" src="~/images/img-placeholder.png" alt="preview" id="img-placeholder">
 
-                                    @Html.TextBoxFor(x => x.Spider.SpiderFileImg, null, new { type = "file", @class = "form-control form-control-file", @id = "input-img-placeholder" })
+                                    @Html.TextBoxFor(x => x.Spider.SpiderFileImg, null, new { type = "file", accept = "image/*", @class = "form-control form-control-file", @id = "input-img-placeholder" })
                                 </div>
                             </div>
 

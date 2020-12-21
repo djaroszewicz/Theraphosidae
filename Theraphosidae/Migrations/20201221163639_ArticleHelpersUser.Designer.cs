@@ -9,8 +9,8 @@ using Theraphosidae.Context;
 namespace Theraphosidae.Migrations
 {
     [DbContext(typeof(TheraphosidaeContext))]
-    [Migration("20201025185212_25.10.2020")]
-    partial class _25102020
+    [Migration("20201221163639_ArticleHelpersUser")]
+    partial class ArticleHelpersUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -217,8 +217,14 @@ namespace Theraphosidae.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("Abstract")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<DateTime>("AddDate")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Category")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("CommentCount")
                         .HasColumnType("int");
@@ -229,17 +235,11 @@ namespace Theraphosidae.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Excerpt")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<string>("FullUrl")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<bool>("IsDraft")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<int?>("MenuOrder")
-                        .HasColumnType("int");
+                    b.Property<string>("Literature")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime(6)");
@@ -301,20 +301,16 @@ namespace Theraphosidae.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<bool>("IsAccepted")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ArticleId");
 
-                    b.ToTable("CommentModel");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("Theraphosidae.Areas.Dashboard.Models.Db.Article.TagModel", b =>
@@ -403,6 +399,199 @@ namespace Theraphosidae.Migrations
                     b.ToTable("Medias");
                 });
 
+            modelBuilder.Entity("Theraphosidae.Areas.Dashboard.Models.Db.Spider.AnimalTaxonomyModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Classis")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Familia")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Forma")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Genus")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Infraclassis")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Infrafamilia")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Infragenus")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Infraordo")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Infraphylum")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Infratribus")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Morpha")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Natio")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Ordo")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Phylum")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Regnum")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Species")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Subclassis")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Subfamilia")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Subgenus")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Subordo")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Subphylum")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Subregnum")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Subspecies")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Subtribus")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Superclassis")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Superfamilia")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Supergenus")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Superordo")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Superphylum")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Supertrubus")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Tribus")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AnimalTaxonomies");
+                });
+
+            modelBuilder.Entity("Theraphosidae.Areas.Dashboard.Models.Db.Spider.ImageModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("SpiderId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SpiderId")
+                        .IsUnique();
+
+                    b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("Theraphosidae.Areas.Dashboard.Models.Db.Spider.SpiderModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("Aggressiveness")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AnimalTaxonomyId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CocoonSize")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("HumidityMax")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HumidityMin")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LengthOfLife")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NameEng")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("NamePl")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("OriginPlace")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("PowerOfVenom")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ShortDescription")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Speed")
+                        .HasColumnType("int");
+
+                    b.Property<float>("TemperatureMax")
+                        .HasColumnType("float");
+
+                    b.Property<float>("TemperatureMin")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnimalTaxonomyId");
+
+                    b.ToTable("Spiders");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -468,12 +657,16 @@ namespace Theraphosidae.Migrations
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Theraphosidae.Areas.Dashboard.Models.Db.Account.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Theraphosidae.Areas.Dashboard.Models.Db.Article.TaxonomyModel", b =>
                 {
                     b.HasOne("Theraphosidae.Areas.Dashboard.Models.Db.Article.ArticleModel", "Article")
-                        .WithMany("Taxonomies")
+                        .WithMany()
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -492,6 +685,24 @@ namespace Theraphosidae.Migrations
                     b.HasOne("Theraphosidae.Areas.Dashboard.Models.Db.Article.ArticleModel", "Article")
                         .WithOne("Image")
                         .HasForeignKey("Theraphosidae.Areas.Dashboard.Models.Db.Media.MediaModel", "ArticleId");
+                });
+
+            modelBuilder.Entity("Theraphosidae.Areas.Dashboard.Models.Db.Spider.ImageModel", b =>
+                {
+                    b.HasOne("Theraphosidae.Areas.Dashboard.Models.Db.Spider.SpiderModel", "Spider")
+                        .WithOne("Image")
+                        .HasForeignKey("Theraphosidae.Areas.Dashboard.Models.Db.Spider.ImageModel", "SpiderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Theraphosidae.Areas.Dashboard.Models.Db.Spider.SpiderModel", b =>
+                {
+                    b.HasOne("Theraphosidae.Areas.Dashboard.Models.Db.Spider.AnimalTaxonomyModel", "AnimalTaxonomy")
+                        .WithMany()
+                        .HasForeignKey("AnimalTaxonomyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -2,30 +2,30 @@
 
 namespace Theraphosidae.Migrations
 {
-    public partial class Description : Migration
+    public partial class ArticleModelAddLiterautreAbstract : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "Description",
-                table: "Spiders",
+                name: "Abstract",
+                table: "Articles",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "ShortDescription",
-                table: "Spiders",
+                name: "Literature",
+                table: "Articles",
                 nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Description",
-                table: "Spiders");
+                name: "Abstract",
+                table: "Articles");
 
             migrationBuilder.DropColumn(
-                name: "ShortDescription",
-                table: "Spiders");
+                name: "Literature",
+                table: "Articles");
         }
     }
 }
