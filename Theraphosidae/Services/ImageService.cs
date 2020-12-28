@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Theraphosidae.Areas.Dashboard.Models.Db.Report;
 using Theraphosidae.Areas.Dashboard.Models.Db.Spider;
 using Theraphosidae.Context;
 using Theraphosidae.Services.interfaces;
@@ -51,6 +52,46 @@ namespace Theraphosidae.Services
         public async Task<bool> Update(ImageModel spiderImage)
         {
             _theraphosidaeContext.Images.Update(spiderImage);
+            return await _theraphosidaeContext.SaveChangesAsync() > 0;
+        }
+
+
+
+
+
+        public async Task<bool> CreateReportImage(ReportImageModel reportImage)
+        {
+            await _theraphosidaeContext.ReportImages.AddAsync(reportImage);
+            return await _theraphosidaeContext.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> DeleteReportImage(string id)
+        {
+            var reportImage = await _theraphosidaeContext.ReportImages.SingleOrDefaultAsync(i => i.Id == id);
+
+            if (reportImage == null)
+            {
+                return false;
+            }
+
+            _theraphosidaeContext.ReportImages.Remove(reportImage);
+            return await _theraphosidaeContext.SaveChangesAsync() > 0;
+
+        }
+
+        public async Task<ReportImageModel> GetReportImage(string id)
+        {
+            return await _theraphosidaeContext.ReportImages.SingleOrDefaultAsync(i => i.Id == id);
+        }
+
+        public async Task<List<ReportImageModel>> GetAllReportImages()
+        {
+            return await _theraphosidaeContext.ReportImages.ToListAsync();
+        }
+
+        public async Task<bool> Update(ReportImageModel reportImage)
+        {
+            _theraphosidaeContext.ReportImages.Update(reportImage);
             return await _theraphosidaeContext.SaveChangesAsync() > 0;
         }
     }

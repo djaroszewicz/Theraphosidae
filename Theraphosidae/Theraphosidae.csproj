@@ -7,7 +7,6 @@
   <ItemGroup>
     <Folder Include="Areas\Dashboard\Models\Db\Home\" />
     <Folder Include="Areas\Dashboard\Models\View\Home\" />
-    <Folder Include="Areas\Dashboard\Models\View\Report\" />
     <Folder Include="Areas\Dashboard\Views\Media\" />
   </ItemGroup>
 

@@ -25,6 +25,7 @@ namespace Theraphosidae.Context
         public DbSet<AnimalTaxonomyModel> AnimalTaxonomies { get; set; }
         public DbSet<CommentModel> Comments { get; set; }
         public DbSet<ReportModel> Reports { get; set; }
+        public DbSet<ReportImageModel> ReportImages { get; set; }
 
 
         public DbSet<CategoryModel> Categories { get; set; }
