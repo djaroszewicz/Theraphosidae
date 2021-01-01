@@ -1,0 +1,163 @@
+﻿@model ReportView
+
+@{
+    ViewData["Title"] = "Dodaj raport";
+
+    ViewData["Page"] = "ReportAdd";
+    ViewData["Group"] = "Report";
+
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+
+    var spiders = ViewData["Spider"] as List<SpiderModel>;
+}
+
+<div class="page-inner">
+    <div class="page-header">
+        <h4 class="page-title">Dodawanie raportu</h4>
+        @*<ul class="breadcrumbs">
+                <li class="nav-home">
+                    <a href="@Url.Action("Index","Dashboard", new {area = "dashboard" })">
+                        <i class="flaticon-home"></i>
+                    </a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("List","Article", new { area = "dashboard" })">Wpisy</a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    Dodawanie wpisu
+                </li>
+            </ul>*@
+    </div>
+
+    @using (Html.BeginForm("Add", "Report", new { area = "dashboard" }, FormMethod.Post, true, new { @enctype = "multipart/form-data" }))
+    {
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+        <!-- Tytuł i slug wpisu -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Podstawowe informacje</div>
+            </div>
+            <div class="card-body">
+
+                <div class="input-icon mb-3">
+                    <span class="input-icon-addon">
+                        <i class="fas fa-pen-alt"></i>
+                    </span>
+                    <label>Tytuł raportu</label>
+                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Tytuł raportu", @id = "post-title" })
+                </div>
+
+
+            </div>
+        </div>
+
+        <!-- Treść wpisu -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title"><h4>Treść raportu</h4></div>
+            </div>
+            <div class="card-body">
+                @Html.TextAreaFor(x => x.Content, new { @class = "form-control", @style = "height:500px;" })
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <!-- Zdjęcie wyróżniające -->
+                <div style="min-height:500px;" class="card">
+                    <div class="card-header">
+                        <div class="d-flex align-items-center">
+                            <h4 class="card-title">Zdjęcie wyrózniające</h4>
+                        </div>
+                    </div>
+                    <div class="card-body mx-auto justify-content-center align-items-center flex-column">
+                        <div class="form-group">
+                            <div class="input-file input-file-image" onchange="previewFile(this);">
+                                @if (Model != null && Model.FormFileImg != null)
+                                {
+                                    <h3 style="color:red;" class="text-center">Dołącz swoje zdjęcie ponownie!</h3>
+                                }
+                                <img class="img-upload-preview" height="350" src="~/images/img-placeholder.png" alt="preview" id="img-placeholder">
+
+                                @Html.TextBoxFor(x => x.FormFileImg, null, new { type = "file", accept = "image/*", @class = "form-control form-control-file", @id = "input-img-placeholder" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="input-icon mb-3">
+                    <div class="form-group">
+                        <label for="defaultSelect">Wybierz ptasznika</label>
+                        <select name="spiderId" class="form-control form-control">
+                            <option value="null">Wybierz ptasznika</option>
+                            @foreach (var spider in spiders)
+                            {
+                                <option value="@spider.Id">@spider.AnimalTaxonomy.Regnum</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="input-icon mb-3">
+                    <div class="form-group">
+                        <label for="defaultSelect">Wybierz kategorię</label>
+                        <select name="Model.ReportCategory" class="form-control form-control">
+                            <option value="null">Wybierz kategorię</option>
+                            <option value="Multiplication">Raport rozmnożeniowy</option>
+                            <option value="Bite">Raport ukąszenia</option>
+                        </select>
+                    </div>
+                </div>
+
+                </div>
+
+
+            </div>
+
+
+
+
+            <div class="d-flex align-items-center">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-plus"></i>
+                    Dodaj wpis
+                </button>
+            </div>
+
+            }
+        </div>
+
+@section Scripts {
+    <script>
+
+
+        function previewFile(input) {
+            var file = $("input[type=file]").get(0).files[0];
+
+            if (file) {
+                var reader = new FileReader();
+
+                reader.onload = function () {
+                    $("#img-placeholder").attr("src", reader.result);
+                }
+
+                reader.readAsDataURL(file);
+            }
+        }
+
+    </script>
+}
+

@@ -38,12 +38,22 @@ namespace Theraphosidae.Services
 
         public async Task<ReportModel> Get(int id)
         {
-            return await _theraphosidaeContext.Reports.SingleOrDefaultAsync(i => i.Id == id);
+            return await _theraphosidaeContext.Reports
+                .Include(r => r.Spider)
+                .Include(r => r.Spider).ThenInclude(i => i.Image)
+                .Include(r => r.ReportImage)
+                .Include(u => u.User)
+                .SingleOrDefaultAsync(i => i.Id == id);
         }
 
         public async Task<List<ReportModel>> GetAll()
         {
-            var reportsList = await _theraphosidaeContext.Reports.ToListAsync();
+            var reportsList = await _theraphosidaeContext.Reports
+                .Include(r => r.Spider).ThenInclude(r => r.AnimalTaxonomy)
+                .Include(r => r.Spider)
+                .Include(r => r.ReportImage)
+                .Include(u => u.User)
+                .ToListAsync();
 
             return reportsList;
         }

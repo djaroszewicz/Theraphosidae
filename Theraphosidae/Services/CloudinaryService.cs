@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Theraphosidae.Areas.Dashboard.Models.Db.Article;
 using Theraphosidae.Areas.Dashboard.Models.Db.Media;
+using Theraphosidae.Areas.Dashboard.Models.Db.Report;
 using Theraphosidae.Areas.Dashboard.Models.Db.Spider;
 using Theraphosidae.Context;
 using Theraphosidae.Infrastructure.Settings;
@@ -179,6 +180,56 @@ namespace Theraphosidae.Services
                 {
                     var toRemove = _context.Images.Find(publicId);
                     _context.Images.Remove(toRemove);
+
+                    return _context.SaveChanges() > 0;
+                }
+            }
+
+            return false;
+        }
+
+        public async Task<bool> AddReportImage(IFormFile file, int reportId)
+        {
+            var status = true;
+            var uploadResult = UploadToCloudinary(file);
+            if (uploadResult != null)
+            {
+                await SaveReportImage(uploadResult, file.FileName, reportId);
+            }
+
+            return status;
+        }
+
+        private async Task<ReportImageModel> SaveReportImage(ImageUploadResult uploadResult, string fileNameLong, int reportId)
+        {
+            var fileName = Path.GetFileNameWithoutExtension(fileNameLong);
+
+            var image = new ReportImageModel
+            {
+                Id = uploadResult.PublicId,
+                Url = uploadResult.SecureUrl.AbsoluteUri,
+                Name = fileName,
+                Description = fileName,
+                ReportId = reportId
+            };
+
+            await _context.ReportImages.AddAsync(image);
+            await _context.SaveChangesAsync();
+
+            return image;
+        }
+
+        public bool DeleteReportImage(string reportId)
+        {
+            if (_cloudinary != null)
+            {
+                var deleteParams = new DeletionParams(reportId);
+                var result = _cloudinary.Destroy(deleteParams);
+
+                if (result.Result == "ok")
+                {
+                    var toRemove = _context.ReportImages.Find(reportId);
+                    _context.ReportImages.Remove(toRemove);
 
                     return _context.SaveChanges() > 0;
                 }

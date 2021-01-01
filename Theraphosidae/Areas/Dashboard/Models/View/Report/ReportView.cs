@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,11 +15,14 @@ namespace Theraphosidae.Areas.Dashboard.Models.View.Report
         public int Id { get; set; }
         public string Content { get; set; }
         public DateTime AddDate { get; set; }
+        public string AddDateString { get; set; }
         public int Views { get; set; }
         public string Title { get; set; }
         public string ReportCategory { get; set; }
         public string ImageUrl { get; set; }
+        public IFormFile FormFileImg { get; set; }
         public User User { get; set; }
+        public int SpiderId { get; set; }
         public SpiderModel Spider { get; set; }
         public ReportImageModel ReportImage { get; set; }
     }

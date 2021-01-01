@@ -1,0 +1,206 @@
+﻿@model ReportView
+
+@{
+    ViewData["Title"] = "Szczegóły artykułu";
+
+    ViewData["Page"] = "ArticleView";
+    ViewData["Group"] = "Article";
+
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+
+
+
+}
+<div class="page-inner">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h3 class="card-title">Tytuł raportu: <strong>@Model.Title</strong></h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-md-6" style="margin-top:25px; margin-bottom:25px;">
+                            <div class="card">
+
+                                <div class="form-group form-group-default mb-3">
+                                    <label>Liczba wyświetleń raportu</label>
+                                    @if (Model.Views == 0)
+                                    {
+                                        <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                    }
+                                    else
+                                    {
+                                        <input type="text" class="form-control with-out-grey" value="@Model.Views" readonly="">
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" style="margin-top:25px; margin-bottom:25px;">
+                            <div class="card">
+
+                                <div class="form-group form-group-default mb-3">
+                                    <label>Data dodania artykułu</label>
+                                    @if (Model.AddDate == null)
+                                    {
+                                        <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                    }
+                                    else
+                                    {
+                                        <input type="text" class="form-control with-out-grey" value="@Model.AddDate.ToShortDateString()" readonly="">
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" style="margin-top:10px; margin-bottom:25px;">
+                            <div class="card">
+
+                                <div class="form-group form-group-default mb-3">
+                                    <label>Autor raportu</label>
+                                    @if (Model.User == null)
+                                    {
+                                        <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                    }
+                                    else
+                                    {
+                                        <input type="text" class="form-control with-out-grey" value="@Model.User.UserName" readonly="">
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" style="margin-top:10px; margin-bottom:25px;">
+                            <div class="card">
+
+                                <div class="form-group form-group-default mb-3">
+                                    <label>Kategoria raportu</label>
+                                    @if (Model.ReportCategory == null)
+                                    {
+                                        <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                    }
+                                    else
+                                    {
+                                        <input type="text" class="form-control with-out-grey" value="@Model.ReportCategory" readonly="">
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+
+                            <div class="card">
+
+                                <div class="form-group form-group-default" style="margin-top:25px; margin-bottom:25px;">
+                                    <h3>Treść raportu</h3>
+                                    @if (Model.Content == null)
+                                    {
+                                        <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                    }
+                                    else
+                                    {
+                                        <textarea style="width:100%; min-height:500px; resize: vertical;" readonly>@Model.Content</textarea>
+                                    }
+                                </div>
+
+                                @if (Model.ReportCategory == "Rozmnozenie")
+                                {
+                                    <h3>Zdjecie rozmnozenia</h3>
+                                    <div class="form-group form-group-default mb-3 d-flex justify-content-center">
+                                        @if (Model.ReportImage == null)
+                                        {
+                                            <img src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" class="rounded" alt="...">
+                                        }
+                                        else
+                                        {
+                                            <img src="@Model.ReportImage.Url" class="rounded" alt="...">
+                                        }
+                                    </div>
+                                }
+                                else
+                                {
+                                    <h3>Zdjecie ukaszenia</h3>
+                                    <div class="form-group form-group-default mb-3 d-flex justify-content-center">
+                                        @if (Model.ReportImage == null)
+                                        {
+                                            <img src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" class="rounded" alt="...">
+                                        }
+                                        else
+                                        {
+                                            <img src="@Model.ReportImage.Url" class="rounded" alt="...">
+                                        }
+                                    </div>
+                                }
+
+
+                            </div>
+
+
+                        </div>
+
+                        @*<div class="col-md-12">
+
+        <div class="card">*@
+
+                        <div class="col-md-6">
+                            <div class="form-group form-group-default mb-3">
+                                <label>Ptasznik: </label>
+                                @if (Model.Spider.NamePl == null)
+                                {
+                                    <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                }
+                                else
+                                {
+                                    <input type="text" class="form-control with-out-grey" value="@Model.Spider.NamePl" readonly="">
+                                }
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 d-flex justify-content-center">
+                            <div class="form-group form-group-default mb-3">
+                                @if (Model.Spider.Image == null)
+                                {
+                                    <img src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" class="rounded" alt="...">
+                                }
+                                else
+                                {
+                                    <img src="@Model.Spider.Image.Url" class="rounded" alt="...">
+                                }
+                            </div>
+                        </div>
+
+                        @*</div>
+
+
+        </div>*@
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+@section Scripts
+{
+
+    <script>
+
+
+    </script>
+}

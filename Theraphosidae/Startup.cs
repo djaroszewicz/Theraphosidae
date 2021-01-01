@@ -78,6 +78,7 @@ namespace Theraphosidae
             services.AddScoped<ISpiderService, SpiderService>();
             services.AddScoped<IAnimalTaxonomyService, AnimalTaxonomyService>();
             services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<IReportService, ReportService>();
 
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             //services.Configure<Clo>

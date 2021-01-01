@@ -16,5 +16,8 @@ namespace Theraphosidae.Services.interfaces
 
         Task<bool> AddSpiderImage(IFormFile files, int spiderId);
         bool DeleteSpiderImage(string publicationId);
+
+        Task<bool> AddReportImage(IFormFile files, int reportId);
+        bool DeleteReportImage(string reportId);
     }
 }

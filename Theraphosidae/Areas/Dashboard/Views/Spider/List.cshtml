@@ -54,7 +54,24 @@
 
                                 <div class="col-md-6">
                                     <div class="card" style="min-height: 500px; margin: 15px;">
-                                        <img class="card-img-top" src="https://i.iplsc.com/ptasznik-olbrzymi-zdj-ilustracyjne/000ABR9HH1PHCAD0-C122-F4.jpg" alt="Card image cap">
+
+                                        @*<img class="card-img-top" src="https://i.iplsc.com/ptasznik-olbrzymi-zdj-ilustracyjne/000ABR9HH1PHCAD0-C122-F4.jpg" alt="Card image cap">*@
+
+                                        @if (spiderModel.Image == null)
+                                        {
+                                            <img class="card-img-top"
+                                                 src="https://i.iplsc.com/ptasznik-olbrzymi-zdj-ilustracyjne/000ABR9HH1PHCAD0-C122-F4.jpg"
+                                                 alt="Card image cap"
+                                                 style="max-height:40%; max-width:100%;">
+                                        }
+                                        else
+                                        {
+                                            <img class="card-img-top"
+                                                 src="@spiderModel.Image.Url"
+                                                 alt="Card image cap"
+                                                 style="max-height:40%; max-width:100%;">
+                                        }
+
                                         <div class="card-body">
                                             @if (@spiderModel.AnimalTaxonomy.Genus != null && @spiderModel.AnimalTaxonomy.Species != null)
                                             {
@@ -76,7 +93,7 @@
 
                                         </div>
                                         <ul class="list-group list-group-flush">
-                                            
+
                                             <li class="list-group-item">Pochodzenie: @spiderModel.OriginPlace</li>
                                             <li class="list-group-item">Typ ptasznika: @spiderModel.Type</li>
                                             <li class="list-group-item">Temperatura życia: @spiderModel.TemperatureMin °C - @spiderModel.TemperatureMax °C</li>

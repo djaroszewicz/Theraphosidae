@@ -19,7 +19,7 @@ namespace Theraphosidae.Infrastructure.Helpers
                 AddDate = DateTime.Now,
                 Title = report.Title,
                 ReportCategory = report.ReportCategory,
-                Spider = report.Spider,
+                SpiderId = report.SpiderId,
                 User = user
             };
 
@@ -32,11 +32,13 @@ namespace Theraphosidae.Infrastructure.Helpers
             {
                 Id = report.Id,
                 Content = report.Content,
-                AddDate = report.AddDate,
                 Title = report.Title,
                 ReportCategory = report.ReportCategory,
                 User = report.User,
-                Spider = report.Spider
+                Spider = report.Spider,
+                AddDate = report.AddDate
+                
+                
             };
 
             if(report.ReportImage == null)
