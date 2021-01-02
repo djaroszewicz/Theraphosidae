@@ -10,28 +10,9 @@
 
 
 }
-<div class="page-inner">
+<div class="page-inner" style="margin-top:15px;">
     <div class="page-header">
-        <h4 class="page-title">Wrzuc tu nazwe</h4>
-        <ul class="breadcrumbs">
-            <li class="nav-home">
-                <a href="@Url.Action("Index","Dashboard")">
-                    <i class="flaticon-home"></i>
-                </a>
-            </li>
-            <li class="separator">
-                <i class="flaticon-right-arrow"></i>
-            </li>
-            <li class="nav-item">
-                <a href="@Url.Action("List","Report")">Raporty</a>
-            </li>
-            <li class="separator">
-                <i class="flaticon-right-arrow"></i>
-            </li>
-            <li class="nav-item">
-                Szczegóły
-            </li>
-        </ul>
+        <h4 class="page-title">Raporty</h4>
     </div>
 
     <div class="row">
@@ -39,7 +20,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex align-items-center">
-                        <h4 class="card-title">Raporty</h4>
+                        <h4 class="card-title">Lista raportów</h4>
                     </div>
                 </div>
                 <div class="card-body">
@@ -49,6 +30,7 @@
 
 
                         @if (Model.Count != 0)
+                        {
                             @foreach (var reportModel in Model)
                             {
 
@@ -65,8 +47,7 @@
                                         {
                                             <img class="card-img-top img-fluid"
                                                  src="@reportModel.ReportImage.Url"
-                                                 alt="Card image cap"
->
+                                                 alt="Card image cap">
                                         }
 
 
@@ -94,12 +75,37 @@
                                             <li class="list-group-item">Data dodania: @reportModel.AddDate.ToShortDateString()</li>
                                         </ul>
                                         <div class="card-body">
-                                            <a href="@Url.Action("Details","Report", new { Id = reportModel.Id})" class="card-link">Czytaj więcej..</a>
+                                            <a href="@Url.Action("Details", "Report", new { Id = reportModel.Id })" class="card-link">Czytaj więcej..</a>
                                         </div>
                                     </div>
                                 </div>
                             }
+                        }
+                        else
+                        {
+                            <div class="col-md-10">
+                                <h4>Brak raportów w bazie danych!</h4>
+                            </div>
+                            <div class="col-md-10">
+                                <h5>Zapraszamy ponownie wkrótce!</h5>
+                            </div>
 
+                        }
+
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row justify-content-center">
+                                <button class="btn btn-info mb-3" type="submit" onclick="location='@Url.Action("Add","Report", "dashboard")'" style="margin:5px;">
+                                    <span class="btn-label">
+                                        <i class="fa fa-pencil-square-o"></i>
+                                    </span>
+                                    Dodaj raport
+                                </button>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
 

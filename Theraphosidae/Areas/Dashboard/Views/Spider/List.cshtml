@@ -10,105 +10,132 @@
 
 
 }
-<div class="page-inner" style="margin-top:15px;">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <div class="d-flex align-items-center">
-                        <h4 class="card-title">Ptasznikowate: Theraphosidae</h4>
+    <div class="page-inner" style="margin-top:15px;">
+        <div class="page-header">
+            <h4 class="page-title">Ptasznikowate: Theraphosidae</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex align-items-center">
+                            <h4 class="card-title">Lista ptaszników</h4>
+                        </div>
                     </div>
-                </div>
-                <div class="card-body">
-                    <div class="row">
+                    <div class="card-body">
+                        <div class="row">
 
 
 
 
-                        @if (Model.Count != 0)
-                            @foreach (var spiderModel in Model)
+                            @if (Model.Count != 0)
                             {
+                                @foreach (var spiderModel in Model)
+                                {
 
-                                <div class="col-md-6">
-                                    <div class="card" style="min-height: 500px; margin: 15px;">
+                                    <div class="col-md-6">
+                                        <div class="card" style="min-height: 500px; margin: 15px;">
 
-                                        @if (spiderModel.Image == null)
-                                        {
-                                            <img class="card-img-top img-fluid"
-                                                 src="https://i.iplsc.com/ptasznik-olbrzymi-zdj-ilustracyjne/000ABR9HH1PHCAD0-C122-F4.jpg"
-                                                 alt="Card image cap"
-                                                 style="max-height:40%; max-width:100%;">
-                                        }
-                                        else
-                                        {
-                                            <img class="card-img-top img-fluid"
-                                                 src="@spiderModel.Image.Url"
-                                                 alt="Card image cap"
-                                                 style="max-height:40%; max-width:100%;">
-                                        }
-
-                                        <div class="card-body">
-                                            @if (@spiderModel.AnimalTaxonomy.Genus != "null" && @spiderModel.AnimalTaxonomy.Species != "null")
+                                            @if (spiderModel.Image == null)
                                             {
-                                                <h5 class="card-title">@spiderModel.AnimalTaxonomy.Genus @spiderModel.AnimalTaxonomy.Species</h5>
+                                                <img class="card-img-top img-fluid"
+                                                     src="https://i.iplsc.com/ptasznik-olbrzymi-zdj-ilustracyjne/000ABR9HH1PHCAD0-C122-F4.jpg"
+                                                     alt="Card image cap"
+                                                     style="max-height:40%; max-width:100%;">
                                             }
                                             else
                                             {
-                                                <h5 class="card-title">Brak danych</h5>
+                                                <img class="card-img-top img-fluid"
+                                                     src="@spiderModel.Image.Url"
+                                                     alt="Card image cap"
+                                                     style="max-height:40%; max-width:100%;">
                                             }
 
-                                            @if (@spiderModel.ShortDescription == "null")
-                                            {
-                                                <p class="card-text">Brak danych</p>
-                                            }
-                                            else
-                                            {
-                                                <p class="card-text">@spiderModel.ShortDescription</p>
-                                            }
-
-                                        </div>
-                                        <ul class="list-group list-group-flush">
-
-                                            @{
-                                                if (spiderModel.OriginPlace == "null")
+                                            <div class="card-body">
+                                                @if (@spiderModel.AnimalTaxonomy.Genus != "null" && @spiderModel.AnimalTaxonomy.Species != "null")
                                                 {
-                                                    <li class="list-group-item">Pochodzenie: Brak danych</li>
+                                                    <h5 class="card-title">@spiderModel.AnimalTaxonomy.Genus @spiderModel.AnimalTaxonomy.Species</h5>
                                                 }
                                                 else
                                                 {
-                                                    <li class="list-group-item">Pochodzenie: @spiderModel.OriginPlace</li>
+                                                    <h5 class="card-title">Brak danych</h5>
                                                 }
 
-                                                if (spiderModel.Type == "null")
+                                                @if (@spiderModel.ShortDescription == "null")
                                                 {
-                                                    <li class="list-group-item">Typ ptasznika: Brak danych</li>
+                                                    <p class="card-text">Brak danych</p>
                                                 }
                                                 else
                                                 {
-                                                    <li class="list-group-item">Typ ptasznika: @spiderModel.Type</li>
+                                                    <p class="card-text">@spiderModel.ShortDescription</p>
                                                 }
-                                            }
-                                            <li class="list-group-item">Temperatura życia: @spiderModel.TemperatureMin °C - @spiderModel.TemperatureMax °C</li>
 
-                                            @*<li class="list-group-item">Pochodzenie: @spiderModel.OriginPlace</li>
-        <li class="list-group-item">Typ ptasznika: @spiderModel.Type</li>
-                                            *@
+                                            </div>
+                                            <ul class="list-group list-group-flush">
 
-                                        </ul>
-                                        <div class="card-body">
-                                            <a href="@Url.Action("Details","Spider", new { Id = spiderModel.Id})" class="card-link">Czytaj więcej..</a>
+                                                @{
+                                                    if (spiderModel.OriginPlace == "null")
+                                                    {
+                                                        <li class="list-group-item">Pochodzenie: Brak danych</li>
+                                                    }
+                                                    else
+                                                    {
+                                                        <li class="list-group-item">Pochodzenie: @spiderModel.OriginPlace</li>
+                                                    }
+
+                                                    if (spiderModel.Type == "null")
+                                                    {
+                                                        <li class="list-group-item">Typ ptasznika: Brak danych</li>
+                                                    }
+                                                    else
+                                                    {
+                                                        <li class="list-group-item">Typ ptasznika: @spiderModel.Type</li>
+                                                    }
+                                                }
+                                                <li class="list-group-item">Temperatura życia: @spiderModel.TemperatureMin °C - @spiderModel.TemperatureMax °C</li>
+
+                                                @*<li class="list-group-item">Pochodzenie: @spiderModel.OriginPlace</li>
+                                                <li class="list-group-item">Typ ptasznika: @spiderModel.Type</li>
+                                                *@
+
+                                            </ul>
+                                            <div class="card-body">
+                                                <a href="@Url.Action("Details", "Spider", new { Id = spiderModel.Id })" class="card-link">Czytaj więcej..</a>
+                                            </div>
                                         </div>
                                     </div>
-                                    </div>
-                                    }
+                                }
+                            }
+                            else
+                            {
+                                <div class="col-md-10">
+                                    <h4>Brak ptaszników w bazie danych!</h4>
+                                </div>
+                                <div class="col-md-10">
+                                    <h5>Zapraszamy ponownie wkrótce!</h5>
+                                </div>
+
+                            }
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row justify-content-center">
+                                    <button class="btn btn-info mb-3" type="submit" onclick="location='@Url.Action("Add","Spider", "dashboard")'" style="margin:5px;">
+                                        <span class="btn-label">
+                                            <i class="fa fa-pencil-square-o"></i>
+                                        </span>
+                                        Dodaj ptasznika
+                                    </button>
 
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
 
-                            </div>
+                </div>
+            </div>
+
+
         </div>
-
-
     </div>
-</div>
