@@ -46,12 +46,16 @@ namespace Theraphosidae.Services
 
         public async Task<CommentModel> Get(int id)
         {
-            return await _theraphosidaeContext.Comments.SingleOrDefaultAsync(b => b.Id == id);
+            return await _theraphosidaeContext.Comments
+                .Include(u => u.User)
+                .SingleOrDefaultAsync(b => b.Id == id);
         }
 
         public async Task<List<CommentModel>> GetAll()
         {
-            var comments = await _theraphosidaeContext.Comments.ToListAsync();
+            var comments = await _theraphosidaeContext.Comments
+                .Include(u => u.User)
+                .ToListAsync();
             comments.Reverse();
 
             return comments;

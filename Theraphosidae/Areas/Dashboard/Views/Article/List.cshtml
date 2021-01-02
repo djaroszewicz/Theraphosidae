@@ -10,28 +10,9 @@
 
 
 }
-<div class="page-inner">
+<div class="page-inner" style="margin-top:15px;">
     <div class="page-header">
-        <h4 class="page-title">Wrzuc tu nazwe</h4>
-        <ul class="breadcrumbs">
-            <li class="nav-home">
-                <a href="@Url.Action("Index","Dashboard")">
-                    <i class="flaticon-home"></i>
-                </a>
-            </li>
-            <li class="separator">
-                <i class="flaticon-right-arrow"></i>
-            </li>
-            <li class="nav-item">
-                <a href="@Url.Action("List","Article")">Artykuły</a>
-            </li>
-            <li class="separator">
-                <i class="flaticon-right-arrow"></i>
-            </li>
-            <li class="nav-item">
-                Szczegóły
-            </li>
-        </ul>
+        <h4 class="page-title">Lista artykułów</h4>
     </div>
 
     <div class="row">
@@ -49,21 +30,22 @@
 
 
                         @if (Model.Count != 0)
+                        {
                             @foreach (var articleModel in Model)
                             {
 
                                 <div class="col-md-6">
-                                    <div class="card" style="min-height: 500px; max-height: 500px; margin: 15px;">
+                                    <div class="card" style="min-height: 500px; margin: 15px;">
 
                                         @if (articleModel.Image == null)
                                         {
-                                            <img class="card-img-top"
-                                                 src="~/images/img-plcaeholder.png"
+                                            <img class="card-img-top img-fluid"
+                                                 src="http://oliclinic.pl/wp-content/uploads/2016/10/orionthemes-placeholder-image.png"
                                                  alt="Card image cap">
                                         }
                                         else
                                         {
-                                            <img class="card-img-top"
+                                            <img class="card-img-top img-fluid"
                                                  src="@articleModel.Image.Url"
                                                  alt="Card image cap">
                                         }
@@ -93,11 +75,22 @@
                                             <li class="list-group-item">Data dodania: @articleModel.AddDate.ToShortDateString()</li>
                                         </ul>
                                         <div class="card-body">
-                                            <a href="@Url.Action("Details","Article", new { Id = articleModel.Id})" class="card-link">Czytaj więcej..</a>
+                                            <a href="@Url.Action("Details", "Article", new { Id = articleModel.Id })" class="card-link">Czytaj więcej..</a>
                                         </div>
                                     </div>
                                 </div>
                             }
+                        }
+                        else
+                        {
+                    <div class="col-md-10">
+                        <h4>Brak artykułów w bazie danych!</h4>
+                    </div>
+                    <div class="col-md-10">
+                        <h5>Zapraszamy ponownie wkrótce!</h5>
+                    </div>
+
+                        }
 
                     </div>
                 </div>

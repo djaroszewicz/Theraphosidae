@@ -115,29 +115,35 @@
                                 @if (Model.ReportCategory == "Rozmnozenie")
                                 {
                                     <h3>Zdjecie rozmnozenia</h3>
-                                    <div class="form-group form-group-default mb-3 d-flex justify-content-center">
-                                        @if (Model.ReportImage == null)
-                                        {
-                                            <img src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" class="rounded" alt="...">
-                                        }
-                                        else
-                                        {
-                                            <img src="@Model.ReportImage.Url" class="rounded" alt="...">
-                                        }
+                                    <div class="card">
+
+                                        <div class="form-group form-group-default mb-3 d-flex justify-content-center">
+                                            @if (Model.ReportImage == null)
+                                            {
+                                                <img src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" class="img-fluid" alt="...">
+                                            }
+                                            else
+                                            {
+                                                <img src="@Model.ReportImage.Url" class="img-fluid" alt="...">
+                                            }
+                                        </div>
                                     </div>
                                 }
                                 else
                                 {
                                     <h3>Zdjecie ukaszenia</h3>
-                                    <div class="form-group form-group-default mb-3 d-flex justify-content-center">
-                                        @if (Model.ReportImage == null)
-                                        {
-                                            <img src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" class="rounded" alt="...">
-                                        }
-                                        else
-                                        {
-                                            <img src="@Model.ReportImage.Url" class="rounded" alt="...">
-                                        }
+                                    <div class="card">
+
+                                        <div class="form-group form-group-default mb-3 d-flex justify-content-center">
+                                            @if (Model.ReportImage == null)
+                                            {
+                                                <img src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" class="img-fluid" alt="...">
+                                            }
+                                            else
+                                            {
+                                                <img src="@Model.ReportImage.Url" class="img-fluid" alt="...">
+                                            }
+                                        </div>
                                     </div>
                                 }
 
@@ -151,30 +157,36 @@
 
         <div class="card">*@
 
-                        <div class="col-md-6">
-                            <div class="form-group form-group-default mb-3">
-                                <label>Ptasznik: </label>
-                                @if (Model.Spider.NamePl == null)
-                                {
-                                    <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
-                                }
-                                else
-                                {
-                                    <input type="text" class="form-control with-out-grey" value="@Model.Spider.NamePl" readonly="">
-                                }
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 d-flex justify-content-center">
-                            <div class="form-group form-group-default mb-3">
-                                @if (Model.Spider.Image == null)
-                                {
-                                    <img src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" class="rounded" alt="...">
-                                }
-                                else
-                                {
-                                    <img src="@Model.Spider.Image.Url" class="rounded" alt="...">
-                                }
+                        @*<div class="col-md-6">
+            <div class="form-group form-group-default mb-3">
+                <label>Ptasznik: </label>
+                @if (Model.Spider.NamePl == null)
+                {
+                    <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                }
+                else
+                {
+                    <input type="text" class="form-control with-out-grey" value="@Model.Spider.NamePl" readonly="">
+                }
+            </div>
+        </div>*@
+                        <div class="col-md-12" style="margin-top:10px;">
+                            <div class="card">
+                                @*<h3 href="@Url.Action("Details","Spider", new { Id = Model.Spider.Id})" class="card-link">Zdjęcie podglądowe ptasznika: @Model.Spider.NamePl</h3>*@
+                                
+                                <h3 class="card-title">Zdjęcie podglądowe ptasznika: <a href="@Url.Action("Details","Spider", new { Id = Model.Spider.Id})" class="card-link">@Model.Spider.NamePl</a></h3>
+                                <div class="col-md-12 d-flex justify-content-center">
+                                    <div class="form-group form-group-default mb-3">
+                                        @if (Model.Spider.Image == null)
+                                        {
+                                            <img src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" class="img-fluid" alt="...">
+                                        }
+                                        else
+                                        {
+                                            <img src="@Model.Spider.Image.Url" class="img-fluid" alt="...">
+                                        }
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

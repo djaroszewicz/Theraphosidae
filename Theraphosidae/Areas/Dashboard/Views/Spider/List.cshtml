@@ -10,30 +10,7 @@
 
 
 }
-<div class="page-inner">
-    <div class="page-header">
-        <h4 class="page-title">Wrzuc tu nazwe</h4>
-        <ul class="breadcrumbs">
-            <li class="nav-home">
-                <a href="@Url.Action("Index","Admin")">
-                    <i class="flaticon-home"></i>
-                </a>
-            </li>
-            <li class="separator">
-                <i class="flaticon-right-arrow"></i>
-            </li>
-            <li class="nav-item">
-                <a href="@Url.Action("List","Spider")">Ptaszniki</a>
-            </li>
-            <li class="separator">
-                <i class="flaticon-right-arrow"></i>
-            </li>
-            <li class="nav-item">
-                Szczegóły
-            </li>
-        </ul>
-    </div>
-
+<div class="page-inner" style="margin-top:15px;">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -55,25 +32,23 @@
                                 <div class="col-md-6">
                                     <div class="card" style="min-height: 500px; margin: 15px;">
 
-                                        @*<img class="card-img-top" src="https://i.iplsc.com/ptasznik-olbrzymi-zdj-ilustracyjne/000ABR9HH1PHCAD0-C122-F4.jpg" alt="Card image cap">*@
-
                                         @if (spiderModel.Image == null)
                                         {
-                                            <img class="card-img-top"
+                                            <img class="card-img-top img-fluid"
                                                  src="https://i.iplsc.com/ptasznik-olbrzymi-zdj-ilustracyjne/000ABR9HH1PHCAD0-C122-F4.jpg"
                                                  alt="Card image cap"
                                                  style="max-height:40%; max-width:100%;">
                                         }
                                         else
                                         {
-                                            <img class="card-img-top"
+                                            <img class="card-img-top img-fluid"
                                                  src="@spiderModel.Image.Url"
                                                  alt="Card image cap"
                                                  style="max-height:40%; max-width:100%;">
                                         }
 
                                         <div class="card-body">
-                                            @if (@spiderModel.AnimalTaxonomy.Genus != null && @spiderModel.AnimalTaxonomy.Species != null)
+                                            @if (@spiderModel.AnimalTaxonomy.Genus != "null" && @spiderModel.AnimalTaxonomy.Species != "null")
                                             {
                                                 <h5 class="card-title">@spiderModel.AnimalTaxonomy.Genus @spiderModel.AnimalTaxonomy.Species</h5>
                                             }
@@ -82,7 +57,7 @@
                                                 <h5 class="card-title">Brak danych</h5>
                                             }
 
-                                            @if (@spiderModel.ShortDescription == null)
+                                            @if (@spiderModel.ShortDescription == "null")
                                             {
                                                 <p class="card-text">Brak danych</p>
                                             }
@@ -94,9 +69,30 @@
                                         </div>
                                         <ul class="list-group list-group-flush">
 
-                                            <li class="list-group-item">Pochodzenie: @spiderModel.OriginPlace</li>
-                                            <li class="list-group-item">Typ ptasznika: @spiderModel.Type</li>
+                                            @{
+                                                if (spiderModel.OriginPlace == "null")
+                                                {
+                                                    <li class="list-group-item">Pochodzenie: Brak danych</li>
+                                                }
+                                                else
+                                                {
+                                                    <li class="list-group-item">Pochodzenie: @spiderModel.OriginPlace</li>
+                                                }
+
+                                                if (spiderModel.Type == "null")
+                                                {
+                                                    <li class="list-group-item">Typ ptasznika: Brak danych</li>
+                                                }
+                                                else
+                                                {
+                                                    <li class="list-group-item">Typ ptasznika: @spiderModel.Type</li>
+                                                }
+                                            }
                                             <li class="list-group-item">Temperatura życia: @spiderModel.TemperatureMin °C - @spiderModel.TemperatureMax °C</li>
+
+                                            @*<li class="list-group-item">Pochodzenie: @spiderModel.OriginPlace</li>
+        <li class="list-group-item">Typ ptasznika: @spiderModel.Type</li>
+                                            *@
 
                                         </ul>
                                         <div class="card-body">

@@ -57,13 +57,13 @@
 
                                         @if (reportModel.ReportImage == null)
                                         {
-                                            <img class="card-img-top"
-                                                 src="~/images/img-plcaeholder.png"
+                                            <img class="card-img-top img-fluid"
+                                                 src="https://res.cloudinary.com/dyytlulq9/image/upload/v1609518414/obxplrpei8b36v5ouide.jpg"
                                                  alt="Card image cap">
                                         }
                                         else
                                         {
-                                            <img class="card-img-top"
+                                            <img class="card-img-top img-fluid"
                                                  src="@reportModel.ReportImage.Url"
                                                  alt="Card image cap"
 >
@@ -73,20 +73,20 @@
                                         <div class="card-body">
                                             @if (reportModel.Title != null)
                                             {
-                                                <h5 class="card-title">@reportModel.Title</h5>
+                                                <h5 class="card-title">Tytuł raportu: @reportModel.Title</h5>
                                             }
                                             else
                                             {
-                                                <h5 class="card-title">Brak danych</h5>
+                                                <h5 class="card-title">Tytuł raportu: Brak danych</h5>
                                             }
 
                                             @if (reportModel.Spider.AnimalTaxonomy.Genus == null)
                                             {
-                                                <p class="card-text">Brak danych</p>
+                                                <p class="card-text">Ptasznik: Brak danych</p>
                                             }
                                             else
                                             {
-                                                <p class="card-text">@reportModel.Spider.AnimalTaxonomy.Genus</p>
+                                                <p class="card-text">Ptasznik: @reportModel.Spider.AnimalTaxonomy.Genus</p>
                                             }
 
                                         </div>

@@ -142,6 +142,16 @@ namespace Theraphosidae.Infrastructure.Helpers
                 }
             };
 
+            if (spider.Image == null)
+            {
+                spiderAnimalTaxonomyView.Spider.ImageUrl = "/images/img-plcaeholder.png";
+            }
+            else
+            {
+                spiderAnimalTaxonomyView.Spider.ImageUrl = spider.Image.Url;
+            }
+
+
             return spiderAnimalTaxonomyView; 
         }
 

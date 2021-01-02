@@ -28,6 +28,14 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> Delete(int Id)
+        {
+            var comment = await _commentService.Get(Id);
+            await _commentService.Delete(Id);
+            return RedirectToAction("Details", "Article", new { id = comment.ArticleId });
+        }
+
+        [HttpPost]
         public async Task<IActionResult> Add(ArticleCommentView result)
         {
 

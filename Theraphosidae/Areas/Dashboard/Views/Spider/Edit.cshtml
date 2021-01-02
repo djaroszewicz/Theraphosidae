@@ -10,37 +10,18 @@
 
 
 }
-<div class="page-inner">
+<div class="page-inner" style="margin-top:15px;>
 
     <div class="page-header">
-        <h4 class="page-title">Edytowanie kategorii</h4>
-        <ul class="breadcrumbs">
-            <li class="nav-home">
-                <a href="@Url.Action("Index","Admin")">
-                    <i class="flaticon-home"></i>
-                </a>
-            </li>
-            <li class="separator">
-                <i class="flaticon-right-arrow"></i>
-            </li>
-            <li class="nav-item">
-                <a href="@Url.Action("List","Car")">Samochody</a>
-            </li>
-            <li class="separator">
-                <i class="flaticon-right-arrow"></i>
-            </li>
-            <li class="nav-item">
-                Edytuj
-            </li>
-        </ul>
+        <h4 class="page-title">Edytowanie ptasznika</h4>
     </div>
 
-    <div class="card">
+    <div class="card" style="margin-top:15px;">
         @using (Html.BeginForm("Edit", "Spider", new { area = "dashboard" }, FormMethod.Post, true, new { @enctype = "multipart/form-data" }))
         {
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Edytuj kategorie</h4>
+                    <h4 class="card-title">Edytuj ptasznika</h4>
                 </div>
             </div>
             <div class="card-body">
@@ -54,15 +35,15 @@
                     <span class="input-icon-addon">
                         <i class="fas fa-pen-alt"></i>
                     </span>
-                    <label>Podaj taksonomię królestwa (regnum) ptasznika</label>
-                    @Html.TextBoxFor(x => x.AnimalTaxonomy.Regnum, new { @class = "form-control", @placeholder = "Podaj królestwo ptasznika", @style = "background-color:#f0f0f0" })
+                    <label>Podaj taksonomię królestwa (regnum) ptasznika*</label>
+                    @Html.TextBoxFor(x => x.AnimalTaxonomy.Regnum, new { @class = "form-control", @placeholder = "Podaj królestwo ptasznika"})
                 </div>
 
                 <div class="input-icon mb-3">
                     <span class="input-icon-addon">
                         <i class="fas fa-pen-alt"></i>
                     </span>
-                    <label>Podaj taksonomię gromady (classic) ptasznika</label>
+                    <label>Podaj taksonomię gromady (classic) ptasznika*</label>
                     @Html.TextBoxFor(x => x.AnimalTaxonomy.Classis, new { @class = "form-control", @placeholder = "Podaj gromadę ptasznika" })
                 </div>
 
@@ -70,7 +51,7 @@
                     <span class="input-icon-addon">
                         <i class="fas fa-pen-alt"></i>
                     </span>
-                    <label>Podaj taksonomię rzędu (ordo, ord. o.) ptasznika</label>
+                    <label>Podaj taksonomię rzędu (ordo, ord. o.) ptasznika*</label>
                     @Html.TextBoxFor(x => x.AnimalTaxonomy.Ordo, new { @class = "form-control", @placeholder = "Podaj rząd ptasznika (ord. o.)" })
                 </div>
 
@@ -78,7 +59,7 @@
                     <span class="input-icon-addon">
                         <i class="fas fa-pen-alt"></i>
                     </span>
-                    <label>Podaj taksonomię rodziny (familia, fam.) ptasznika</label>
+                    <label>Podaj taksonomię rodziny (familia, fam.) ptasznika*</label>
                     @Html.TextBoxFor(x => x.AnimalTaxonomy.Familia, new { @class = "form-control", @placeholder = "Podaj rodzinę ptasznika (fam.)" })
                 </div>
 
@@ -86,7 +67,7 @@
                     <span class="input-icon-addon">
                         <i class="fas fa-pen-alt"></i>
                     </span>
-                    <label>Podaj taksonomię rodzaju (genus, gen.) ptasznika</label>
+                    <label>Podaj taksonomię rodzaju (genus, gen.) ptasznika*</label>
                     @Html.TextBoxFor(x => x.AnimalTaxonomy.Genus, new { @class = "form-control", @placeholder = "Podaj rodzaj ptasznika (gen.)" })
                 </div>
 
@@ -94,7 +75,7 @@
                     <span class="input-icon-addon">
                         <i class="fas fa-pen-alt"></i>
                     </span>
-                    <label>Podaj taksonomię gatunku (species, sp.) ptasznika</label>
+                    <label>Podaj taksonomię gatunku (species, sp.) ptasznika*</label>
                     @Html.TextBoxFor(x => x.AnimalTaxonomy.Species, new { @class = "form-control", @placeholder = "Podaj gatunek ptasznika (sp.)" })
                 </div>
 
@@ -124,7 +105,7 @@
 
                 <div class="input-icon mb-3">
                     <div class="form-group">
-                        <label for="defaultSelect">Wybierz typ ptasznika</label>
+                        <label for="defaultSelect">Wybierz typ ptasznika*</label>
                         <select name="Spider.Type" class="form-control form-control">
                             <option value="null">Wybierz typ</option>
                             <option value="Naziemny">Naziemny</option>
@@ -213,7 +194,7 @@
 
                 <div class="input-icon mb-3">
                     <div class="form-group">
-                        <label for="defaultSelect">Wybierz pochodzenie ptasznika</label>
+                        <label for="defaultSelect">Wybierz pochodzenie ptasznika*</label>
                         <select name="Spider.OriginPlace" class="form-control form-control">
                             <option value="null">Wybierz pochodzenie</option>
                             <option value="Ameryka Poludniowa">Ameryka Poludniowa</option>
@@ -227,7 +208,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="formControlRange"><strong>Siła jadu</strong></label>
+                    <label for="formControlRange"><strong>Siła jadu*</strong></label>
                     <div class="row">
                         <div class="col d-flex align-items-center">
                             <button type="button" class="btn btn-info btn-range-subtract">-</button>
@@ -245,7 +226,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="formControlRange"><strong>Agresywność</strong></label>
+                    <label for="formControlRange"><strong>Agresywność*</strong></label>
                     <div class="row">
                         <div class="col d-flex align-items-center">
                             <button type="button" class="btn btn-info btn-range-subtract">-</button>
@@ -263,7 +244,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="formControlRange"><strong>Szybkość</strong></label>
+                    <label for="formControlRange"><strong>Szybkość*</strong></label>
                     <div class="row">
                         <div class="col d-flex align-items-center">
                             <button type="button" class="btn btn-info btn-range-subtract">-</button>
@@ -320,7 +301,7 @@
                     <span class="input-icon-addon">
                         <i class="fas fa-pen-alt"></i>
                     </span>
-                    <label>Podaj opis ptasznika</label>
+                    <label>Podaj opis ptasznika*</label>
                     @Html.TextAreaFor(x => x.Spider.Description, new { @class = "form-control", @placeholder = "Podaj opis ptasznika" })
                 </div>
 
@@ -328,7 +309,7 @@
                     <span class="input-icon-addon">
                         <i class="fas fa-pen-alt"></i>
                     </span>
-                    <label>Podaj krótki opis ptasznika</label>
+                    <label>Podaj krótki opis ptasznika*</label>
                     @Html.TextAreaFor(x => x.Spider.ShortDescription, new { @class = "form-control", @placeholder = "Podaj krótki opis ptasznika" })
                 </div>
 

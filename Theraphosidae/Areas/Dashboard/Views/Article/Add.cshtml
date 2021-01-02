@@ -9,28 +9,10 @@
     Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
 }
 
-    <div class="page-inner">
+    <div class="page-inner" style="margin-top:15px;">
         <div class="page-header">
-            <h4 class="page-title">Dodawanie wpisu</h4>
-            @*<ul class="breadcrumbs">
-                <li class="nav-home">
-                    <a href="@Url.Action("Index","Dashboard", new {area = "dashboard" })">
-                        <i class="flaticon-home"></i>
-                    </a>
-                </li>
-                <li class="separator">
-                    <i class="flaticon-right-arrow"></i>
-                </li>
-                <li class="nav-item">
-                    <a href="@Url.Action("List","Article", new { area = "dashboard" })">Wpisy</a>
-                </li>
-                <li class="separator">
-                    <i class="flaticon-right-arrow"></i>
-                </li>
-                <li class="nav-item">
-                    Dodawanie wpisu
-                </li>
-            </ul>*@
+            <h4 class="page-title">Dodawanie artykułu</h4>
+
         </div>
 
         @using (Html.BeginForm("Add", "Article", new { area = "dashboard" }, FormMethod.Post, true, new { @enctype = "multipart/form-data" }))
@@ -40,7 +22,7 @@
             <!-- Tytuł i slug wpisu -->
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Podstawowe informacje</div>
+                    <div class="card-title"><h5>Podstawowe informacje</h5></div>
                 </div>
                 <div class="card-body">
 
@@ -77,7 +59,7 @@
             <!-- Treść wpisu -->
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title"><h4>Abstrakt wpisu</h4></div>
+                    <div class="card-title"><h5>Abstrakt wpisu</h5></div>
                 </div>
                 <div class="card-body">
                     @Html.TextAreaFor(x => x.Abstract, new { @class = "form-control", @style = "height:200px;" })
@@ -85,7 +67,7 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title"><h4>Treść wpisu</h4></div>
+                    <div class="card-title"><h5>Treść wpisu</h5></div>
                 </div>
                 <div class="card-body">
                     @Html.TextAreaFor(x => x.Content, new { @class = "form-control", @style = "height:500px;" })
@@ -93,21 +75,21 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title"><h4>Literatura</h4></div>
+                    <div class="card-title"><h5>Literatura</h5></div>
                 </div>
                 <div class="card-body">
                     @Html.TextAreaFor(x => x.Literature, new { @class = "form-control", @style = "height:100px;" })
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row justify-content-center">
 
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <!-- Zdjęcie wyróżniające -->
                     <div style="min-height:500px;" class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
-                                <h4 class="card-title">Zdjęcie wyrózniające</h4>
+                                <h5 class="card-title">Zdjęcie wyrózniające</h5>
                             </div>
                         </div>
                         <div class="card-body mx-auto justify-content-center align-items-center flex-column">
@@ -128,123 +110,9 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Data publikacji -->
-            @*<div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Data publikacji</h4>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Data</label>
-                                <div class="input-group">
-                                    @Html.TextBoxFor(x => x.Date, new { @class = "form-control", @id = "datepicker" })
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">
-                                            <i class="fa fa-calendar-check"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Godzina</label>
-                                <div class="input-group">
-                                    @Html.TextBoxFor(x => x.Time, new { @class = "form-control", @id = "timepicker" })
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">
-                                            <i class="fa fa-clock"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>*@
-
-            <!-- Kategoria wpisu -->
-            @*<div class="card">
-                <div class="card-header">
-                    <div class="card-title">Kategorie wpisu</div>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <div class="selectgroup selectgroup-pills">
-                            @if (Enumerable.Count(ViewBag.Categories) != 0)
-                            {
-                                foreach (var category in ViewBag.Categories as List<CategoryModel>)
-                                {
-                                    if (Model != null && Model.Categories != null && Model.Categories.Contains(category.Name))
-                                    {
-                                        <label class="selectgroup-item">
-                                            <input type="checkbox" name="categories" value="@category.Name" class="selectgroup-input" checked>
-                                            <span class="selectgroup-button">@category.Name</span>
-                                        </label>
-                                    }
-                                    else
-                                    {
-                                        <label class="selectgroup-item">
-                                            <input type="checkbox" name="categories" value="@category.Name" class="selectgroup-input">
-                                            <span class="selectgroup-button">@category.Name</span>
-                                        </label>
-                                    }
-
-                                }
-                            }
-                            else
-                            {
-                                <h3>Brak dodanych kategorii wpisów</h3>
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>*@
-
-            <!-- Tagi wpisu -->
-            @*<div class="card">
-                <div class="card-header">
-                    <div class="card-title">Tagi wpisu</div>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <div class="selectgroup selectgroup-pills">
-                            @if (Enumerable.Count(ViewBag.Tags) != 0)
-                            {
-                                foreach (var tag in ViewBag.Tags as List<TagModel>)
-                                {
-                                    if (Model != null && Model.Tags != null && Model.Tags.Contains(tag.Name))
-                                    {
-                                        <label class="selectgroup-item">
-                                            <input type="checkbox" name="tags" value="@tag.Name" class="selectgroup-input" checked>
-                                            <span class="selectgroup-button">@tag.Name</span>
-                                        </label>
-                                    }
-                                    else
-                                    {
-                                        <label class="selectgroup-item">
-                                            <input type="checkbox" name="tags" value="@tag.Name" class="selectgroup-input">
-                                            <span class="selectgroup-button">@tag.Name</span>
-                                        </label>
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                <h3>Brak dodanych tagów wpisów</h3>
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>*@
-
-            <!-- Ustawienia wpisu -->
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title">Ustawienia wpisu</div>
+                    <div class="card-title"><h5>Ustawienia wpisu</h5></div>
                 </div>
                 <div class="card-body">
                     <div class="form-check">
@@ -255,25 +123,21 @@
                         </label>
                     </div>
 
-                    @*<div class="form-check">
-                        <label class="form-check-label">
-                            @Html.CheckBoxFor(x => x.IsDraft, new { @class = "form-check-input" })
-                            <span class="form-check-sign">Opublikuj jako szkic</span>
-                        </label>
-                    </div>*@
-
                 </div>
             </div>
 
-            <div class="d-flex align-items-center">
-                <button class="btn btn-primary" type="submit">
-                    <i class="fa fa-plus"></i>
-                    Dodaj wpis
-                </button>
+            <div class="card">
+                <div class="row justify-content-center">
+                    <div class="d-flex align-items-center">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa fa-plus"></i>
+                            Dodaj artykuł
+                        </button>
+                    </div>
+                </div>
+                </div>
+                }
             </div>
-
-        }
-    </div>
 
 @section Scripts {
     <script>

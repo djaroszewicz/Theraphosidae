@@ -10,49 +10,23 @@
 
 
 }
-<div class="page-inner">
+<div class="page-inner" style="margin-top:15px;">
     <div class="page-header">
-        <h4 class="page-title">@Model.Spider.NamePl</h4>
-        <ul class="breadcrumbs">
-            <li class="nav-home">
-                <a href="@Url.Action("Index","Admin")">
-                    <i class="flaticon-home"></i>
-                </a>
-            </li>
-            <li class="separator">
-                <i class="flaticon-right-arrow"></i>
-            </li>
-            <li class="nav-item">
-                <a href="@Url.Action("List","Spider")">Ptaszniki</a>
-            </li>
-            <li class="separator">
-                <i class="flaticon-right-arrow"></i>
-            </li>
-            <li class="nav-item">
-                Szczegóły
-            </li>
-        </ul>
-    </div>
+            <h4 class="page-title">Szczegóły ptasznika</h4>
+        </div>
 
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex align-items-center">
-                        <h4 class="card-title">Szczegóły ptasznika: <strong>@Model.AnimalTaxonomy.Genus @Model.AnimalTaxonomy.Species</strong></h4>
+                        <h5 class="card-title">Szczegóły ptasznika: <strong>@Model.AnimalTaxonomy.Genus @Model.AnimalTaxonomy.Species</strong></h5>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="row">
 
-                        <div class="form-button-action">
-                            @using (Html.BeginForm("Delete", "Spider", new { Id = Model.Spider.Id }, FormMethod.Post, true, true))
-                            {
-                                <button type="submit" class="btn btn-link btn-danger delete-alert">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            }
-                        </div>
+
 
                         <div class="col-md-6">
                             <div class="card">
@@ -60,24 +34,13 @@
                                     <div style="min-height:500px;" class="card">
                                         <div class="card-header">
                                             <div class="d-flex align-items-center">
-                                                <h4 class="card-title">Zdjęcie ptasznika</h4>
-                                                <button class="btn btn-danger ml-3 d-none">
-                                                    <i class="fa fa-times"></i>
-                                                    Usuń zdjęcie
-                                                </button>
-
+                                                <h5 class="card-title">Zdjęcie ptasznika</h5>
                                             </div>
                                         </div>
                                         <div class="card-body mx-auto justify-content-center align-items-center flex-column">
                                             <div class="form-group">
                                                 <div class="input-file input-file-image">
-                                                    @*@if (Model != null && Model.FeaturedImg != null)
-                                                        {
-                                                            <h3 style="color:red;" class="text-center">Dołącz swoje zdjęcie ponownie!</h3>
-                                                        }
-                                                        <img class="img-upload-preview" height="350" src="~/images/img-placeholder.png" alt="preview" id="img-placeholder">
-
-                                                        @Html.TextBoxFor(x => x.FeaturedImg, null, new { type = "file", @class = "form-control form-control-file", @id = "input-img-placeholder" })*@
+                                                    <img class="img-upload-preview img-fluid" height="350" src="@Model.Spider.ImageUrl" alt="preview" id="img-placeholder">
                                                 </div>
                                             </div>
 
@@ -171,13 +134,25 @@
 
                                     <div class="form-group form-group-default mb-3">
                                         <label>Miejsce pochodzenia (wsytępowania) ptasznika</label>
-                                        @if (Model.Spider.OriginPlace == null)
+                                        @if (Model.Spider.OriginPlace == "null")
                                         {
                                             <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
                                         }
                                         else
                                         {
                                             <input type="text" class="form-control with-out-grey" value="@Model.Spider.OriginPlace" readonly="">
+                                        }
+                                    </div>
+
+                                    <div class="form-group form-group-default mb-3">
+                                        <label>Typ ptasznika</label>
+                                        @if (Model.Spider.Type == "null")
+                                        {
+                                            <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+                                        }
+                                        else
+                                        {
+                                            <input type="text" class="form-control with-out-grey" value="@Model.Spider.Type" readonly="">
                                         }
                                     </div>
                                 </div>
@@ -674,7 +649,36 @@
 
 
             </div>
+
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row justify-content-center">
+                        <button class="btn btn-warning mb-3" type="submit" onclick="location='@Url.Action("Edit","Spider", new { Id = Model.Spider.Id})'" style="margin:5px;">
+                            <span class="btn-label">
+                                <i class="fa fa-pencil-square-o"></i>
+                            </span>
+                            Edytuj Ptasznika
+                        </button>
+
+                        @using (Html.BeginForm("Delete", "Spider", new { Id = Model.Spider.Id }, FormMethod.Post, true, true))
+                        {
+                            <button class="btn btn-danger mb-3" type="submit" onclick="return confirm('Jesteś pewien, że chcesz usunąć tego ptasznika?');" style="margin:5px;">
+                                <span class="btn-label">
+                                    <i class="fa fa-times"></i>
+                                </span>
+                                Usuń Ptasznika
+                            </button>
+                        }
+
+
+                    </div>
+
+                </div>
+            </div>
+
         </div>
+
 
 
     </div>
