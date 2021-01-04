@@ -1,12 +1,65 @@
-﻿@{
+﻿@*@{
     ViewData["Title"] = "Home Page";
 }
 
 @if (User.IsInRole("admin"))
 
 {
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>
+}*@
+
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Areas/Home/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-inner" style="margin-top:15px; margin-bottom:15px;">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <h3 class="card-title">Witamy na stronie Theraphosidae.pl</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="form-group form-group-default mb-3" style="margin:5px;">
+                                    <h5>Aplikacja webowa poświęcona jest hodowcom ptaszników. Znajdziesz tu opisy ptaszników wraz z taksonomią, raportami ukąszeń i rozmnożeń oraz artykuły naukowe.</h5>
+                                    <label>W celu korzystania ze strony niezbędne jest posiadanie konta. Jeśli już je utworzyłeś, zaloguj się korzystając z opcji w prawym górnym rogu.</label>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-default mb-3 d-flex justify-content-center">
+                                <img src="https://res.cloudinary.com/dyytlulq9/image/upload/v1609687626/logo_dirysy.png" class="img-fluid" alt="...">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
 </div>
+
+@section Scripts
+{
+
+    <script>
+
+
+    </script>
 }

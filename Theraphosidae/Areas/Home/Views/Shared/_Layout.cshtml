@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
     <script src="https://kit.fontawesome.com/27de9e6113.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body style=" background-image: url(https://res.cloudinary.com/dyytlulq9/image/upload/v1609611866/background_ffixgi.png);
+        background-repeat: repeat;
+        background-size: 200px 200px;
+        background-color: #E5E7E9;
+">
     <header>
         @await Html.PartialAsync("_Navbar")
     </header>
@@ -18,7 +22,8 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted" style="        background-image: none !important;
+        background-color: #343a40;">
         @await Html.PartialAsync("_Footer") 
     </footer>
     <script src="/lib/jquery/dist/jquery.min.js"></script>

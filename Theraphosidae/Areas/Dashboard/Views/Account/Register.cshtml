@@ -8,21 +8,8 @@
 
 }
 
-<div class="page-inner">
+<div class="page-inner" style="margin-top:15px;">
 
-    @*<div class="page-header">
-        <h4 class="page-title">Użytkownicy</h4>
-        <ul class="breadcrumbs">
-            <li class="nav-home">
-                <a href="@Url.Action("Index","Dashboard")">
-                    <i class="flaticon-home"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                Rejestracja
-            </li>
-        </ul>
-    </div>*@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
@@ -48,7 +35,7 @@
                                     @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
                                 </div>
                                 <div class="form-group">
-                                    <label for="password" class="placeholder"><b>Potwierdź hasło</b></label>
+                                    <label for="password" class="placeholder"><b>Hasło</b></label>
                                     <div class="position-relative">
                                         @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
                                         <div class="show-password">
@@ -57,7 +44,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="password" class="placeholder"><b>Hasło</b></label>
+                                    <label for="password" class="placeholder"><b>Powtórz hasło</b></label>
                                     <div class="position-relative">
                                         @Html.PasswordFor(x => x.RepeatPassword, new { @class = "form-control" })
                                         <div class="show-password">
@@ -69,6 +56,9 @@
                                     <button type="submit" class="btn btn-secondary col-md-5 float-left mt-3 mt-sm-0 fw-bold">Rejestruj</button>
                                 </div>
                             }
+                        </div>
+                        <div style="margin-top:10px;">
+                            <label>Masz już konto? <a href="@Url.Action("Login","Account", new { Area = "dashboard" })">Zaloguj się</a></label>
                         </div>
                     </div>
                 </div>

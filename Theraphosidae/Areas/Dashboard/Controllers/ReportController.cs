@@ -61,15 +61,66 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(ReportView result)
         {
-            var user = await _userManager.GetUserAsync(User);
-            var reportModel = ReportHelpers.ConvertToModel(result, user);
-            var report = await _reportService.Create(reportModel);
-            if(report == false)
+            if (result.SpiderId == 0 || result.ReportCategory == "null")
             {
-                return RedirectToAction("Index", "Dashboard");
+                return RedirectToAction("List");
+            }
+            else
+            {
+                var user = await _userManager.GetUserAsync(User);
+                var reportModel = ReportHelpers.ConvertToModel(result, user);
+                var report = await _reportService.Create(reportModel);
+                if (report == false)
+                {
+                    return RedirectToAction("Index", "Dashboard");
+                }
+
+                await _cloudinaryService.AddReportImage(result.FormFileImg, reportModel.Id);
+            }
+            return RedirectToAction("List");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int Id)
+        {
+            //ViewBag.Categories = await _categoryService.GetAll();
+            //ViewBag.Tags = await _tagService.GetAll();
+
+            var reportModel = await _reportService.Get(Id);
+
+            //if (reportModel.User.UserName != User.Identity.Name)
+            //{
+            //    return RedirectToAction("List", "Article");
+            //}
+
+            var reportView = ReportHelpers.ConvertToView(reportModel);
+
+            return View(reportView);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(ReportView result)
+        {
+            var report = await _reportService.Get(result.Id);
+
+
+            if (result.FormFileImg != null)
+            {
+                if (report.ReportImage != null)
+                {
+                    _cloudinaryService.DeleteFile(report.ReportImage.Id);
+                }
+                var photo = await _cloudinaryService.AddReportImage(result.FormFileImg, report.Id);
+                //report.ReportImage = photo;
             }
 
-            var photo = await _cloudinaryService.AddReportImage(result.FormFileImg, reportModel.Id);
+            await _reportService.Update(ReportHelpers.MergeViewWithModel(report, result));
+
+            //await _taxonomyService.Delete(result.Id);
+
+            //await _taxonomyService.SaveCategories(await _categoryService.GetCategoriesByName(result.Categories), article);
+
+            //await _taxonomyService.SaveTags(await _tagService.GetCategoriesByNames(result.Tags), article);
 
             return RedirectToAction("List");
         }
