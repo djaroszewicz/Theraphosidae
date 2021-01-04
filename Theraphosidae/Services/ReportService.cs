@@ -58,9 +58,11 @@ namespace Theraphosidae.Services
             return reportsList;
         }
 
-        public Task<bool> IncrementReportViews(int id)
+        public async Task<bool> IncrementReportViews(int id)
         {
-            throw new NotImplementedException();
+            var report = await _theraphosidaeContext.Reports.SingleOrDefaultAsync(a => a.Id == id);
+            report.Views++;
+            return await _theraphosidaeContext.SaveChangesAsync() > 0;
         }
 
         public async Task<bool> Update(ReportModel report)

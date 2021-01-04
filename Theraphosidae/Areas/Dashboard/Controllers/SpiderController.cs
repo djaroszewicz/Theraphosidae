@@ -4,14 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Theraphosidae.Areas.Dashboard.Models.Db.Account;
+using Theraphosidae.Areas.Dashboard.Models.Db.Spider;
 using Theraphosidae.Areas.Dashboard.Models.View.Spider;
 using Theraphosidae.Infrastructure.Helpers;
 using Theraphosidae.Services.interfaces;
 
 namespace Theraphosidae.Areas.Dashboard.Controllers
 {
-    //[Authorize(Roles = "user")]
     [Authorize]
     [Area("dashboard")]
     [Route("dashboard/{controller}/{action=List}/{id?}")]
@@ -21,12 +23,14 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
         private readonly ISpiderService _spiderService;
         private readonly IAnimalTaxonomyService _animalTaxonomyService;
         private readonly ICloudinaryService _cloudinaryService;
+        private readonly UserManager<User> _userManager;
         
-        public SpiderController(ISpiderService spiderService, IAnimalTaxonomyService animalTaxonomyService, ICloudinaryService cloudinaryService)
+        public SpiderController(ISpiderService spiderService, IAnimalTaxonomyService animalTaxonomyService, ICloudinaryService cloudinaryService, UserManager<User> userManager)
         {
             _spiderService = spiderService;
             _animalTaxonomyService = animalTaxonomyService;
             _cloudinaryService = cloudinaryService;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -44,7 +48,7 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
 
             return View(SpiderHelpers.ConvertSpiderAndAnimalTaxonomyToView(spiderModel, animalTaxonomyModel));
         }
-
+        [Authorize(Roles = "moderator")]
         [HttpGet]
         public async Task<IActionResult> Add()
         {
@@ -53,6 +57,7 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
             return View();
         }
 
+        [Authorize(Roles = "moderator")]
         [HttpGet]
         public async Task<IActionResult> Edit(int Id)
         {
@@ -63,6 +68,7 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
 
         }
 
+        [Authorize(Roles = "moderator")]
         [HttpPost]
         public async Task<IActionResult> Edit(SpiderAnimalTaxonomyView result)
         {
@@ -88,6 +94,7 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
             return RedirectToAction("List");
         }
 
+        [Authorize(Roles = "moderator")]
         [HttpPost]
         public async Task<IActionResult> Add(SpiderAnimalTaxonomyView result)
         {
@@ -105,24 +112,15 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
             await _animalTaxonomyService.Create(animalTaxonomyModel);
             var animalTaxonomyId = animalTaxonomyModel.Id;
 
-            //await _cloudinaryService.AddFile
-
             await _spiderService.Create(spiderModel, animalTaxonomyId);
 
             await _cloudinaryService.AddSpiderImage(result.Spider.SpiderFileImg, spiderModel.Id);
-
-            //var spiderModel = SpiderHelpers.ConvertToModel(result);
-            //var animalTaxonomyModel = AnimalTaxonomyHelpers.ConvertToModel(resultAnimalTaxonomy);
-
-            //await _animalTaxonomyService.Create(animalTaxonomyModel);
-            //var animalTaxonomyId = animalTaxonomyModel.Id;
-
-            //await _spiderService.Create(spiderModel, animalTaxonomyId);
-            
+   
 
             return RedirectToAction("List");
         }
 
+        [Authorize(Roles = "moderator")]
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
@@ -141,6 +139,34 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
             await _spiderService.Delete(id);
 
             return RedirectToAction("List");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RandomSpider(string experience)
+        {
+
+            var spiders = await _spiderService.GetAll();
+            List<SpiderModel> newSpiderList = new List<SpiderModel>();
+
+            foreach(var spider in spiders)
+            {
+                if(spider.Experience == experience)
+                {
+                    //spiders.Remove(spider);
+                    newSpiderList.Add(spider);
+                }
+            }
+
+            if(newSpiderList.Count == 0)
+            {
+                return RedirectToAction("List", "Spider");
+            }
+
+            Random rnd = new Random();
+            int randomSpider = rnd.Next(newSpiderList.Count);
+
+
+            return RedirectToAction("Details", "Spider", new { Id = newSpiderList[randomSpider].Id });
         }
 
     }

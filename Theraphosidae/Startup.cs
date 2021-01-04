@@ -66,6 +66,7 @@ namespace Theraphosidae
             services.AddControllersWithViews();
 
             services.AddOptions();
+            services.AddAuthorization();
 
             // Tu wstrzykiwanie zaleznosci
             services.AddScoped<IHomeService, HomeService>();

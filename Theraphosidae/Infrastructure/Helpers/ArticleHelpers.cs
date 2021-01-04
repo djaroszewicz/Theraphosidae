@@ -159,7 +159,7 @@ namespace Theraphosidae.Infrastructure.Helpers
 
             if(article.Image == null)
             {
-                articleView.ImageUrl = "/images/img-plcaeholder.png";
+                articleView.ImageUrl = "https://res.cloudinary.com/dyytlulq9/image/upload/v1609687626/logo_dirysy.png";
             }
             else
             {
@@ -207,7 +207,7 @@ namespace Theraphosidae.Infrastructure.Helpers
 
             if (article.Image == null)
             {
-                articleCommentView.Article.ImageUrl = "/images/img-plcaeholder.png";
+                articleCommentView.Article.ImageUrl = "https://res.cloudinary.com/dyytlulq9/image/upload/v1609687626/logo_dirysy.png";
             }
             else
             {

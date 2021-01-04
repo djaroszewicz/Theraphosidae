@@ -39,7 +39,7 @@
                                             @if (spiderModel.Image == null)
                                             {
                                                 <img class="card-img-top img-fluid"
-                                                     src="https://i.iplsc.com/ptasznik-olbrzymi-zdj-ilustracyjne/000ABR9HH1PHCAD0-C122-F4.jpg"
+                                                     src="https://res.cloudinary.com/dyytlulq9/image/upload/v1609687626/logo_dirysy.png"
                                                      alt="Card image cap"
                                                      style="max-height:40%; max-width:100%;">
                                             }
@@ -95,7 +95,7 @@
                                                 <li class="list-group-item">Temperatura życia: @spiderModel.TemperatureMin °C - @spiderModel.TemperatureMax °C</li>
 
                                                 @*<li class="list-group-item">Pochodzenie: @spiderModel.OriginPlace</li>
-                                                <li class="list-group-item">Typ ptasznika: @spiderModel.Type</li>
+                                <li class="list-group-item">Typ ptasznika: @spiderModel.Type</li>
                                                 *@
 
                                             </ul>
@@ -117,19 +117,62 @@
 
                             }
                         </div>
-                        <div class="card">
+                        @if (Model.Count != 0)
+                        {
+                        <div class="card" style="margin:15px;">
+                            <div class="card-header">
+                                <div class="card-title"><h5>Wylosuj ptasznika!</h5></div>
+                            </div>
                             <div class="card-body">
                                 <div class="row justify-content-center">
-                                    <button class="btn btn-info mb-3" type="submit" onclick="location='@Url.Action("Add","Spider", "dashboard")'" style="margin:5px;">
-                                        <span class="btn-label">
-                                            <i class="fa fa-pencil-square-o"></i>
-                                        </span>
-                                        Dodaj ptasznika
-                                    </button>
-
+                                    @using (Html.BeginForm("RandomSpider", "Spider", new { experience = "poczatkujacy" }, FormMethod.Post, true, true))
+                                    {
+                                        <button class="btn btn-info mb-3" type="submit" style="margin:5px;">
+                                            <span class="btn-label">
+                                                <i class="fa fa-pencil-square-o"></i>
+                                            </span>
+                                            Początkujacy ptasznik
+                                        </button>
+                                    }
+                                    @using (Html.BeginForm("RandomSpider", "Spider", new { experience = "sredniozaawansowany" }, FormMethod.Post, true, true))
+                                    {
+                                        <button class="btn btn-info mb-3" type="submit" style="margin:5px;">
+                                            <span class="btn-label">
+                                                <i class="fa fa-pencil-square-o"></i>
+                                            </span>
+                                            Średniozaawansowany ptasznik
+                                        </button>
+                                    }
+                                    @using (Html.BeginForm("RandomSpider", "Spider", new { experience = "zaawansowany" }, FormMethod.Post, true, true))
+                                    {
+                                        <button class="btn btn-info mb-3" type="submit" style="margin:5px;">
+                                            <span class="btn-label">
+                                                <i class="fa fa-pencil-square-o"></i>
+                                            </span>
+                                            Zaawansowany ptasznik
+                                        </button>
+                                    }
                                 </div>
                             </div>
                         </div>
+                        }
+
+                        @if (User.IsInRole("moderator"))
+                        {
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row justify-content-center">
+                                        <button class="btn btn-info mb-3" type="submit" onclick="location='@Url.Action("Add", "Spider", "dashboard")'" style="margin:5px;">
+                                            <span class="btn-label">
+                                                <i class="fa fa-pencil-square-o"></i>
+                                            </span>
+                                            Dodaj ptasznika
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     </div>
 
 

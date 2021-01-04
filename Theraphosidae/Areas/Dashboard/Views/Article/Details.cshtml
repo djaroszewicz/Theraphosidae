@@ -107,17 +107,29 @@
                                     }
                                 </div>
 
+                                <div class="col-md-12" style="margin-top:10px;">
+                                    <div class="card">
+
+                                        <h3 class="card-title">Zdjęcie podglądowe artykułu</h3>
+                                        <div class="col-md-12 d-flex justify-content-center">
+                                            <div class="form-group form-group-default mb-3">
+                                                    <img src="@Model.Article.ImageUrl" class="img-fluid" alt="...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 @*<div class="form-group form-group-default mb-3">
-                                <label>Angielska nazwa ptasznika</label>
-                                @if (Model.Spider.NameEng == null)
-                                {
-                                    <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
-                                }
-                                else
-                                {
-                                    <input type="text" class="form-control with-out-grey" value="@Model.Spider.NameEng" readonly="">
-                                }
-                            </div>*@
+            <label>Angielska nazwa ptasznika</label>
+            @if (Model.Spider.NameEng == null)
+            {
+                <input type="text" class="form-control with-out-grey" value="Brak danych" readonly="">
+            }
+            else
+            {
+                <input type="text" class="form-control with-out-grey" value="@Model.Spider.NameEng" readonly="">
+            }
+        </div>*@
 
                             </div>
 
@@ -131,11 +143,14 @@
 
                 </div>
             </div>
+
+            @if (User.IsInRole("moderator"))
+            {
             <div class="card">
                 <div class="card-body">
 
                     <div class="row justify-content-center">
-                        <button class="btn btn-warning mb-3" type="submit" onclick="location='@Url.Action("Edit","Article", new { Id = Model.Article.Id})'" style="margin:5px;">
+                        <button class="btn btn-warning mb-3" type="submit" onclick="location='@Url.Action("Edit", "Article", new { Id = Model.Article.Id })'" style="margin:5px;">
                             <span class="btn-label">
                                 <i class="fa fa-pencil-square-o"></i>
                             </span>
@@ -157,6 +172,7 @@
 
                 </div>
             </div>
+            }
 
         </div>
 
@@ -237,7 +253,7 @@
                                             <textarea style="width:100%; min-height:125px; resize: vertical;" readonly>@comment.Content</textarea>
                                         </div>
 
-                                        @if (User.Identity.Name == comment.User.UserName)
+                                        @if (User.Identity.Name == comment.User.UserName || User.IsInRole("admin"))
                                         {
                                         @using (Html.BeginForm("Delete", "Comment", new { Id = comment.Id }, FormMethod.Post, true, true))
                                         {

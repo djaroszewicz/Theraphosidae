@@ -36,7 +36,7 @@
                         <i class="fas fa-pen-alt"></i>
                     </span>
                     <label>Podaj taksonomię królestwa (regnum) ptasznika*</label>
-                    @Html.TextBoxFor(x => x.AnimalTaxonomy.Regnum, new { @class = "form-control", @placeholder = "Podaj królestwo ptasznika"})
+                    @Html.TextBoxFor(x => x.AnimalTaxonomy.Regnum, new { @class = "form-control", @placeholder = "Podaj królestwo ptasznika" })
                 </div>
 
                 <div class="input-icon mb-3">
@@ -203,6 +203,17 @@
                             <option value="Afryka">Afryka</option>
                             <option value="Azja">Azja</option>
                             <option value="Australia">Australia</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-icon mb-3">
+                    <div class="form-group">
+                        <label for="defaultSelect">Wybierz wymagane doświadczenie*</label>
+                        <select name="Spider.Experience" class="form-control form-control">
+                            <option value="poczatkujacy">Początkujący</option>
+                            <option value="sredniozaawansowany">Średniozaawansowany</option>
+                            <option value="zaawansowany">Zaawansowany</option>
                         </select>
                     </div>
                 </div>

@@ -28,6 +28,7 @@ namespace Theraphosidae.Infrastructure.Helpers
                 LengthOfLife = result.Spider.LengthOfLife,
                 CocoonSize = result.Spider.CocoonSize,
                 Description = result.Spider.Description,
+                Experience = result.Spider.Experience,
                 ShortDescription = result.Spider.ShortDescription
                 //AnimalTaxonomyId = result.Spider.AnimalTaxonomyId
             };
@@ -100,6 +101,7 @@ namespace Theraphosidae.Infrastructure.Helpers
                     LengthOfLife = spider.LengthOfLife,
                     CocoonSize = spider.CocoonSize,
                     Description = spider.Description,
+                    Experience = spider.Experience,
                     ShortDescription = spider.ShortDescription
                     //AnimalTaxonomyId = spider.AnimalTaxonomyId
                     
@@ -144,7 +146,7 @@ namespace Theraphosidae.Infrastructure.Helpers
 
             if (spider.Image == null)
             {
-                spiderAnimalTaxonomyView.Spider.ImageUrl = "/images/img-plcaeholder.png";
+                spiderAnimalTaxonomyView.Spider.ImageUrl = "https://res.cloudinary.com/dyytlulq9/image/upload/v1609687626/logo_dirysy.png";
             }
             else
             {
@@ -175,6 +177,7 @@ namespace Theraphosidae.Infrastructure.Helpers
                 LengthOfLife = result.LengthOfLife,
                 CocoonSize = result.CocoonSize,
                 Description = result.Description,
+                Experience = result.Experience,
                 ShortDescription = result.ShortDescription
                 
             };
@@ -239,6 +242,7 @@ namespace Theraphosidae.Infrastructure.Helpers
             model.CocoonSize = view.Spider.CocoonSize;
             model.Description = view.Spider.Description;
             model.ShortDescription = view.Spider.ShortDescription;
+            model.Experience = view.Spider.Experience;
             
 
             return model;

@@ -31,6 +31,7 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
             _spiderService = spiderService;
         }
 
+        [Authorize(Roles = "moderator")]
         [HttpGet]
         public async Task<IActionResult> Add()
         {
@@ -53,11 +54,12 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
             ViewData["Spider"] = await _spiderService.GetAll();
 
             var report = await _reportService.Get(id);
-
+            await _reportService.IncrementReportViews(id);
 
             return View(ReportHelpers.ConvertToView(report));
         }
 
+        [Authorize(Roles = "moderator")]
         [HttpPost]
         public async Task<IActionResult> Add(ReportView result)
         {
@@ -80,24 +82,19 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
             return RedirectToAction("List");
         }
 
+        [Authorize(Roles = "moderator")]
         [HttpGet]
         public async Task<IActionResult> Edit(int Id)
         {
-            //ViewBag.Categories = await _categoryService.GetAll();
-            //ViewBag.Tags = await _tagService.GetAll();
-
             var reportModel = await _reportService.Get(Id);
 
-            //if (reportModel.User.UserName != User.Identity.Name)
-            //{
-            //    return RedirectToAction("List", "Article");
-            //}
-
             var reportView = ReportHelpers.ConvertToView(reportModel);
+            ViewData["Spider"] = await _spiderService.GetAll();
 
             return View(reportView);
         }
 
+        [Authorize(Roles = "moderator")]
         [HttpPost]
         public async Task<IActionResult> Edit(ReportView result)
         {
@@ -111,16 +108,25 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
                     _cloudinaryService.DeleteFile(report.ReportImage.Id);
                 }
                 var photo = await _cloudinaryService.AddReportImage(result.FormFileImg, report.Id);
-                //report.ReportImage = photo;
             }
 
             await _reportService.Update(ReportHelpers.MergeViewWithModel(report, result));
 
-            //await _taxonomyService.Delete(result.Id);
+            return RedirectToAction("List");
+        }
 
-            //await _taxonomyService.SaveCategories(await _categoryService.GetCategoriesByName(result.Categories), article);
+        [Authorize(Roles = "moderator")]
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var report = await _reportService.Get(id);
 
-            //await _taxonomyService.SaveTags(await _tagService.GetCategoriesByNames(result.Tags), article);
+            if (report.ReportImage != null)
+            {
+                _cloudinaryService.DeleteSpiderImage(report.ReportImage.Id);
+            }
+
+            await _reportService.Delete(id);
 
             return RedirectToAction("List");
         }

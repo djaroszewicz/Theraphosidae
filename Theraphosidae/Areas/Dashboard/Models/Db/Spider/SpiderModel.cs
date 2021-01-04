@@ -27,6 +27,7 @@ namespace Theraphosidae.Areas.Dashboard.Models.Db.Spider
         public string Description { get; set; }
         public string ShortDescription { get; set; }
         public int AnimalTaxonomyId { get; set; }
+        public string Experience { get; set; }
 
         public AnimalTaxonomyModel AnimalTaxonomy { get; set; }
         public ImageModel Image { get; set; }

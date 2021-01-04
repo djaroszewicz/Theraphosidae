@@ -36,6 +36,7 @@ namespace Theraphosidae.Infrastructure.Helpers
                 ReportCategory = report.ReportCategory,
                 User = report.User,
                 Spider = report.Spider,
+                Views = report.Views,
                 AddDate = report.AddDate
                 
                 

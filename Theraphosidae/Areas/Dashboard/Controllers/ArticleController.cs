@@ -58,6 +58,7 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
             return View(articles);
         }
 
+        [Authorize(Roles = "moderator")]
         [HttpGet]
         public async Task<IActionResult> Add()
         {
@@ -67,6 +68,7 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
             return View();
         }
 
+        [Authorize(Roles = "moderator")]
         [HttpPost]
         public async Task<IActionResult> Add(ArticleView result)
         {
@@ -100,7 +102,7 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
             return RedirectToAction("List");
         }
 
-
+        [Authorize(Roles = "moderator")]
         [HttpPost]
         public async Task<IActionResult> Delete(int Id)
         {
@@ -122,6 +124,7 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
             return RedirectToAction("List");
         }
 
+        [Authorize(Roles = "moderator")]
         [HttpGet]
         public async Task<IActionResult> Edit(int Id)
         {
@@ -140,6 +143,7 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
             return View(articleView);
         }
 
+        [Authorize(Roles = "moderator")]
         [HttpPost]
         public async Task<IActionResult> Edit(ArticleView result)
         {

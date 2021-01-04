@@ -33,7 +33,7 @@
                             <i class="fas fa-pen-alt"></i>
                         </span>
                         <label>Podaj taksonomię królestwa (regnum) ptasznika*</label>
-                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Regnum, new { @class = "form-control", @placeholder = "Podaj królestwo ptasznika"})
+                        @Html.TextBoxFor(x => x.AnimalTaxonomy.Regnum, new { @class = "form-control", @placeholder = "Podaj królestwo ptasznika" })
                         @*@Html.TextBoxFor(x => x.AnimalTaxonomy.Regnum, new { @class = "form-control", @placeholder = "Podaj królestwo ptasznika", @style = "background-color:#f0f0f0" })*@
                     </div>
 
@@ -204,6 +204,17 @@
                         </div>
                     </div>
 
+                    <div class="input-icon mb-3">
+                        <div class="form-group">
+                            <label for="defaultSelect">Wybierz wymagane doświadczenie*</label>
+                            <select name="Spider.Experience" class="form-control form-control">
+                                <option value="poczatkujacy">Początkujący</option>
+                                <option value="sredniozaawansowany">Średniozaawansowany</option>
+                                <option value="zaawansowany">Zaawansowany</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label for="formControlRange"><strong>Siła jadu*</strong></label>
                         <div class="row">
@@ -338,215 +349,215 @@
 
                     <div class="card-body">
 
-                    <a class="btn btn-info" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        Uzupełnij pozostałą taksonomię ptasznika (Niewymagane)
-                    </a>
-
-                    <div class="collapse" id="collapseExample">
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię podkrólestwa (subregnum) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Subregnum, new { @class = "form-control", @placeholder = "Podaj podkrólestwo ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię nadtypu (superphylum) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Superphylum, new { @class = "form-control", @placeholder = "Podaj nadtyp ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię typu (phylum) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Phylum, new { @class = "form-control", @placeholder = "Podaj typ ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię podtypu (subphylum) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Subphylum, new { @class = "form-control", @placeholder = "Podaj podtyp ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię infratypu (infraphylum) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Infraphylum, new { @class = "form-control", @placeholder = "Podaj infratyp ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię nadgromady (superclassis) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Superclassis, new { @class = "form-control", @placeholder = "Podaj nadgromadę ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię podgromady (subclassis) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Subclassis, new { @class = "form-control", @placeholder = "Podaj podgromadę ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię infragromady (infraclassis) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Infraclassis, new { @class = "form-control", @placeholder = "Podaj infragromadę ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię nadrzędu (superordo) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Superordo, new { @class = "form-control", @placeholder = "Podaj nadrząd ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię podrzędu (subordo, subord. so.) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Subordo, new { @class = "form-control", @placeholder = "Podaj podrząd ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię infrarzędu (infraordo) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Infraordo, new { @class = "form-control", @placeholder = "Podaj infrarząd ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię nadrodziny (superfamilia) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Superfamilia, new { @class = "form-control", @placeholder = "Podaj nadrodzinę ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię podrodziny (subfamilia, subfam.) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Subfamilia, new { @class = "form-control", @placeholder = "Podaj podrodzinę ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię infrarodziny (infrafamilia) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Infrafamilia, new { @class = "form-control", @placeholder = "Podaj infrarodzinę ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię nadplemienia (supertrubus) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Supertrubus, new { @class = "form-control", @placeholder = "Podaj nadplemię ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię plemienia (tribus) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Tribus, new { @class = "form-control", @placeholder = "Podaj plemię ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię podplemienia (subtribus) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Subtribus, new { @class = "form-control", @placeholder = "Podaj podplemię ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię infraplemienia (infratribus) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Infratribus, new { @class = "form-control", @placeholder = "Podaj infraplemię ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię nadrodzaju (supergenus) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Supergenus, new { @class = "form-control", @placeholder = "Podaj nadrodzaj ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię podrodzaju (subgenus, subg. subgen.) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Subgenus, new { @class = "form-control", @placeholder = "Podaj podrodzaj ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię infrarodzaju (infragenus) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Infragenus, new { @class = "form-control", @placeholder = "Podaj infrarodzaj ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię podgatunku (subspecies, subsp. ssp.) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Subspecies, new { @class = "form-control", @placeholder = "Podaj podgatunek ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię nacji (natio) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Natio, new { @class = "form-control", @placeholder = "Podaj nację ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię odmiany (morpha) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Morpha, new { @class = "form-control", @placeholder = "Podaj odmianę ptasznika" })
-                        </div>
-
-                        <div class="input-icon mb-3">
-                            <span class="input-icon-addon">
-                                <i class="fas fa-pen-alt"></i>
-                            </span>
-                            <label>Podaj taksonomię formy (forma, f.) ptasznika</label>
-                            @Html.TextBoxFor(x => x.AnimalTaxonomy.Forma, new { @class = "form-control", @placeholder = "Podaj formę ptasznika" })
-                        </div>
-
-                        <a class="btn btn-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            Zwiń listę dodatkowej taksonomii
+                        <a class="btn btn-info" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Uzupełnij pozostałą taksonomię ptasznika (Niewymagane)
                         </a>
-                    </div>
+
+                        <div class="collapse" id="collapseExample">
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię podkrólestwa (subregnum) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Subregnum, new { @class = "form-control", @placeholder = "Podaj podkrólestwo ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię nadtypu (superphylum) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Superphylum, new { @class = "form-control", @placeholder = "Podaj nadtyp ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię typu (phylum) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Phylum, new { @class = "form-control", @placeholder = "Podaj typ ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię podtypu (subphylum) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Subphylum, new { @class = "form-control", @placeholder = "Podaj podtyp ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię infratypu (infraphylum) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Infraphylum, new { @class = "form-control", @placeholder = "Podaj infratyp ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię nadgromady (superclassis) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Superclassis, new { @class = "form-control", @placeholder = "Podaj nadgromadę ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię podgromady (subclassis) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Subclassis, new { @class = "form-control", @placeholder = "Podaj podgromadę ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię infragromady (infraclassis) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Infraclassis, new { @class = "form-control", @placeholder = "Podaj infragromadę ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię nadrzędu (superordo) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Superordo, new { @class = "form-control", @placeholder = "Podaj nadrząd ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię podrzędu (subordo, subord. so.) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Subordo, new { @class = "form-control", @placeholder = "Podaj podrząd ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię infrarzędu (infraordo) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Infraordo, new { @class = "form-control", @placeholder = "Podaj infrarząd ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię nadrodziny (superfamilia) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Superfamilia, new { @class = "form-control", @placeholder = "Podaj nadrodzinę ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię podrodziny (subfamilia, subfam.) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Subfamilia, new { @class = "form-control", @placeholder = "Podaj podrodzinę ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię infrarodziny (infrafamilia) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Infrafamilia, new { @class = "form-control", @placeholder = "Podaj infrarodzinę ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię nadplemienia (supertrubus) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Supertrubus, new { @class = "form-control", @placeholder = "Podaj nadplemię ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię plemienia (tribus) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Tribus, new { @class = "form-control", @placeholder = "Podaj plemię ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię podplemienia (subtribus) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Subtribus, new { @class = "form-control", @placeholder = "Podaj podplemię ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię infraplemienia (infratribus) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Infratribus, new { @class = "form-control", @placeholder = "Podaj infraplemię ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię nadrodzaju (supergenus) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Supergenus, new { @class = "form-control", @placeholder = "Podaj nadrodzaj ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię podrodzaju (subgenus, subg. subgen.) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Subgenus, new { @class = "form-control", @placeholder = "Podaj podrodzaj ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię infrarodzaju (infragenus) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Infragenus, new { @class = "form-control", @placeholder = "Podaj infrarodzaj ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię podgatunku (subspecies, subsp. ssp.) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Subspecies, new { @class = "form-control", @placeholder = "Podaj podgatunek ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię nacji (natio) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Natio, new { @class = "form-control", @placeholder = "Podaj nację ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię odmiany (morpha) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Morpha, new { @class = "form-control", @placeholder = "Podaj odmianę ptasznika" })
+                            </div>
+
+                            <div class="input-icon mb-3">
+                                <span class="input-icon-addon">
+                                    <i class="fas fa-pen-alt"></i>
+                                </span>
+                                <label>Podaj taksonomię formy (forma, f.) ptasznika</label>
+                                @Html.TextBoxFor(x => x.AnimalTaxonomy.Forma, new { @class = "form-control", @placeholder = "Podaj formę ptasznika" })
+                            </div>
+
+                            <a class="btn btn-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Zwiń listę dodatkowej taksonomii
+                            </a>
+                        </div>
 
                     </div>
 
