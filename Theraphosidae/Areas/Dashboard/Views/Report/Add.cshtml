@@ -90,7 +90,7 @@
                                             <option value="null">Wybierz ptasznika</option>
                                             @foreach (var spider in spiders)
                                             {
-                                                <option value="@spider.Id">@spider.AnimalTaxonomy.Regnum</option>
+                                                <option value="@spider.Id">@spider.AnimalTaxonomy.Genus @spider.AnimalTaxonomy.Species</option>
                                             }
                                         }
                                     </select>

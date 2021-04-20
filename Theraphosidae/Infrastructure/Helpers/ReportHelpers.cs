@@ -44,7 +44,7 @@ namespace Theraphosidae.Infrastructure.Helpers
 
             if(report.ReportImage == null)
             {
-                reportView.ImageUrl = "/images/img-plcaeholder.png";
+                reportView.ImageUrl = "https://res.cloudinary.com/dyytlulq9/image/upload/v1609687626/logo_dirysy.png";
             }
             else
             {

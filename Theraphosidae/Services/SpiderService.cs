@@ -84,21 +84,5 @@ namespace Theraphosidae.Services
         }
 
         
-
-        //public async Task<bool> AddAnimalTaxonomy(int spiderId, int animalTaxonomyId)
-        //{
-        //    if(animalTaxonomyId != null)
-        //    {
-        //        var spiderTaxonomy = new AnimalTaxonomyModel
-        //        {
-                    
-        //        };
-        //        await _theraphosidaeContext.AnimalTaxonomies.AddAsync(spiderTaxonomy);
-        //    }
-
-        //    return await _theraphosidaeContext.SaveChangesAsync() > 0;
-        //}
-
-        
     }
 }

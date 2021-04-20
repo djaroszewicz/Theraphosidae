@@ -116,16 +116,9 @@
                                 {
                                     
                                     <div class="card">
-                                        <div class="card-title"><h3>Zdjecie rozmnozenia</h3></div>
+                                        <div class="card-title"><h3>Zdjecie dla raportu rozmnozenia</h3></div>
                                         <div class="form-group form-group-default mb-3 d-flex justify-content-center">
-                                            @if (Model.ReportImage == null)
-                                            {
-                                                <img src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg" class="img-fluid" alt="...">
-                                            }
-                                            else
-                                            {
-                                                <img src="@Model.ReportImage.Url" class="img-fluid" alt="...">
-                                            }
+                                                <img src="@Model.ImageUrl" class="img-fluid" alt="...">
                                         </div>
                                     </div>
                                 }
@@ -133,16 +126,9 @@
                                 {
                                     
                                     <div class="card">
-                                        <div class="card-title"><h3>Zdjecie ukaszenia</h3></div>
+                                        <div class="card-title"><h3>Zdjecie dla raportu ukaszenia</h3></div>
                                         <div class="form-group form-group-default mb-3 d-flex justify-content-center">
-                                            @if (Model.ReportImage == null)
-                                            {
-                                                <img src="https://res.cloudinary.com/dyytlulq9/image/upload/v1609687626/logo_dirysy.png" class="img-fluid" alt="...">
-                                            }
-                                            else
-                                            {
-                                                <img src="@Model.ReportImage.Url" class="img-fluid" alt="...">
-                                            }
+                                                <img src="@Model.ImageUrl" class="img-fluid" alt="...">
                                         </div>
                                     </div>
                                 }
@@ -156,7 +142,7 @@
                         <div class="col-md-12" style="margin-top:10px;">
                             <div class="card">
 
-                                <h3 class="card-title">Zdjęcie podglądowe ptasznika: <a href="@Url.Action("Details","Spider", new { Id = Model.Spider.Id})" class="card-link">@Model.Spider.NamePl</a></h3>
+                                <h3 class="card-title">Zdjęcie podglądowe ptasznika: <a href="@Url.Action("Details","Spider", new { Id = Model.Spider.Id})" class="card-link">@Model.Spider.AnimalTaxonomy.Genus @Model.Spider.AnimalTaxonomy.Species</a></h3>
                                 <div class="col-md-12 d-flex justify-content-center">
                                     <div class="form-group form-group-default mb-3">
                                         @if (Model.Spider.Image == null)

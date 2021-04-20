@@ -23,14 +23,13 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
         private readonly ISpiderService _spiderService;
         private readonly IAnimalTaxonomyService _animalTaxonomyService;
         private readonly ICloudinaryService _cloudinaryService;
-        private readonly UserManager<User> _userManager;
         
-        public SpiderController(ISpiderService spiderService, IAnimalTaxonomyService animalTaxonomyService, ICloudinaryService cloudinaryService, UserManager<User> userManager)
+        public SpiderController(ISpiderService spiderService, IAnimalTaxonomyService animalTaxonomyService,
+            ICloudinaryService cloudinaryService)
         {
             _spiderService = spiderService;
             _animalTaxonomyService = animalTaxonomyService;
             _cloudinaryService = cloudinaryService;
-            _userManager = userManager;
         }
 
         [HttpGet]
@@ -152,7 +151,6 @@ namespace Theraphosidae.Areas.Dashboard.Controllers
             {
                 if(spider.Experience == experience)
                 {
-                    //spiders.Remove(spider);
                     newSpiderList.Add(spider);
                 }
             }

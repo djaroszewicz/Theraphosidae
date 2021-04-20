@@ -42,7 +42,7 @@ namespace Theraphosidae.Areas.Dashboard.Models.View.Spider
         public IFormFile SpiderFileImg { get; set; }
         public bool PhotoEditedFlag { get; set; }
         public string ImageUrl { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Doświadczenie jest wymagane!")]
         public string Experience { get; set; }
 
         [Required]

@@ -8,7 +8,7 @@ namespace Theraphosidae.Areas.Dashboard.Models.View.Role
 {
     public class RoleView
     {
-        [Required]
+        [Required(ErrorMessage = "Nazwa roli jest wymagana!")]
         public string RoleName { get; set; }
     }
 }

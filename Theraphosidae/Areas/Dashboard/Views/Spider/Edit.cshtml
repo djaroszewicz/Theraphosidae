@@ -4,13 +4,12 @@
     ViewData["Title"] = "Edytowanie ptasznika";
 
     ViewData["Page"] = "SpiderModel";
-    ViewData["Group"] = "Spider";
 
     Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
 
 
 }
-<div class="page-inner" style="margin-top:15px;>
+<div class="page-inner" style="margin-top:15px;">
 
     <div class="page-header">
         <h4 class="page-title">Edytowanie ptasznika</h4>
@@ -164,7 +163,7 @@
                             <input name="Spider.HumidityMin"
                                    value="@Html.DisplayTextFor(x => x.Spider.HumidityMin)"
                                    min="15"
-                                   max="40"
+                                   max="100"
                                    type="range"
                                    class="form-control-range mx-3"
                                    id="formControlRange" />
@@ -182,7 +181,7 @@
                             <input name="Spider.HumidityMax"
                                    value="@Html.DisplayTextFor(x => x.Spider.HumidityMax)"
                                    min="15"
-                                   max="40"
+                                   max="100"
                                    type="range"
                                    class="form-control-range mx-3"
                                    id="formControlRange" />

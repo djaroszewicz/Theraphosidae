@@ -84,7 +84,7 @@
                                     <option value="null">Wybierz ptasznika</option>
                                     @foreach (var spider in spiders)
                                     {
-                                        <option value="@spider.Id">@spider.AnimalTaxonomy.Regnum</option>
+                                <option value="@spider.Id">@spider.AnimalTaxonomy.Genus @spider.AnimalTaxonomy.Species</option>
                                     }
                                 </select>
                             </div>
@@ -94,10 +94,10 @@
                         <div class="input-icon mb-3">
                             <div class="form-group">
                                 <label for="defaultSelect">Wybierz kategorię</label>
-                                <select name="Model.ReportCategory" class="form-control form-control">
+                                <select name="ReportCategory" class="form-control form-control">
                                     <option value="null">Wybierz kategorię</option>
-                                    <option value="Multiplication">Raport rozmnożeniowy</option>
-                                    <option value="Bite">Raport ukąszenia</option>
+                                    <option value="Raport rozmnozeniowy">Raport rozmnożeniowy</option>
+                                    <option value="Raport ukaszenia">Raport ukąszenia</option>
                                 </select>
                             </div>
                         </div>

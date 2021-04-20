@@ -103,7 +103,6 @@ namespace Theraphosidae.Infrastructure.Helpers
                     Description = spider.Description,
                     Experience = spider.Experience,
                     ShortDescription = spider.ShortDescription
-                    //AnimalTaxonomyId = spider.AnimalTaxonomyId
                     
                 },
 

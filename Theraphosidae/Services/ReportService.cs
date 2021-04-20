@@ -41,6 +41,7 @@ namespace Theraphosidae.Services
             return await _theraphosidaeContext.Reports
                 .Include(r => r.Spider)
                 .Include(r => r.Spider).ThenInclude(i => i.Image)
+                .Include(r => r.Spider).ThenInclude(c => c.AnimalTaxonomy)
                 .Include(r => r.ReportImage)
                 .Include(u => u.User)
                 .SingleOrDefaultAsync(i => i.Id == id);
